@@ -1,5 +1,7 @@
 # Tunji Productions
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/75c5c3e8-bfb9-4579-a019-bebe485f0329/deploy-status)](https://app.netlify.com/sites/tunjiprod/deploys)
+
 Yeeeaaaa, finally making a portfolio site. Lil late but fuck it we ball :)
 Follow me on a lil journey, fingers crossed I can crush this in about 2 weeks.
 Follow development at [Tunji Productions](https://www.tunjiproductions.com)
