@@ -35,13 +35,13 @@ I kinda wanna do a portfolio site. I don't really like the generic project layou
 
 ### Functional Goals
 
-[ ] - Minimal header with handwritten text of Tunji Productions
-[ ] - My spiel
-[ ] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
-[ ] - Design (Maya's art, peeking all over page)
-[ ] - Things I wanna promote
-[ ] - Maybe a live chat room
-[ ] - Highlights on things I'm especially proud of
+- [ ] - Minimal header with handwritten text of Tunji Productions
+- [ ] - My spiel
+- [ ] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
+- [ ] - Design (Maya's art, peeking all over page)
+- [ ] - Things I wanna promote
+- [ ] - Maybe a live chat room
+- [ ] - Highlights on things I'm especially proud of
 
 ### Learning Goals
 
