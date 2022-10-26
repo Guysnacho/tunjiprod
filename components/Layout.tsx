@@ -20,7 +20,7 @@ type LayoutProps = {
  */
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Container maxWidth="xl" sx={{ backgroundColor: "teal" }}>
+    <Grid container>
       <Head>
         <link
           rel="stylesheet"
@@ -28,11 +28,9 @@ const Layout = ({ children }: LayoutProps) => {
         />
       </Head>
       <Navbar />
-      <Container component="main">
-        {children}
-      </Container>
+      {children}
       <Footer />
-    </Container>
+    </Grid>
   );
 };
 
