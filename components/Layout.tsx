@@ -1,8 +1,8 @@
-import Footer from "./Footer";
-import Head from "next/head";
-import Navbar from "./Navbar";
 import { Grid } from "@mui/material";
-import { Container } from "@mui/system";
+import Head from "next/head";
+import Notebook from "../assets/Notebook.jpg";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 /**
  * @type {LayoutProps} - Pages that will be wrapped by the Navbar and Footer
@@ -20,13 +20,7 @@ type LayoutProps = {
  */
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Grid container>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-      </Head>
+    <Grid container sx={{background: `url(${Notebook.src})`, backgroundRepeat: "repeat-y"}}>
       <Navbar />
       {children}
       <Footer />
