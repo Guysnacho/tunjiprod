@@ -1,5 +1,8 @@
 import Footer from "./Footer";
+import Head from "next/head";
 import Navbar from "./Navbar";
+import { Grid } from "@mui/material";
+import { Container } from "@mui/system";
 
 /**
  * @type {LayoutProps} - Pages that will be wrapped by the Navbar and Footer
@@ -15,10 +18,22 @@ type LayoutProps = {
  * @param children - ReactNode
  * @returns A page with a Navbar and Footer
  */
-export default function Layout({ children }: LayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="container">
-      <Navbar /> {children} <Footer />
-    </div>
+    <Container maxWidth="xl" sx={{ backgroundColor: "teal" }}>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+      </Head>
+      <Navbar />
+      <Container component="main">
+        {children}
+      </Container>
+      <Footer />
+    </Container>
   );
-}
+};
+
+export default Layout;
