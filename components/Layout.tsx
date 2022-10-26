@@ -1,3 +1,6 @@
+import { Grid } from "@mui/material";
+import Head from "next/head";
+import Notebook from "../assets/Notebook.jpg";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -15,10 +18,14 @@ type LayoutProps = {
  * @param children - ReactNode
  * @returns A page with a Navbar and Footer
  */
-export default function Layout({ children }: LayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="container">
-      <Navbar /> {children} <Footer />
-    </div>
+    <Grid container sx={{background: `url(${Notebook.src})`, backgroundRepeat: "repeat-y"}}>
+      <Navbar />
+      {children}
+      <Footer />
+    </Grid>
   );
-}
+};
+
+export default Layout;
