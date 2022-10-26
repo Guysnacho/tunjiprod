@@ -24,7 +24,7 @@ type AppPropsWithLayout = AppProps & {
 /**
  * Project Theme
  * @remark Theme generator courtesy of bareynol
- * @link https://bareynol.github.io/mui-theme-creator/#Typography 
+ * @link https://bareynol.github.io/mui-theme-creator/#Typography
  * @remark Premade components courtesy of MUI
  * @link https://mui.com/
  */
