@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import Head from "next/head";
 import Notebook from "../assets/Notebook.jpg";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -20,7 +19,10 @@ type LayoutProps = {
  */
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Grid container sx={{background: `url(${Notebook.src})`, backgroundRepeat: "repeat-y"}}>
+    <Grid
+      container
+      sx={{ background: `url(${Notebook.src})`, backgroundRepeat: "repeat-y" }}
+    >
       <Navbar />
       {children}
       <Footer />
