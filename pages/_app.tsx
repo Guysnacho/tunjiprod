@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/system";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import React, { ReactElement, ReactNode } from "react";
@@ -24,7 +25,7 @@ type AppPropsWithLayout = AppProps & {
 /**
  * Project Theme
  * @remark Theme generator courtesy of bareynol
- * @link https://bareynol.github.io/mui-theme-creator/#Typography 
+ * @link https://bareynol.github.io/mui-theme-creator/#Typography
  * @remark Premade components courtesy of MUI
  * @link https://mui.com/
  */
@@ -79,6 +80,8 @@ const theme = createTheme({
   },
 });
 
+const queryClient = new QueryClient();
+
 /**
  * @function MyApp
  * @fileoverview Entry point of the application
@@ -87,9 +90,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <React.StrictMode>
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <QueryClientProvider client={queryClient}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </QueryClientProvider>
       </ThemeProvider>
     </React.StrictMode>
   );
