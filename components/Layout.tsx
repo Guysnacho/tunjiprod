@@ -21,7 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Grid
       container
-      sx={{ background: `url(${Notebook.src})`, backgroundRepeat: "repeat-y" }}
+      sx={{ background: `url(${Notebook.src})`, backgroundRepeat: "repeat" }}
     >
       <Navbar />
       {children}

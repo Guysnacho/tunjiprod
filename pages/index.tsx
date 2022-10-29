@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Alert, AlertTitle, Grid } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import type { NextPage } from "next";
 
@@ -11,12 +11,14 @@ const octokit = new Octokit({ auth: process.env.GITHUBFINEGRAINEDTOKEN });
 
 const Home: NextPage = () => {
   const { isLoading, error, data } = useQuery(["repoData"], () =>
-    octokit.request("GET /users/Guysnacho/repos")
+    octokit.request(
+      "GET /users/Guysnacho/repos?sort=pushed&direction=desc&per_page=10"
+    )
   );
 
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [isLoading]);
 
   return (
     <>
@@ -29,15 +31,34 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Grid item xs={12}>
+      {error ? (
+        <Alert color="info" sx={{ mx: "auto" }} variant="filled">
+          <AlertTitle>Uh oh, Spaghetti-O's™</AlertTitle>
+          {`${error}\nMan that's unlucky, try a refresh or sumn :)`}
+        </Alert>
+      ) : (
+        <></>
+      )}
+
+      <Grid item xs={12} sx={{ display: "flex", flexFlow: "wrap" }}>
         {data?.data.map((repo: any, index: number) => (
-          <Single
-            key={repo.id}
-            index={index + 1}
-            title={repo.name}
-            body={repo.description}
-            createdAt={repo.created_at}
-          />
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            px="auto"
+            py={2}
+          >
+            <Single
+              key={repo.id}
+              index={index + 1}
+              title={repo.name}
+              body={repo.description}
+              createdAt={repo.created_at}
+            />
+          </Grid>
         ))}
       </Grid>
     </>
