@@ -4,7 +4,6 @@ import type { NextPage } from "next";
 
 import Head from "next/head";
 import { Octokit } from "octokit";
-import { useEffect } from "react";
 import Single from "../components/individual/Single";
 
 const octokit = new Octokit({ auth: process.env.GITHUBFINEGRAINEDTOKEN });
@@ -13,7 +12,7 @@ const Home: NextPage = () => {
   const { isLoading, error, data } = useQuery(["repoData"], () =>
     octokit.request(
       "GET /users/Guysnacho/repos?sort=pushed&direction=desc&per_page=10"
-    )
+    ), {}
   );
 
   // useEffect(() => {
