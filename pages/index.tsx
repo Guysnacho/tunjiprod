@@ -9,10 +9,13 @@ import Single from "../components/individual/Single";
 const octokit = new Octokit({ auth: process.env.GITHUBFINEGRAINEDTOKEN });
 
 const Home: NextPage = () => {
-  const { isLoading, error, data } = useQuery(["repoData"], () =>
-    octokit.request(
-      "GET /users/Guysnacho/repos?sort=pushed&direction=desc&per_page=10"
-    ), {}
+  const { isLoading, error, data } = useQuery(
+    ["repoData"],
+    () =>
+      octokit.request(
+        "GET /users/Guysnacho/repos?sort=pushed&direction=desc&per_page=10"
+      ),
+    {}
   );
 
   // useEffect(() => {
@@ -41,15 +44,7 @@ const Home: NextPage = () => {
 
       <Grid item xs={12} sx={{ display: "flex", flexFlow: "wrap" }}>
         {data?.data.map((repo: any, index: number) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            px="auto"
-            py={2}
-          >
+          <Grid item xs={12} sm={6} md={4} px="auto" py={2}>
             <Single
               key={repo.id}
               index={index + 1}

@@ -3,7 +3,7 @@ import {
   CardContent,
   CardHeader,
   Typography,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import { useState } from "react";
 
@@ -27,10 +27,10 @@ const Single = (props: SingleProps) => {
       sx={{
         m: "auto",
         borderWidth: "1.4px",
-        borderColor: hover ? "#feaf00" : "#f7d882",
+        borderColor: hover ? "#f7d882" : "#ff8708",
         width: { xs: "75%", sm: "79%", md: "75%", lg: "75%" },
         boxShadow: hover ? 12 : 5,
-        background: `linear-gradient(200deg, ${theme.palette.secondary.light}, ${theme.palette.secondary.dark})`,
+        background: `linear-gradient(205deg, ${theme.palette.secondary.light}, ${theme.palette.secondary.dark})`,
         color: theme.palette.getContrastText(theme.palette.secondary.dark),
       }}
     >
