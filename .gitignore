@@ -2,8 +2,7 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
+yarn.lock
 
 # testing
 /coverage
@@ -27,6 +26,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+test.tsx
 
 # vercel
 .vercel
