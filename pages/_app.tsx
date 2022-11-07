@@ -32,21 +32,21 @@ type AppPropsWithLayout = AppProps & {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#068c62",
+      main: "#E5A174", // Tan Crayola
     },
     secondary: {
-      main: "#8c7158",
+      main: "#2B8D63", // Sea Green
     },
     error: {
-      main: "#f44336",
+      main: "#AE0549", // Amaranth Purple
     },
     warning: {
-      main: "#ff9800",
+      main: "#FDB0CF", // Nadeshiko Pink
     },
     info: {
-      main: "#edb3d6",
+      main: "#D2C6E6", // Languid Lavender
     },
-    divider: "#73053E",
+    divider: "#1C132B", // ikiko
   },
   typography: {
     fontFamily: "Poppins",
