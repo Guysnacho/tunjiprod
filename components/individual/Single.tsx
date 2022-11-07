@@ -22,14 +22,15 @@ const Single = (props: SingleProps) => {
   return (
     <Card
       variant="outlined"
-      onMouseEnter={() => setHover(!hover)}
-      onMouseLeave={() => setHover(!hover)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       sx={{
         m: "auto",
         borderWidth: "1.4px",
         borderColor: hover ? "#f7d882" : "#ff8708",
         width: { xs: "75%", sm: "79%", md: "75%", lg: "75%" },
-        boxShadow: hover ? 12 : 5,
+        height: { xs: "15vh%", sm: "17vh", md: "20vh", lg: "23vh" },
+        boxShadow: hover ? 20 : 5,
         background: `linear-gradient(205deg, ${theme.palette.secondary.light}, ${theme.palette.secondary.dark})`,
         color: theme.palette.getContrastText(theme.palette.secondary.dark),
       }}
@@ -37,7 +38,7 @@ const Single = (props: SingleProps) => {
       <CardHeader title={`#${props.index} - ${props.title}`} />
       <CardContent>
         <Typography variant="body2">{props.body}</Typography>
-        <Typography variant="subtitle1">
+        <Typography variant="overline">
           Created at {props.createdAt.split("T")[0]}
         </Typography>
       </CardContent>
