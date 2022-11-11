@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NextPage } from "next";
@@ -29,7 +29,7 @@ type AppPropsWithLayout = AppProps & {
  * @remark Premade components courtesy of MUI
  * @link https://mui.com/
  */
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: {
       main: "#E5A174", // Tan Crayola
@@ -79,6 +79,7 @@ const theme = createTheme({
     },
   },
 });
+theme = responsiveFontSizes(theme);
 
 const queryClient = new QueryClient();
 

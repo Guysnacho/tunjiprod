@@ -4,6 +4,7 @@ import type { NextPage } from "next";
 
 import Head from "next/head";
 import { Octokit } from "octokit";
+import { useEffect } from "react";
 import Single from "../components/individual/Single";
 
 const octokit = new Octokit({ auth: process.env.GITHUBFINEGRAINEDTOKEN });
@@ -50,12 +51,21 @@ const Home: NextPage = () => {
         }}
       >
         {data?.data.map((repo: any, index: number) => (
-          <Grid item xs={12} sm={6} md={4} px="auto" py={3} mx="auto">
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            px="auto"
+            py={3}
+            m="auto"
+            key={index}
+          >
             <Single
-              key={index}
               index={index + 1}
               title={repo.name}
               body={repo.description}
+              url={repo.html_url}
               createdAt={repo.created_at}
             />
           </Grid>
