@@ -1,4 +1,5 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
+import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
   Card,
@@ -6,12 +7,10 @@ import {
   CardContent,
   CardHeader,
   IconButton,
-  Stack,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import LinearProgress from "@mui/material/LinearProgress";
 import { useState } from "react";
 
 type SingleProps = {
@@ -19,7 +18,8 @@ type SingleProps = {
   title: string;
   body: string;
   createdAt: string;
-  url: string;
+  gitUrl: string;
+  previewUrl?: string;
 };
 
 const Single = (props: SingleProps) => {
@@ -62,7 +62,7 @@ const Single = (props: SingleProps) => {
       <CardActions
         sx={{
           display: "flex",
-          flexFlow: "row",
+          flexFlow: { xs: "column", md: "row" },
           justifyContent: "space-between",
           m: 0.5,
         }}
@@ -70,15 +70,32 @@ const Single = (props: SingleProps) => {
         <Typography variant="overline">
           {isBig ? "Created at" : "🐣"} {props.createdAt.split("T")[0]}
         </Typography>
-        <IconButton
-          sx={{ color: "#f7d882" }}
-          about="Github repository link"
-          href={props.url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <GitHubIcon />
-        </IconButton>
+        <Box sx={{ justifyContent: "right" }}>
+          <IconButton
+            sx={{ color: "#f7d882" }}
+            about="Github repository link"
+            href={props.gitUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <GitHubIcon />
+          </IconButton>
+          {props.previewUrl ? (
+            <>
+              <IconButton
+                sx={{ color: "#f7d882" }}
+                about="Github repository link"
+                href={props.previewUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <LaunchIcon />
+              </IconButton>
+            </>
+          ) : (
+            <></>
+          )}
+        </Box>
       </CardActions>
     </Card>
   );

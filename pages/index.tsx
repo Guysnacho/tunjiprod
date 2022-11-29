@@ -4,6 +4,7 @@ import type { NextPage } from "next";
 
 import Head from "next/head";
 import { Octokit } from "octokit";
+import { useEffect } from "react";
 import Single from "../components/individual/Single";
 
 const octokit = new Octokit();
@@ -64,8 +65,9 @@ const Home: NextPage = () => {
               index={index + 1}
               title={repo.name}
               body={repo.description}
-              url={repo.html_url}
+              gitUrl={repo.html_url}
               createdAt={repo.created_at}
+              previewUrl={repo.homepage}
             />
           </Grid>
         ))}
