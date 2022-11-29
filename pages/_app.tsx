@@ -1,3 +1,4 @@
+import { CssBaseline } from "@mui/material";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -90,6 +91,7 @@ const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <React.StrictMode>
+      <CssBaseline />
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <Layout>

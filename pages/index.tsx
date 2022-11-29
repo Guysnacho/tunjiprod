@@ -4,10 +4,9 @@ import type { NextPage } from "next";
 
 import Head from "next/head";
 import { Octokit } from "octokit";
-import { useEffect } from "react";
 import Single from "../components/individual/Single";
 
-const octokit = new Octokit({ auth: process.env.GITHUBFINEGRAINEDTOKEN });
+const octokit = new Octokit();
 
 const Home: NextPage = () => {
   const { isLoading, error, data } = useQuery(
