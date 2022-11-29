@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Notebook from "../assets/Notebook.jpg";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -19,14 +19,13 @@ type LayoutProps = {
  */
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Grid
-      container
+    <Box
       sx={{ background: `url(${Notebook.src})`, backgroundRepeat: "repeat" }}
     >
       <Navbar />
       {children}
       <Footer />
-    </Grid>
+    </Box>
   );
 };
 

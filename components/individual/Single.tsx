@@ -54,7 +54,7 @@ const Single = (props: SingleProps) => {
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph textAlign="center">
             {props.body}
           </Typography>
         </Box>
