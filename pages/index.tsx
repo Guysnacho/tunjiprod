@@ -7,7 +7,7 @@ import { Octokit } from "octokit";
 import { useEffect } from "react";
 import Single from "../components/individual/Single";
 
-const octokit = new Octokit({ auth: process.env.GITHUBFINEGRAINEDTOKEN });
+const octokit = new Octokit();
 
 const Home: NextPage = () => {
   const { isLoading, error, data } = useQuery(
@@ -65,8 +65,9 @@ const Home: NextPage = () => {
               index={index + 1}
               title={repo.name}
               body={repo.description}
-              url={repo.html_url}
+              gitUrl={repo.html_url}
               createdAt={repo.created_at}
+              previewUrl={repo.homepage}
             />
           </Grid>
         ))}
