@@ -24,7 +24,7 @@ const Footer = () => {
       container
       component="footer"
       justifyContent="center"
-      mt={3}
+      mt={{ xs: 5, sm: 7, md: 10 }}
       py={4}
       sx={{
         backgroundColor: theme.palette.primary.main,

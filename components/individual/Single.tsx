@@ -63,7 +63,7 @@ const Single = (props: SingleProps) => {
         sx={{
           display: "flex",
           flexFlow: { xs: "column", md: "row" },
-          justifyContent: "space-between",
+          justifyContent: { xs: "space-evenly", md: "space-between" },
           m: 0.5,
         }}
       >
