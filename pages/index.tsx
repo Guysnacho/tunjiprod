@@ -74,7 +74,7 @@ const Home: NextPage = () => {
         </Typography>
       </Container>
       {error ? ( // Failed to fetch repos
-        <Alert color="info" sx={{ mx: "auto" }} variant="filled">
+        <Alert color="error" sx={{ mx: "auto" }} variant="filled">
           <AlertTitle>Uh oh, Spaghetti-O's™</AlertTitle>
           {`${error}\nMan that's unlucky, try a refresh or sumn :)`}
         </Alert>
