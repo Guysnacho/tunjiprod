@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         sx={{
           width: { xs: "80vw", sm: "70vw", md: "65vw", lg: "61vw" },
           py: 3,
-          my: 2,
+          my: 5,
         }}
       >
         <Typography
@@ -69,7 +69,11 @@ const Home: NextPage = () => {
         </Typography>
       </Container>
       <Container sx={{ py: 3 }}>
-        <Typography variant="h3" textAlign="center" sx={{ userSelect: "none" }}>
+        <Typography
+          variant="h3"
+          textAlign="center"
+          sx={{ userSelect: "none", my: 10 }}
+        >
           Projects
         </Typography>
       </Container>
@@ -87,15 +91,7 @@ const Home: NextPage = () => {
         }}
       >
         {data?.data.map((repo: any, index: number) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            px="auto"
-            py={3}
-            m="auto"
-            key={index}
-          >
+          <Grid item xs={12} sm={6} px="auto" py={4} m="auto" key={index}>
             <Single
               index={index + 1}
               title={repo.name}
