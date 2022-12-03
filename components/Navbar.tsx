@@ -7,6 +7,7 @@ import Image from "next/image";
  * @fileoverview Navigation bar of the website
  * @function Navbar
  * @remarks Setting type for pages with a layout
+ * TODO - Add an actual navbar under the logo, pointing to projects, music, and art sections
  */
 
 const Navbar = () => {
