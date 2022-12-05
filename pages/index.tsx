@@ -16,6 +16,13 @@ import Single from "../components/individual/Single";
 
 const octokit = new Octokit();
 
+/**
+ * @function Home 
+ * @fileoverview Need I say more?
+ * TODO - Add music section
+ * TODO - Realtime interaction on SOTD
+ * TODO - PWA Oppourtunity: Add push notifications for sotd. Minimal and respectful, only for repeat visitors
+ */
 const Home: NextPage = () => {
   const { isLoading, error, data } = useQuery(
     ["repoData"],
@@ -81,6 +88,41 @@ const Home: NextPage = () => {
         <Alert color="error" sx={{ mx: "auto" }} variant="filled">
           <AlertTitle>Uh oh, Spaghetti-O's™</AlertTitle>
           {`${error}\nMan that's unlucky, try a refresh or sumn :)`}
+        </Alert>
+      ) : undefined}
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexFlow: "wrap",
+        }}
+      >
+        {data?.data.map((repo: any, index: number) => (
+          <Grid item xs={12} sm={6} px="auto" py={4} m="auto" key={index}>
+            <Single
+              index={index + 1}
+              title={repo.name}
+              body={repo.description}
+              gitUrl={repo.html_url}
+              createdAt={repo.created_at}
+              previewUrl={repo.homepage}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Container sx={{ py: 3 }}>
+        <Typography
+          variant="h3"
+          textAlign="center"
+          sx={{ userSelect: "none", my: 10 }}
+        >
+          Music
+        </Typography>
+      </Container>
+      {error ? ( // Failed to fetch repos
+        <Alert color="error" sx={{ mx: "auto" }} variant="filled">
+          <AlertTitle>Uh oh, Spaghetti-O's™</AlertTitle>
+          {`${error}\nSomething about MTV and the radio star`}
         </Alert>
       ) : undefined}
       <Grid

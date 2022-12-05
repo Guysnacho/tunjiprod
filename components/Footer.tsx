@@ -60,7 +60,7 @@ const Footer = () => {
             color={contrastColor}
           />
           <IconLink
-            href={`tel:${process.env.PHONENUMBER}`}
+            href={`tel:${process.env.NEXT_PUBLIC_PHONENUMBER}`}
             child={<PhoneRoundedIcon />}
             color={contrastColor}
           />

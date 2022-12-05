@@ -68,7 +68,7 @@ const Single = (props: SingleProps) => {
         }}
       >
         <Typography variant="overline">
-          {isBig ? "Created at" : "🐣"} {props.createdAt.split("T")[0]}
+          {isBig ? "Created at - " : "🐣 on - "} {props.createdAt.split("T")[0]}
         </Typography>
         <Box sx={{ justifyContent: "right" }}>
           <IconButton
