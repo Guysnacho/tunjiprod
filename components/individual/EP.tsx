@@ -1,3 +1,4 @@
+import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 import {
   Box,
@@ -11,16 +12,22 @@ import {
   useTheme,
 } from "@mui/material";
 import { useState } from "react";
-import { Song } from "./MusicHero";
 
-const Single = (props: Song) => {
+type SingleProps = {
+  index: number;
+  title: string;
+  body: string;
+  createdAt: string;
+  gitUrl: string;
+  previewUrl?: string;
+};
+
+const EP = (props: SingleProps) => {
   const theme = useTheme();
   const bgDark = "#0c1e2a";
   const bgLight = "#036da9"; //036da9
   const [hover, setHover] = useState(false);
   const isBig = useMediaQuery(theme.breakpoints.up("sm"));
-
-  console.log(props);
   return (
     <Card
       variant="outlined"
@@ -37,7 +44,10 @@ const Single = (props: Song) => {
         color: theme.palette.getContrastText(theme.palette.secondary.dark),
       }}
     >
-      <CardHeader title={props.title} sx={{ textAlign: "center" }} />
+      <CardHeader
+        title={`${props.title.replaceAll("-", " ")}`}
+        sx={{ textAlign: "center" }}
+      />
       <CardContent>
         <Box
           sx={{
@@ -45,7 +55,7 @@ const Single = (props: Song) => {
           }}
         >
           <Typography variant="body1" paragraph textAlign="center">
-            {props.artist}
+            {props.body}
           </Typography>
         </Box>
       </CardContent>
@@ -58,27 +68,36 @@ const Single = (props: Song) => {
         }}
       >
         <Typography variant="overline">
-          {isBig ? "Created at - " : "🐣 on - "}
-          {props.created_at}
+          {isBig ? "Created at - " : "🐣 on - "} {props.createdAt.split("T")[0]}
         </Typography>
         <Box sx={{ justifyContent: "right" }}>
-          <>
-            <IconButton
-              sx={{ color: "#f7d882" }}
-              about="Github repository link"
-              href={`https://www.ecosia.org/search?q=${props.title.replace(
-                " ",
-                "%20"
-              )}${props.artist.replace(" ", "%20")}`}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <LaunchIcon />
-            </IconButton>
-          </>
+          <IconButton
+            sx={{ color: "#f7d882" }}
+            about="Github repository link"
+            href={props.gitUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <GitHubIcon />
+          </IconButton>
+          {props.previewUrl ? (
+            <>
+              <IconButton
+                sx={{ color: "#f7d882" }}
+                about="Github repository link"
+                href={props.previewUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <LaunchIcon />
+              </IconButton>
+            </>
+          ) : (
+            <></>
+          )}
         </Box>
       </CardActions>
     </Card>
   );
 };
-export default Single;
+export default EP;
