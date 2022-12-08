@@ -1,9 +1,6 @@
+//@ts-nocheck
 import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Database } from "../../lib/database.types";
-import { handleSupabaseError } from "../../lib/helpers";
+import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import Single from "./Single";
 
@@ -18,37 +15,15 @@ export type Song = {
   produced_by: string;
 };
 
-const getData = () => {
-  console.log("Get supabase data");
-  let incoming = [];
-  supabase
-    .from<'sotd',Database>("profiles")
-    .select("id, created_at, title, artist, two_cents, album, written_by, produced_by")
-    .order("created_at")
-    .then((res) => {
-      if (res.body) {
-        res.body.forEach((profile) =>
-          incoming.push(
-            createData(
-              profile.fname + " " + profile.lname,
-              profile.email,
-              profile.interests
-            )
-          )
-        );
-        console.log(incoming);
-        setClients(incoming);
-      }
-    });
-};
-
-
 const MusicHero = () => {
   // Fetch music data
+
   useEffect(() => {
+    console.log("useEffect Request");
     supabase
       .from("sotd")
       .select("*")
+      .order("created_at")
       .limit(5)
       .then()
       .then((res) => {
@@ -56,23 +31,13 @@ const MusicHero = () => {
           setError(res.error);
         } else {
           setSongs(res.data);
+          console.log("New request");
         }
       });
   }, []);
 
-  const [songs, setSongs] = useState([
-    {
-      id: 0,
-      created_at: "",
-      title: "",
-      artist: "",
-      two_cents: "",
-      album: "",
-      written_by: "",
-      produced_by: "",
-    },
-  ]);
-  const [error, setError] = useState({});
+  const [songs, setSongs] = useState([]);
+  const [error, setError] = useState();
 
   return (
     <>
@@ -88,9 +53,11 @@ const MusicHero = () => {
       {error ? ( // Failed to fetch repos
         <Alert color="error" sx={{ mx: "auto" }} variant="filled">
           <AlertTitle>MTV killed the radio star™</AlertTitle>
-          {`${error.message}\nYeesh, sound issues. One sec..`}
+          {`${error}\nYeesh, sound issues. One sec..`}
         </Alert>
-      ) : undefined}
+      ) : (
+        <></>
+      )}
       <Grid
         container
         sx={{
@@ -99,7 +66,7 @@ const MusicHero = () => {
         }}
       >
         {songs
-          ? songs.map((song: any) => (
+          ? songs.map((song) => (
               <Grid item xs={12} sm={6} px="auto" py={4} m="auto" key={song.id}>
                 <Single
                   id={song.id}

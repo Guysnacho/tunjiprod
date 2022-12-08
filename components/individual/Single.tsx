@@ -19,8 +19,7 @@ const Single = (props: Song) => {
   const bgLight = "#036da9"; //036da9
   const [hover, setHover] = useState(false);
   const isBig = useMediaQuery(theme.breakpoints.up("sm"));
-
-  console.log(props);
+  
   return (
     <Card
       variant="outlined"
