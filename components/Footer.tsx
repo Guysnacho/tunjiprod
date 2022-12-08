@@ -6,6 +6,11 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Grid, Stack, Typography, useTheme } from "@mui/material";
 import IconLink from "./individual/IconLink";
 
+/**
+ * @fileoverview Social plugs and goodbyes w peace and love
+ * @function Footer
+ * @remarks Slightly improved on the footer from https://bosedeadetunji.com
+ */
 const Footer = () => {
   const theme = useTheme();
   const contrastColor = theme.palette.getContrastText(

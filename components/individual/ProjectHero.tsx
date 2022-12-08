@@ -1,10 +1,15 @@
-import { Container, Typography, Alert, AlertTitle, Grid } from "@mui/material";
+import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Octokit } from "octokit";
 import Single from "./EP";
 
 const octokit = new Octokit();
 
+/**
+ * @fileoverview List of my most recent and proud projects
+ * @function ProjectHero
+ * @todo Add a highlight on a personal favorite. Maybe a glow animation
+ */
 const ProjectHero = () => {
   const { isLoading, isError, data, error } = useQuery(["repoData"], () =>
     octokit.request(

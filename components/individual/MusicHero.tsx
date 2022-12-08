@@ -4,17 +4,11 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import Single from "./Single";
 
-export type Song = {
-  id: number;
-  created_at: string;
-  title: string;
-  artist: string;
-  two_cents: string;
-  album: string;
-  written_by: string;
-  produced_by: string;
-};
-
+/**
+ * @fileoverview This where the magic happens.
+ * @function MusicHero
+ * @todo Beefy component. I'll drop a music player either here or in the layout.
+ */
 const MusicHero = () => {
   // Fetch music data
 

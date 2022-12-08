@@ -22,6 +22,11 @@ type SingleProps = {
   previewUrl?: string;
 };
 
+/**
+ * @fileoverview An EP, a collection of musical pieces. A splash of pizazzz
+ * @function EP
+ * @todo Add a specific highlight on a favorite block
+ */
 const EP = (props: SingleProps) => {
   const theme = useTheme();
   const bgDark = "#0c1e2a";
