@@ -11,7 +11,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useState } from "react";
 
 type SingleProps = {
   index: number;
@@ -31,20 +30,21 @@ const EP = (props: SingleProps) => {
   const theme = useTheme();
   const bgDark = "#0c1e2a";
   const bgLight = "#036da9"; //036da9
-  const [hover, setHover] = useState(false);
   const isBig = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <Card
       variant="outlined"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
       sx={{
         m: "auto",
         borderWidth: "1.4px",
-        borderColor: hover ? "#f7d882" : "#ff8708",
+        "&:hover": {
+          borderColor: "#f7d882",
+          boxShadow: 20,
+        },
+        borderColor: "#ff8708",
         width: { xs: "65%", sm: "70%", md: "75%", lg: "78%" },
         //height: { xs: "15vh%", sm: "17vh", md: "20vh", lg: "23vh" },
-        boxShadow: hover ? 20 : 5,
+        boxShadow: 5,
         background: `linear-gradient(205deg, ${theme.palette.secondary.light}, ${theme.palette.secondary.dark})`,
         color: theme.palette.getContrastText(theme.palette.secondary.dark),
       }}
