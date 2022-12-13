@@ -92,13 +92,15 @@ const Single = (props: Song) => {
             container
             component={Paper}
             variant="elevation"
+            elevation={3}
             direction="column"
             width={cardDimensions}
-            maxHeight={["12rem", "16rem", "18rem", "20rem", "21rem"]}
+            maxHeight={["9rem", "12rem", "14rem", "15rem", "16rem"]}
             overflow="auto"
             ml={-0.5}
+            mt={0.25}
           >
-            <Stack spacing={2}>
+            <Stack spacing={2} mt={2}>
               <Typography variant="overline" textAlign="center" mx="auto">
                 {props.title} - {props.artist}
               </Typography>
