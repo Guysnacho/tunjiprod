@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import Notebook from "../assets/Notebook.jpg";
 import Footer from "./Footer";
 import Navbar from "./Navbar";

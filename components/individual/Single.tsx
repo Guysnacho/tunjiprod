@@ -37,8 +37,7 @@ export type Song = {
 /**
  * @fileoverview A single, music container. Bouta be the juiciest piece tbh
  * @function Single
- * @todo I want a swoosh from the right side when this section scrolls into view. A list of tiles, tapping interaction (plays song, brings modal with remarks, shows album art, etc)
- * @todo Make desktop box smaller
+ * @todo I want a swoosh from the right side when this section scrolls into view. Tapping interaction (plays song, brings modal with remarks, etc)
  */
 const Single = (props: Song) => {
   const theme = useTheme();

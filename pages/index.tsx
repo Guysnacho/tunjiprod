@@ -7,7 +7,6 @@ import ProjectHero from "../components/individual/ProjectHero";
 /**
  * @function Home
  * @fileoverview Need I say more?
- * TODO - Add music section
  * TODO - Realtime interaction on SOTD
  * TODO - PWA Oppourtunity: Add push notifications for sotd. Minimal and respectful, only for repeat visitors
  */
