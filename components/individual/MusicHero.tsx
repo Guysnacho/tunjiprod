@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import Single from "./Single";
@@ -17,7 +18,7 @@ const MusicHero = () => {
     supabase
       .from("sotd")
       .select("*")
-      .order("created_at")
+      .order("created_at", { ascending: false })
       .limit(5)
       .then()
       .then((res) => {
@@ -32,6 +33,7 @@ const MusicHero = () => {
 
   const [songs, setSongs] = useState([]);
   const [error, setError] = useState();
+  const created_at = (timestamp: string) => format(new Date(timestamp), "M/d");
 
   return (
     <>
@@ -54,14 +56,17 @@ const MusicHero = () => {
       )}
       <Grid
         container
-        sx={{
-          display: "flex",
-          flexFlow: "wrap",
-        }}
+        direction="row"
+        wrap="nowrap"
+        sx={{ overflowY: "hidden", overflowX: "auto" }}
+        spacing={8}
       >
         {songs
           ? songs.map((song) => (
-              <Grid item xs={12} sm={6} px="auto" py={4} m="auto" key={song.id}>
+              <Grid item xs={12} px="auto" key={song.id}>
+                <Typography variant="h6" textAlign="center">
+                  {created_at(song.created_at)}
+                </Typography>
                 <Single
                   id={song.id}
                   created_at={song.created_at}
