@@ -16,7 +16,7 @@ const MusicHero = () => {
   useEffect(() => {
     console.log("useEffect Request");
     supabase
-      .from("sotd_test")
+      .from("sotd")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(5)
