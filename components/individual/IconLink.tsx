@@ -12,8 +12,6 @@ type IconLinkProps = {
 
 /**
  * @fileoverview Link wrapper for icons shown in the footer
- * @param props
- * @returns
  */
 const IconLink = (props: IconLinkProps) => {
   return (

@@ -27,6 +27,7 @@ yarn-error.log*
 # local env files
 .env*.local
 test.tsx
+/supabase
 
 # vercel
 .vercel
@@ -34,3 +35,6 @@ test.tsx
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vscode
+.vscode/settings.json
