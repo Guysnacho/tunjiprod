@@ -6,6 +6,7 @@ import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import React, { ReactElement, ReactNode } from "react";
 import Layout from "../components/Layout";
+import "../styles/styles.css";
 
 /**
  * @function MyApp
