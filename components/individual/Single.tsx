@@ -29,6 +29,7 @@ export type Song = {
   artist: string;
   two_cents: string;
   album: string;
+  album_art: string;
   written_by: string;
   produced_by: string;
 };
@@ -74,7 +75,7 @@ const Single = (props: Song) => {
           <CardMedia
             component="img"
             alt="Album Cover"
-            image={imgUrls.SONGPLACEHOLDER}
+            image={props.album_art}
           />
         </CardActionArea>
       </Card>

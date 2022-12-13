@@ -16,7 +16,7 @@ const MusicHero = () => {
   useEffect(() => {
     console.log("useEffect Request");
     supabase
-      .from("sotd")
+      .from("sotd_test")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(5)
@@ -59,27 +59,34 @@ const MusicHero = () => {
         direction="row"
         wrap="nowrap"
         sx={{ overflowY: "hidden", overflowX: "auto" }}
-        spacing={8}
+        spacing={5}
       >
-        {songs
-          ? songs.map((song) => (
-              <Grid item xs={12} px="auto" key={song.id}>
-                <Typography variant="h6" textAlign="center">
-                  {created_at(song.created_at)}
-                </Typography>
-                <Single
-                  id={song.id}
-                  created_at={song.created_at}
-                  title={song.title}
-                  artist={song.artist}
-                  two_cents={song.two_cents}
-                  album={song.album}
-                  written_by={song.written_by}
-                  produced_by={song.produced_by}
-                />
-              </Grid>
-            ))
-          : undefined}
+        {songs.length > 0 ? (
+          songs.map((song) => (
+            <Grid item xs={12} px="auto" key={song.id}>
+              <Typography variant="h6" textAlign="center">
+                {created_at(song.created_at)}
+              </Typography>
+              <Single
+                id={song.id}
+                created_at={song.created_at}
+                title={song.title}
+                artist={song.artist}
+                two_cents={song.two_cents}
+                album={song.album}
+                written_by={song.written_by}
+                produced_by={song.produced_by}
+                album_art={song.album_art}
+              />
+            </Grid>
+          ))
+        ) : (
+          <Alert severity="warning" variant="filled" sx={{ mx: "auto" }}>
+            Weird, we didn't get any songs back after asking.
+            <br />
+            Try again later?
+          </Alert>
+        )}
       </Grid>
     </>
   );
