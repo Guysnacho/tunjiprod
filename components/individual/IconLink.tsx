@@ -17,7 +17,7 @@ const IconLink = (props: IconLinkProps) => {
   return (
     <IconButton
       href={props.href}
-      sx={props.color ? { color: props.color } : {}}
+      sx={props.color ? { color: props.color } : undefined}
       target={props.href.includes("614") ? "_parent" : "_blank"}
       rel="noopener"
     >

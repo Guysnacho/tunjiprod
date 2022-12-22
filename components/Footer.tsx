@@ -3,8 +3,10 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LoginIcon from "@mui/icons-material/Login";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import { Grid, Stack, Typography, useTheme } from "@mui/material";
+import { Grid, IconButton, Stack, Typography, useTheme } from "@mui/material";
+import { useState } from "react";
 import IconLink from "./individual/IconLink";
+import Auth from "./individual/Auth";
 
 /**
  * @fileoverview Social plugs and goodbyes w peace and love
@@ -16,6 +18,8 @@ const Footer = () => {
   const contrastColor = theme.palette.getContrastText(
     theme.palette.primary.light
   );
+
+  const [opened, setOpened] = useState(false);
 
   return (
     <Grid
@@ -69,12 +73,13 @@ const Footer = () => {
             child={<PhoneRoundedIcon />}
             color={contrastColor}
           />
-          <IconLink
-            href="/signin"
-            child={<LoginIcon />}
-            color={contrastColor}
-          />
+          <IconButton onClick={() => setOpened(!opened)}>
+            <LoginIcon />
+          </IconButton>
         </Stack>
+      </Grid>
+      <Grid item xs={12}>
+        <Auth opened={opened} setOpened={setOpened} />
       </Grid>
     </Grid>
   );
