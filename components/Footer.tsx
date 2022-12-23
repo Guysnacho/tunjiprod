@@ -5,8 +5,8 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Grid, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
-import IconLink from "./individual/IconLink";
 import Auth from "./individual/Auth";
+import IconLink from "./individual/IconLink";
 
 /**
  * @fileoverview Social plugs and goodbyes w peace and love

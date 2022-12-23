@@ -1,13 +1,15 @@
 import {
+  Alert,
+  Box,
+  Button,
   Drawer,
   FormControl,
   Stack,
-  Alert,
   TextField,
-  Button,
 } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/dist/client/router";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { authCodes } from "../../lib/constants";
 import { supabase } from "../../lib/supabaseClient";
 
 const emailVal = new RegExp("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$");
@@ -26,34 +28,43 @@ const Auth = (props: {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleLogin = async () => {
+  const router = useRouter();
+
+  const handleLogin = async (
+    type: string = authCodes.SIGNUPREQUEST,
+    email: string,
+    password: string
+  ) => {
     setLoading(true);
-    if (user?.data.session === null) {
-      // Auth check
-      await supabase.auth
-        .signInWithPassword({ email: email, password: password })
-        .then((res) =>
-          res.data.session?.access_token
-            ? setSuccessMessage("Ladies and gents, we're in")
-            : res.error?.message
-            ? setErrorMessage(res.error.message)
-            : undefined
-        );
-    } else {
-      setSuccessMessage("You're already authed");
+    if (type === authCodes.REDIRECT) {
+      router.replace("/admin");
+      setLoading(false);
+      props.setOpened(false);
+      return;
     }
-    setTimeout(() => {}, 5000);
+    try {
+      const {
+        error,
+        data: { user },
+      } =
+        type === authCodes.AUTHREQUEST
+          ? await supabase.auth.signInWithPassword({ email, password })
+          : await supabase.auth.signUp({ email, password });
+      if (!error && user) {
+        setSuccessMessage("Ladies and gents, we're in");
+      }
+      if (error) setErrorMessage(error.message);
+    } catch (error) {
+      setErrorMessage("Something went catastrophically wrong. Sorry :)");
+    }
     setLoading(false);
   };
 
-  // Check if already logged in
-  const { data: user } = useQuery(["userData"], () =>
-    supabase.auth.getSession()
-  );
-
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    supabase.auth.getUser().then(() => {
+      setSuccessMessage("You're already logged in");
+    });
+  }, []);
 
   return (
     <Drawer
@@ -104,14 +115,34 @@ const Auth = (props: {
               />
             </>
           )}
-          <Button
-            variant="text"
-            aria-label="login"
-            onClick={handleLogin}
-            disabled={!(email && password)}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+            }}
           >
-            Sign In
-          </Button>
+            <Button
+              variant="text"
+              aria-label="login"
+              onClick={() =>
+                handleLogin(authCodes.AUTHREQUEST, email, password)
+              }
+              disabled={!(email && password) || !successMessage}
+            >
+              Sign In
+            </Button>
+            <Button
+              variant="text"
+              aria-label="login"
+              onClick={() => handleLogin(authCodes.REDIRECT, email, password)}
+              disabled={
+                !((email && password) || process.env.NEXT_PUBLIC_ALLOWSIGNUP)
+              }
+            >
+              {successMessage ? "Come In" : "Sign Up"}
+            </Button>
+          </Box>
         </Stack>
       </FormControl>
     </Drawer>
