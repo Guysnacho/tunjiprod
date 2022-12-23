@@ -79,7 +79,7 @@ const Footer = () => {
         </Stack>
       </Grid>
       <Grid item xs={12}>
-        <Auth opened={opened} setOpened={setOpened} />
+        {opened ? <Auth opened={opened} setOpened={setOpened} /> : <></>}
       </Grid>
     </Grid>
   );
