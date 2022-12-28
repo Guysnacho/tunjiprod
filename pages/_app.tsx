@@ -1,7 +1,6 @@
 import { CssBaseline } from "@mui/material";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/system";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import React, { ReactElement, ReactNode } from "react";
@@ -9,8 +8,6 @@ import Layout from "../components/Layout";
 import "../styles/styles.css";
 
 /**
- * @function MyApp
- * @fileoverview Entry point of the application
  * @remarks Setting type for pages with a layout
  * @remarks Type for properties of a page with a layout
  * Setup for layout use in this app
@@ -83,8 +80,6 @@ let theme = createTheme({
 });
 theme = responsiveFontSizes(theme);
 
-const queryClient = new QueryClient();
-
 /**
  * @function MyApp
  * @fileoverview Entry point of the application
@@ -94,11 +89,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <React.StrictMode>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </QueryClientProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </React.StrictMode>
   );

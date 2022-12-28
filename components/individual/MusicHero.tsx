@@ -3,6 +3,7 @@ import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
+import useSWR from "swr";
 import Single from "./Single";
 
 /**
@@ -13,26 +14,13 @@ import Single from "./Single";
 const MusicHero = () => {
   // Fetch music data
 
-  useEffect(() => {
-    console.log("useEffect Request");
+  const { songs, error, isLoading } = useSWR("/sotd", () =>
     supabase
       .from("sotd")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(5)
-      .then()
-      .then((res) => {
-        if (res.error) {
-          setError(res.error);
-        } else {
-          setSongs(res.data);
-          console.log("New request");
-        }
-      });
-  }, []);
-
-  const [songs, setSongs] = useState([]);
-  const [error, setError] = useState();
+  );
   const created_at = (timestamp: string) => format(new Date(timestamp), "M/d");
 
   return (
@@ -49,7 +37,7 @@ const MusicHero = () => {
       {error ? ( // Failed to fetch repos
         <Alert color="error" sx={{ mx: "auto" }} variant="filled">
           <AlertTitle>MTV killed the radio star™</AlertTitle>
-          {`${error}\nYeesh, sound issues. One sec..`}
+          {`${error.message} -  Yeesh, sound issues. One sec..`}
         </Alert>
       ) : (
         <></>
@@ -61,7 +49,7 @@ const MusicHero = () => {
         sx={{ overflowY: "hidden", overflowX: "auto" }}
         spacing={5}
       >
-        {songs.length > 0 ? (
+        {songs ? (
           songs.map((song) => (
             <Grid item xs={12} px="auto" key={song.id}>
               <Typography variant="h6" textAlign="center">

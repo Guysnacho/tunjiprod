@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { authCodes } from "../../lib/constants";
 import { supabase } from "../../lib/supabaseClient";
 
@@ -41,6 +41,11 @@ const Auth = (props: {
       setLoading(false);
       props.setOpened(false);
       return;
+    } else if (
+      type === authCodes.SIGNUPREQUEST &&
+      !!process.env.NEXT_PUBLIC_ALLOWSIGNUP
+    ) {
+      alert("Nice try, no sign-ups rn");
     }
     try {
       const {
@@ -59,12 +64,6 @@ const Auth = (props: {
     }
     setLoading(false);
   };
-
-  useEffect(() => {
-    supabase.auth.getUser().then(() => {
-      setSuccessMessage("You're already logged in");
-    });
-  }, []);
 
   return (
     <Drawer
@@ -128,7 +127,7 @@ const Auth = (props: {
               onClick={() =>
                 handleLogin(authCodes.AUTHREQUEST, email, password)
               }
-              disabled={!(email && password) || !successMessage}
+              disabled={!(email && password) || !!successMessage}
             >
               Sign In
             </Button>
@@ -136,9 +135,7 @@ const Auth = (props: {
               variant="text"
               aria-label="login"
               onClick={() => handleLogin(authCodes.REDIRECT, email, password)}
-              disabled={
-                !((email && password) || process.env.NEXT_PUBLIC_ALLOWSIGNUP)
-              }
+              disabled={!(email && password)}
             >
               {successMessage ? "Come In" : "Sign Up"}
             </Button>
