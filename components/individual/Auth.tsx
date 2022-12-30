@@ -134,6 +134,8 @@ const Auth = (props: {
             <Button
               variant="text"
               aria-label="login"
+              type="submit"
+              onSubmit={() => handleLogin(authCodes.REDIRECT, email, password)}
               onClick={() => handleLogin(authCodes.REDIRECT, email, password)}
               disabled={!(email && password)}
             >
