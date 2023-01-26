@@ -1,6 +1,3 @@
-import { useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient";
 import {
   Button,
   Card,
@@ -11,8 +8,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { authCodes } from "../lib/constants";
+import { randomUUID } from "crypto";
+import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabaseClient";
 
 /**
  * @fileoverview Where all the customization happens
@@ -31,6 +31,21 @@ const Admin = () => {
     });
   }, []);
 
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (token === null) {
+      handleAuth();
+    } else {
+      const refresh = token.split("**")[1];
+      token = token.split("**")[0];
+    }
+  }, []);
+
+  const handleAuth = () => {
+    const state = randomUUID()
+    const scope = 
+  }
+
   return (
     <>
       <Head>
@@ -44,11 +59,21 @@ const Admin = () => {
             Welcome Back 😌
           </Typography>
         </Grid>
-        <Grid item xs={12} md={4} sx={{ my: 3, px: "auto" }}>
-          <Card sx={{ mx: "auto" }}>
+        <Grid item xs={12} sx={{ my: 3 }}>
+          <Card
+            sx={{
+              maxWidth: { xs: "70vw", md: "50vw", lg: "40vw" },
+              mx: "auto",
+            }}
+          >
             <CardContent>
               <Stack>
-                <FormControl sx={{ py: 5, mx: "auto", width: "75%" }}>
+                <FormControl
+                  sx={{
+                    py: 3,
+                    mx: "auto",
+                  }}
+                >
                   <TextField
                     id="filled-song-input"
                     variant="filled"
@@ -63,8 +88,7 @@ const Admin = () => {
                   <Button
                     variant="text"
                     aria-label="login"
-                    type="submit"
-                    onSubmit={() => console.log("Song Submitted")}
+                    onClick={() => console.log("Song Submitted")}
                   >
                     Submit SOTD
                   </Button>
