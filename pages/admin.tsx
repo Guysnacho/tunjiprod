@@ -1,18 +1,22 @@
 import {
+  Alert,
   Button,
   Card,
   CardContent,
   FormControl,
   Grid,
+  Snackbar,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { randomUUID } from "crypto";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
+import { stringify } from "querystring";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { supabase } from "../lib/supabaseClient";
+import { urls } from "../lib/constants";
 
 /**
  * @fileoverview Where all the customization happens
@@ -21,30 +25,62 @@ import { supabase } from "../lib/supabaseClient";
  */
 const Admin = () => {
   const router = useRouter();
-
   const [songTitle, setSongTitle] = useState("");
+  const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "Something went wrong during the spotify login :/"
+  );
 
   // Redirect if not authed
   useEffect(() => {
     supabase.auth.getUser().then((res) => {
-      res.data.user ? undefined : router.replace("/");
+      res.data.user ? handleAuth() : router.replace("/");
     });
   }, []);
 
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (token === null) {
-      handleAuth();
-    } else {
-      const refresh = token.split("**")[1];
-      token = token.split("**")[0];
-    }
-  }, []);
-
   const handleAuth = () => {
-    const state = randomUUID()
-    const scope = 
-  }
+    const refresh = localStorage.getItem("refresh");
+    const query = {
+      code: router.query.code,
+      error: router.query.error,
+      state: router.query.state,
+    };
+    console.log(`${refresh} - ${query}`);
+    if (refresh === null && query.code === null) {
+      router.push(
+        "https://accounts.spotify.com/authorize?" +
+          stringify({
+            client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
+            response_type: "code",
+            redirect_uri:
+              process.env.NODE_ENV == "development"
+                ? urls.DEVURL
+                : urls.PRODURL,
+            request_id: process.env.NODE_ENV,
+            scope: "user-read-private user-library-read user-read-email",
+            show_dialog: false,
+          })
+      );
+    } else if (query.code !== null) {
+      fetch("/api/auth", {
+        method: "POST",
+        body: stringify({
+          code: query.code,
+        }),
+      }).then((res) => {
+        if(res. !== "")
+        localStorage.setItem("token", res.body.token | "");
+      });
+    } else {
+      setErrorMessage(`Error during spotify auth - ${query.error}`);
+      supabase
+        .from("logs")
+        .insert({ status: 2, sector: "UI - Spotify", message: errorMessage })
+        .then(() => setOpen(true));
+    }
+  };
+
+  const { data, error, isLoading } = useSWR("/search", () => fetch);
 
   return (
     <>
@@ -97,6 +133,15 @@ const Admin = () => {
             </CardContent>
           </Card>
         </Grid>
+        <Snackbar open={open} onClose={() => setOpen(false)}>
+          <Alert
+            onClose={() => setOpen(false)}
+            severity="warning"
+            sx={{ width: "100%" }}
+          >
+            {errorMessage}
+          </Alert>
+        </Snackbar>
       </Grid>
     </>
   );

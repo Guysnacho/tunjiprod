@@ -3,8 +3,13 @@ type AuthRequest = {
   response_type: "code";
   redirect_uri: string;
   request_id: string;
-  scopes: string[];
-  show_dialog: boolean;
+  scope: string[];
+  show_dialog: false;
 };
 
-export default AuthRequest;
+type AuthedAdmin = {
+  code: string;
+  request_id: string;
+};
+
+export type { AuthRequest, AuthedAdmin };
