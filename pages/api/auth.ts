@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { urls } from "../../lib/constants";
-import { supabase } from "../../lib/supabaseClient";
+import { logError, logSuccess } from "../../lib/common";
+import { sectors, urls } from "../../lib/constants";
 
 const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.headers.request_id !== null && req.method === "POST") {
+  if (req.method === "POST" && req.body.code) {
     fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       body: JSON.stringify({
@@ -23,35 +23,29 @@ const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
       },
     })
       .then((response) => {
-        supabase.from("logs").insert({
-          status: 1,
-          sector: "API - Spotify",
-          message: `Successful spotify token request`,
-          data: response.body,
-        });
+        logSuccess(
+          sectors.apiSpotify,
+          "Successful spotify token request",
+          response.body
+        );
         res.json(response.body);
       })
-      .catch((err) =>
-        supabase.from("logs").insert({
-          status: 2,
-          sector: "API - Spotify",
-          message: "Unsuccessful spotify token request",
-          data: err.message,
-        })
-      );
+      .catch((err: PromiseRejectedResult) => {
+        logError(
+          sectors.apiSpotify,
+          "Unsuccessful spotify token request",
+          err.reason
+        );
+        res.statusMessage = "Unsuccessful spotify token request";
+        res.statusCode = 400;
+        res.json(err);
+      });
   } else {
-    supabase
-      .from("logs")
-      .insert({
-        status: 2,
-        sector: "API",
-        message: `Bad request on - ${req.url}`,
-        data: {
-          method: req.method,
-          body: req.body,
-        },
-      })
-      .then(() => res.json({ message: "Bad request" }));
+    logError(sectors.generalApi, `Bad request on - ${req.url}`, {
+      method: req.method,
+      body: req.body,
+    });
+    res.json({ message: "Bad request" });
   }
 };
 

@@ -9,4 +9,11 @@ const urls = {
   PRODURL: "http://www.tunjiproductions.com/admin",
 };
 
-export { authCodes, urls };
+const sectors = {
+  generalApi: "API",
+  feSpotify: "Frontend - Spotify",
+  apiSpotify: "API - Spotify",
+  extSpotify: "External - Spotify",
+};
+
+export { authCodes, urls, sectors };

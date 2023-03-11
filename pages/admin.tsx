@@ -15,8 +15,9 @@ import Head from "next/head";
 import { stringify } from "querystring";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import { logError, logSuccess } from "../lib/common";
+import { sectors, urls } from "../lib/constants";
 import { supabase } from "../lib/supabaseClient";
-import { urls } from "../lib/constants";
 
 /**
  * @fileoverview Where all the customization happens
@@ -39,14 +40,15 @@ const Admin = () => {
   }, []);
 
   const handleAuth = () => {
-    const refresh = localStorage.getItem("refresh");
+    const token = localStorage.getItem("token");
     const query = {
       code: router.query.code,
       error: router.query.error,
       state: router.query.state,
     };
-    console.log(`${refresh} - ${query}`);
-    if (refresh === null && query.code === null) {
+    console.log(`Refresh - ${token} Query - ${query}`);
+    console.log(query);
+    if (token === undefined && query.code === undefined) {
       router.push(
         "https://accounts.spotify.com/authorize?" +
           stringify({
@@ -56,27 +58,48 @@ const Admin = () => {
               process.env.NODE_ENV == "development"
                 ? urls.DEVURL
                 : urls.PRODURL,
-            request_id: process.env.NODE_ENV,
+            state: process.env.NODE_ENV,
             scope: "user-read-private user-library-read user-read-email",
             show_dialog: false,
           })
       );
-    } else if (query.code !== null) {
+    } else if (query.code) {
       fetch("/api/auth", {
         method: "POST",
         body: stringify({
           code: query.code,
         }),
-      }).then((res) => {
-        if(res. !== "")
-        localStorage.setItem("token", res.body.token | "");
-      });
+      })
+        .then((res) => {
+          res
+            .json()
+            .then((data) => {
+              if (data.body.access_token) {
+                localStorage.setItem("token", data.body.access_token);
+                localStorage.setItem("state", data.body.expires_in);
+                localStorage.setItem("state", data.body.refresh_token || null);
+              }
+              logSuccess(
+                sectors.feSpotify,
+                "Successfully fetched and stored token",
+                data
+              );
+            })
+            .catch((err) => {
+              setErrorMessage(`Error deserializing token`);
+              logError(sectors.extSpotify, "Error deserializing token", err);
+              setOpen(true);
+            });
+        })
+        .catch((err) => {
+          setErrorMessage(`Error fetching token`);
+          logError(sectors.apiSpotify, "Error fetching token", err);
+          setOpen(true);
+        });
     } else {
       setErrorMessage(`Error during spotify auth - ${query.error}`);
-      supabase
-        .from("logs")
-        .insert({ status: 2, sector: "UI - Spotify", message: errorMessage })
-        .then(() => setOpen(true));
+      logError(sectors.extSpotify, "No query code or token found");
+      setOpen(true);
     }
   };
 
