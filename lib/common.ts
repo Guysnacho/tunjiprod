@@ -1,21 +1,29 @@
 import { supabase } from "./supabaseClient";
 
 const logSuccess = (sector: string, message: string, data?: any) => {
-  supabase.from("logs").insert({
-    status: 1,
-    sector: sector,
-    message: message,
-    data: data,
-  });
+  supabase
+    .from("logs")
+    .insert({
+      status: 1,
+      sector: sector,
+      message: message,
+      data: data,
+      environment: process.env.NODE_ENV,
+    })
+    .then();
 };
 
 const logError = (sector: string, message: string, data?: any) => {
-  supabase.from("logs").insert({
-    status: 2,
-    sector: sector,
-    message: message,
-    data: data,
-  });
+  supabase
+    .from("logs")
+    .insert({
+      status: 2,
+      sector: sector,
+      message: message,
+      data: data,
+      environment: process.env.NODE_ENV,
+    })
+    .then();
 };
 
 const logNeutral = (sector: string, message: string, data?: any) => {
@@ -26,6 +34,7 @@ const logNeutral = (sector: string, message: string, data?: any) => {
       sector: sector,
       message: message,
       data: data,
+      environment: process.env.NODE_ENV,
     })
     .then();
 };
