@@ -17,13 +17,13 @@ type LayoutProps = {
  * @param children - ReactNode
  * @returns A page with a Navbar and Footer
  */
-const Layout = ({ children }: LayoutProps) => {
+const Layout = (props: LayoutProps) => {
   return (
     <Box
       sx={{ background: `url(${Notebook.src})`, backgroundRepeat: "repeat" }}
     >
       <Navbar />
-      {children}
+      {props.children}
       <Footer />
     </Box>
   );

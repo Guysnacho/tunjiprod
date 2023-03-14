@@ -34,6 +34,7 @@ const Admin = () => {
 
   // Redirect if not authed
   useEffect(() => {
+    //todo - If there's a query code - Kick off token fetch here. First reset spotify auth
     supabase.auth.getUser().then((res) => {
       res.data.user ? handleAuth() : router.replace("/");
     });
@@ -48,7 +49,7 @@ const Admin = () => {
     };
     console.log(`Refresh - ${token} Query - ${query}`);
     console.log(query);
-    if (token === undefined && query.code === undefined) {
+    if (token == undefined && query.code == undefined) {
       router.push(
         "https://accounts.spotify.com/authorize?" +
           stringify({
