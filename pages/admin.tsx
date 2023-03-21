@@ -12,11 +12,9 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-import { stringify } from "querystring";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { logError, logSuccess } from "../lib/common";
-import { sectors, urls } from "../lib/constants";
+import { handleAuth, refreshToken, requestToken } from "../lib/spotify";
 import { supabase } from "../lib/supabaseClient";
 
 /**
@@ -34,75 +32,45 @@ const Admin = () => {
 
   // Redirect if not authed
   useEffect(() => {
-    //todo - If there's a query code - Kick off token fetch here. First reset spotify auth
     supabase.auth.getUser().then((res) => {
-      res.data.user ? handleAuth() : router.replace("/");
+      if (res.data.user) {
+      } else router.replace("/");
     });
   }, []);
 
-  const handleAuth = () => {
+  // Kick off auth
+  useEffect(() => {
     const token = localStorage.getItem("token");
+    const refresh = localStorage.getItem("refresh");
+    const retries = Number.parseInt(localStorage.getItem("retries") || "0");
     const query = {
-      code: router.query.code,
-      error: router.query.error,
-      state: router.query.state,
+      auth_code: router.query.code?.toString(),
+      error: router.query.error?.toString(),
+      state: router.query.state?.toString(),
     };
-    console.log(`Refresh - ${token} Query - ${query}`);
-    console.log(query);
-    if (token == undefined && query.code == undefined) {
-      router.push(
-        "https://accounts.spotify.com/authorize?" +
-          stringify({
-            client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
-            response_type: "code",
-            redirect_uri:
-              process.env.NODE_ENV == "development"
-                ? urls.DEVURL
-                : urls.PRODURL,
-            state: process.env.NODE_ENV,
-            scope: "user-read-private user-library-read user-read-email",
-            show_dialog: false,
-          })
-      );
-    } else if (query.code) {
-      fetch("/api/auth", {
-        method: "POST",
-        body: stringify({
-          code: query.code,
-        }),
-      })
-        .then((res) => {
-          res
-            .json()
-            .then((data) => {
-              if (data.body.access_token) {
-                localStorage.setItem("token", data.body.access_token);
-                localStorage.setItem("state", data.body.expires_in);
-                localStorage.setItem("state", data.body.refresh_token || null);
-              }
-              logSuccess(
-                sectors.feSpotify,
-                "Successfully fetched and stored token",
-                data
-              );
-            })
-            .catch((err) => {
-              setErrorMessage(`Error deserializing token`);
-              logError(sectors.extSpotify, "Error deserializing token", err);
-              setOpen(true);
-            });
-        })
-        .catch((err) => {
-          setErrorMessage(`Error fetching token`);
-          logError(sectors.apiSpotify, "Error fetching token", err);
-          setOpen(true);
-        });
+
+    if (refresh) {
+      // Refresh token
+      refreshToken(refresh, setErrorMessage, setOpen);
+      localStorage.setItem("retries", "1");
+    } else if (query.auth_code) {
+      // After initial get
+      requestToken(query.auth_code, setErrorMessage, setOpen);
+      localStorage.setItem("retries", "1");
+    } else if (token) {
+      localStorage.setItem("retries", "1");
+      return;
     } else {
-      setErrorMessage(`Error during spotify auth - ${query.error}`);
-      logError(sectors.extSpotify, "No query code or token found");
-      setOpen(true);
+      if (retries < 1 && !refresh) {
+        // If this is the first go around
+        handleAuth(router);
+        localStorage.setItem("retries", (retries + 1).toString());
+        console.log(`Incremented retries - ${retries}`);
+      } else {
+        console.log("Max retries hit or refresh token found");
+      }
     }
-  };
+  }, [router.isReady]);
 
   const { data, error, isLoading } = useSWR("/search", () => fetch);
 
