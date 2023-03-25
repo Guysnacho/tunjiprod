@@ -1,9 +1,8 @@
 //@ts-nocheck
 import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
-import { supabase } from "../../lib/supabaseClient";
 import useSWR from "swr";
+import { supabase } from "../../lib/supabaseClient";
 import Single from "./Single";
 
 /**

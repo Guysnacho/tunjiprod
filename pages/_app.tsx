@@ -84,7 +84,7 @@ theme = responsiveFontSizes(theme);
  * @function MyApp
  * @fileoverview Entry point of the application
  */
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+function MyApp({ Component, pageProps: { ...pageProps } }: AppPropsWithLayout) {
   return (
     <React.StrictMode>
       <CssBaseline />
