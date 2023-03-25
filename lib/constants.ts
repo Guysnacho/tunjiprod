@@ -10,9 +10,10 @@ const urls = {
 };
 
 const sectors = {
-  generalApi: "API",
-  feSpotify: "Frontend - Spotify",
   apiSpotify: "API - Spotify",
+  generalApi: "API - Tunji",
+  supabase: "Supabase",
+  feSpotify: "Frontend - Spotify",
   extSpotify: "External - Spotify",
 };
 

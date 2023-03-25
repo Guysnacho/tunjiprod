@@ -1,6 +1,7 @@
 import { supabase } from "./supabaseClient";
 
 const logSuccess = (sector: string, message: string, data?: any) => {
+  console.log(message);
   supabase
     .from("logs")
     .insert({
@@ -14,6 +15,7 @@ const logSuccess = (sector: string, message: string, data?: any) => {
 };
 
 const logError = (sector: string, message: string, data?: any) => {
+  console.log(message);
   supabase
     .from("logs")
     .insert({
@@ -27,6 +29,7 @@ const logError = (sector: string, message: string, data?: any) => {
 };
 
 const logNeutral = (sector: string, message: string, data?: any) => {
+  console.log(message);
   supabase
     .from("logs")
     .insert({
@@ -39,4 +42,4 @@ const logNeutral = (sector: string, message: string, data?: any) => {
     .then();
 };
 
-export { logSuccess, logError, logNeutral };
+export { logError, logNeutral, logSuccess };

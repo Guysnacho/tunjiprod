@@ -14,7 +14,7 @@ import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { handleAuth, refreshToken, requestToken } from "../lib/spotify";
+import { handleAuth, requestToken } from "../lib/spotify";
 import { supabase } from "../lib/supabaseClient";
 
 /**
@@ -26,6 +26,7 @@ const Admin = () => {
   const router = useRouter();
   const [songTitle, setSongTitle] = useState("");
   const [open, setOpen] = useState(false);
+  const [authToken, setAuthToken] = useState("");
   const [errorMessage, setErrorMessage] = useState(
     "Something went wrong during the spotify login :/"
   );
@@ -38,36 +39,31 @@ const Admin = () => {
     });
   }, []);
 
-  // Kick off auth
+  // Kick off spotify auth
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const refresh = localStorage.getItem("refresh");
-    const retries = Number.parseInt(localStorage.getItem("retries") || "0");
+    setAuthToken(token || "");
+    const reroutes = Number.parseInt(localStorage.getItem("reroutes") || "0");
     const query = {
       auth_code: router.query.code?.toString(),
       error: router.query.error?.toString(),
       state: router.query.state?.toString(),
     };
 
-    if (refresh) {
-      // Refresh token
-      refreshToken(refresh, setErrorMessage, setOpen);
-      localStorage.setItem("retries", "1");
-    } else if (query.auth_code) {
+    if (query.auth_code) {
       // After initial get
       requestToken(query.auth_code, setErrorMessage, setOpen);
-      localStorage.setItem("retries", "1");
-    } else if (token) {
-      localStorage.setItem("retries", "1");
+    } else if (authToken) {
+      localStorage.setItem("reroutes", "1");
       return;
     } else {
-      if (retries < 1 && !refresh) {
+      if (reroutes < 1) {
         // If this is the first go around
+        localStorage.setItem("reroutes", (reroutes + 1).toString());
+        console.log(`Incremented reroutes - ${reroutes}`);
         handleAuth(router);
-        localStorage.setItem("retries", (retries + 1).toString());
-        console.log(`Incremented retries - ${retries}`);
       } else {
-        console.log("Max retries hit or refresh token found");
+        console.log("Max reroutes hit or refresh token found");
       }
     }
   }, [router.isReady]);
