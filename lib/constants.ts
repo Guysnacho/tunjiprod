@@ -6,7 +6,7 @@ const authCodes = {
 
 const urls = {
   DEVURL: "http://localhost:3000/admin",
-  PRODURL: "http://www.tunjiproductions.com/admin",
+  PRODURL: "https://www.tunjiproductions.com/admin",
 };
 
 const sectors = {
