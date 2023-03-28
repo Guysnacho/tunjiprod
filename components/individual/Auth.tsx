@@ -10,6 +10,7 @@ import {
 import { useRouter } from "next/dist/client/router";
 import { Dispatch, SetStateAction, useState } from "react";
 import { authCodes } from "../../lib/constants";
+import { resetCache } from "../../lib/spotify";
 import { supabase } from "../../lib/supabaseClient";
 
 const emailVal = new RegExp("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$");
@@ -56,6 +57,7 @@ const Auth = (props: {
           ? await supabase.auth.signInWithPassword({ email, password })
           : await supabase.auth.signUp({ email, password });
       if (!error && user) {
+        resetCache();
         setSuccessMessage("Ladies and gents, we're in");
       }
       if (error) setErrorMessage(error.message);

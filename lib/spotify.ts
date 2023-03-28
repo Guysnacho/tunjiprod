@@ -20,6 +20,11 @@ const useSearch = (title: string, artist: string) => {
   };
 };
 
+const resetCache = () => {
+  localStorage.removeItem("reroutes");
+  localStorage.removeItem("token");
+};
+
 /**
  * @function handleAuth
  * @remarks Pushes to spotify auth and redirects with query params
@@ -36,7 +41,8 @@ const handleAuth = (router: NextRouter) => {
         state: process.env.NODE_ENV,
         scope: "user-read-private user-library-read user-read-email",
         show_dialog: false,
-      })
+      }),
+    "https://spotify.com/ooglyboogly"
   );
 };
 
@@ -54,7 +60,7 @@ const requestToken = (
       code: token,
     })
     .then((response) => {
-      const data = JSON.parse(response.data)
+      const data = JSON.parse(response.data);
       if (data.access_token) {
         localStorage.setItem("token", data.access_token);
         logSuccess(
@@ -64,7 +70,11 @@ const requestToken = (
         );
       } else {
         setErrorMessage(`Spotify didn't like that`);
-        logError(sectors.extSpotify, "Error requesting token", response.data.error);
+        logError(
+          sectors.extSpotify,
+          "Error requesting token",
+          response.data.error
+        );
         setOpen(true);
         console.error(response.data.error);
       }
@@ -81,7 +91,7 @@ const requestToken = (
     });
 };
 
-export { handleAuth, requestToken, useSearch };
+export { handleAuth, requestToken, resetCache, useSearch };
 
 // const refreshToken = (
 //   refresh: string | string[],
