@@ -5,6 +5,7 @@ import {
   CardContent,
   FormControl,
   Grid,
+  Skeleton,
   Snackbar,
   Stack,
   TextField,
@@ -26,10 +27,14 @@ const Admin = () => {
   const router = useRouter();
   const [songTitle, setSongTitle] = useState("");
   const [open, setOpen] = useState(false);
+  const [top10, setTop10] = useState([{}]);
+  const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
   const [errorMessage, setErrorMessage] = useState(
     "Something went wrong during the spotify login :/"
   );
+
+  const { data, error, isLoading, mutate } = useSWR("api/music", fetch);
 
   // Redirect if not authed
   useEffect(() => {
@@ -55,20 +60,24 @@ const Admin = () => {
       requestToken(query.auth_code, setErrorMessage, setOpen);
     } else if (authToken) {
       localStorage.setItem("reroutes", "1");
+      setAuthToken(token || "");
+      mutate();
+      setLoading(false);
       return;
     } else {
       if (reroutes < 1) {
         // If this is the first go around
         localStorage.setItem("reroutes", (reroutes + 1).toString());
-        console.log(`Incremented reroutes - ${reroutes}`);
+        console.debug(`Incremented reroutes - ${reroutes}`);
+        setAuthToken(token || "");
         handleAuth(router);
       } else {
-        console.log("Max reroutes hit or refresh token found");
+        console.debug("Max reroutes hit or refresh token found");
+        setAuthToken(token || "");
+        setLoading(false);
       }
     }
   }, [router.isReady]);
-
-  const { data, error, isLoading } = useSWR("/search", () => fetch);
 
   return (
     <>
@@ -83,43 +92,64 @@ const Admin = () => {
             Welcome Back 😌
           </Typography>
         </Grid>
+        <Grid container>
+          {data ? (
+            data.map((song) => (
+              <Typography variant="h3" textAlign="center">
+                {song.name}
+              </Typography>
+            ))
+          ) : (
+            <></>
+          )}
+        </Grid>
         <Grid item xs={12} sx={{ my: 3 }}>
-          <Card
-            sx={{
-              maxWidth: { xs: "70vw", md: "50vw", lg: "40vw" },
-              mx: "auto",
-            }}
-          >
-            <CardContent>
-              <Stack>
-                <FormControl
-                  sx={{
-                    py: 3,
-                    mx: "auto",
-                  }}
-                >
-                  <TextField
-                    id="filled-song-input"
-                    variant="filled"
-                    label="Song"
-                    type="text"
-                    value={songTitle}
-                    onChange={(e) => {
-                      setSongTitle(e.target.value);
+          {loading ? (
+            <Skeleton
+              sx={{
+                width: { xs: "70vw", md: "50vw", lg: "40vw" },
+                height: { xs: "70vh", md: "50vh", lg: "40vh" },
+                mx: "auto",
+              }}
+            />
+          ) : (
+            <Card
+              sx={{
+                maxWidth: { xs: "70vw", md: "50vw", lg: "40vw" },
+                mx: "auto",
+              }}
+            >
+              <CardContent>
+                <Stack>
+                  <FormControl
+                    sx={{
+                      py: 3,
+                      mx: "auto",
                     }}
-                    required
-                  />
-                  <Button
-                    variant="text"
-                    aria-label="login"
-                    onClick={() => console.log("Song Submitted")}
                   >
-                    Submit SOTD
-                  </Button>
-                </FormControl>
-              </Stack>
-            </CardContent>
-          </Card>
+                    <TextField
+                      id="filled-song-input"
+                      variant="filled"
+                      label="Song"
+                      type="text"
+                      value={songTitle}
+                      onChange={(e) => {
+                        setSongTitle(e.target.value);
+                      }}
+                      required
+                    />
+                    <Button
+                      variant="text"
+                      aria-label="login"
+                      onClick={() => console.debug("Song Submitted")}
+                    >
+                      Submit SOTD
+                    </Button>
+                  </FormControl>
+                </Stack>
+              </CardContent>
+            </Card>
+          )}
         </Grid>
         <Snackbar open={open} onClose={() => setOpen(false)}>
           <Alert

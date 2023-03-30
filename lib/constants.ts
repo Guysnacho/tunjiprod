@@ -17,4 +17,17 @@ const sectors = {
   extSpotify: "External - Spotify",
 };
 
+export type top10 = {
+  name: string;
+  images: [
+    {
+      href: string;
+      height: number;
+      width: number;
+    }
+  ];
+  artists: [string];
+  previewUrl: string;
+};
+
 export { authCodes, urls, sectors };

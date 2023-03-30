@@ -6,20 +6,21 @@ import {
   fetchAccessToken,
   getCurrentToken,
   refreshToken,
+  resetCache,
+  topTenFetcher,
 } from "../../lib/spotify";
 
 /**
- * @function spotifyAuth
- * @remarks Controller for `/api/auth`
+ * @function spotifyFetch
+ * @remarks Controller for `/api/music`
  * @link https://nextjs.org/docs/api-routes/introduction
  */
-const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
+const spotifyFetch = (req: NextApiRequest, res: NextApiResponse) => {
   console.debug("Request Body");
   console.debug(req.body);
-  logNeutral(sectors.generalApi, "Auth Request", req.body);
+  logNeutral(sectors.generalApi, "Spotify Request", req.body);
 
-  let { created_at, expires_in, access_token, refresh_token } =
-    getCurrentToken();
+  let { created_at, expires_in, access_token } = getCurrentToken();
   created_at.setSeconds(created_at.getSeconds() + expires_in);
   console.debug(
     `New Date's seconds ${new Date().getSeconds()}, vs fetched seconds ${created_at}`
@@ -28,21 +29,20 @@ const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
   const isExpired = new Date() > created_at;
   console.debug(`isExpired - ${isExpired}`);
 
-  if (req.method === "POST" && req.body.code) {
+  if (req.method === "GET" && req.body.code) {
     // Get initial token
     if (isExpired) {
-      if (refresh_token) {
-        logNeutral(sectors.apiSpotify, "Fetching refresh token", req.body);
-        refreshToken(refresh_token, res);
-      } else {
-        logNeutral(sectors.apiSpotify, "Fetching token", req.body);
-        fetchAccessToken(req.body.code, res);
-      }
+      res.status(401).json({
+        status: 401,
+        error: "Expired Token",
+        message: "You're authorized token has expired",
+      });
+      resetCache();
+      res.redirect("/admin");
     } else {
       logSuccess(sectors.apiSpotify, "Successful spotify token request");
-      res.status(200).json({
-        access_token: access_token,
-      });
+      const topTen = topTenFetcher(access_token);
+      res.status(200).json(topTen);
       res.end();
     }
   } else {
@@ -52,9 +52,13 @@ const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
       body: req.body,
     });
 
-    res.status(400).json({ error: "Bad request" });
+    res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message: "You must've done something egregious. Don't do it again.",
+    });
     res.end();
   }
 };
 
-export default spotifyAuth;
+export default spotifyFetch;
