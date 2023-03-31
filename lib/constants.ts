@@ -5,10 +5,8 @@ const authCodes = {
 };
 
 const urls = {
-  DEVURL_ADMIN: "http://localhost:3000/admin",
-  PRODURL_ADMIN: "https://www.tunjiproductions.com/admin",
-  DEVURL: "http://localhost:3000/",
-  PRODURL: "https://www.tunjiproductions.com/",
+  DEVURL: "http://localhost:3000/admin",
+  PRODURL: "https://www.tunjiproductions.com/admin",
 };
 
 const sectors = {

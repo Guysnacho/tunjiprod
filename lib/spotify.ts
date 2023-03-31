@@ -5,7 +5,7 @@ import { NextRouter } from "next/router";
 import { stringify } from "querystring";
 import { Dispatch, SetStateAction } from "react";
 import { logError, logSuccess } from "./common";
-import { sectors, top10, urls } from "./constants";
+import { sectors, urls } from "./constants";
 import { supabase } from "./supabaseClient";
 
 const topTenFetcher = async (token: string) => {
@@ -15,18 +15,7 @@ const topTenFetcher = async (token: string) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
-      const data = res.data;
-      console.debug("Data fetched from spotty");
-      return data.items.map((song: any) => {
-        console.debug("Song Name - " + song.name);
-        console.debug("Images" + song.album.images.length);
-        console.debug(
-          song.artists.map((item: { name: any }) => {
-            return item.name;
-          })
-        );
-        console.debug(song.preview_url);
-
+      const formattedData = res.data.items.map((song: any) => {
         return {
           name: song.name,
           images: song.album.images,
@@ -36,43 +25,14 @@ const topTenFetcher = async (token: string) => {
           previewUrl: song.preview_url,
         };
       });
-    })
-    .catch((err) => {
-      return err.response;
-    });
-  // });
-};
 
-const fetchTop10 = () => {
-  const token = localStorage.getItem("token") || "";
-
-  axios
-    .get(`https://api.spotify.com/v1/me/top/tracks?limit=10`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      console.debug(res.data);
-      console.debug("Data fetched from spotty");
-      console.debug(res.data);
-      const formattedData: [top10] = res.data?.items.map((song: any) => {
-        return {
-          name: song.name,
-          images: song.album.images,
-          artists: song.artists.map((item: { name: any }) => {
-            return item.name;
-          }),
-          previewUrl: song.preview_url,
-        };
-      });
+      logSuccess(sectors.feSpotify, "Fetched top 10", formattedData);
       return formattedData;
     })
     .catch((err) => {
       return err.response;
     });
-
-  // Navigate sporify response
+  // });
 };
 
 const resetCache = (router?: NextRouter) => {
@@ -93,9 +53,7 @@ const handleAuth = (router: NextRouter) => {
         client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
         response_type: "code",
         redirect_uri:
-          process.env.NODE_ENV == "development"
-            ? urls.DEVURL_ADMIN
-            : urls.PRODURL_ADMIN,
+          process.env.NODE_ENV == "development" ? urls.DEVURL : urls.PRODURL,
         state: process.env.NODE_ENV,
         scope:
           "user-read-private user-library-read user-read-email user-top-read",
@@ -165,9 +123,7 @@ const fetchAccessToken = (auth_code: string, res: NextApiResponse) => {
         code: auth_code,
         grant_type: "authorization_code",
         redirect_uri:
-          process.env.NODE_ENV == "development"
-            ? urls.DEVURL_ADMIN
-            : urls.PRODURL_ADMIN,
+          process.env.NODE_ENV == "development" ? urls.DEVURL : urls.PRODURL,
       }),
       {
         headers: {
@@ -227,6 +183,7 @@ const fetchAccessToken = (auth_code: string, res: NextApiResponse) => {
  * @function refreshToken
  * @remarks Fetch auth token using `refresh_token`
  * @link https://nextjs.org/docs/api-routes/introduction
+ * @todo Make API Refresh and Fetch token. Must always be fresh as long as auth code is present
  */
 const refreshToken = (refresh_token: string, res: NextApiResponse) => {
   console.debug("Entering token refresh");
@@ -343,7 +300,6 @@ const getCurrentToken = (): {
 
 export {
   fetchAccessToken,
-  fetchTop10,
   getCurrentToken,
   handleAuth,
   refreshToken,

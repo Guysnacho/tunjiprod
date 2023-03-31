@@ -11,19 +11,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import axios, { AxiosError } from "axios";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import {
-  handleAuth,
-  requestToken,
-  resetCache,
-  topTenFetcher,
-} from "../lib/spotify";
-import { supabase } from "../lib/supabaseClient";
 import { top10 } from "../lib/constants";
+import { handleAuth, requestToken, topTenFetcher } from "../lib/spotify";
+import { supabase } from "../lib/supabaseClient";
 
 /**
  * @fileoverview Where all the customization happens
