@@ -1,14 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { logError, logNeutral, logSuccess } from "../../lib/common";
-import { sectors } from "../../lib/constants";
+import { sectors, urls } from "../../lib/constants";
 
-import {
-  fetchAccessToken,
-  getCurrentToken,
-  refreshToken,
-  resetCache,
-  topTenFetcher,
-} from "../../lib/spotify";
+import { getCurrentToken, resetCache, topTenFetcher } from "../../lib/spotify";
 
 /**
  * @function spotifyFetch
@@ -20,16 +14,17 @@ const spotifyFetch = (req: NextApiRequest, res: NextApiResponse) => {
   console.debug(req.body);
   logNeutral(sectors.generalApi, "Spotify Request", req.body);
 
-  let { created_at, expires_in, access_token } = getCurrentToken();
+  let { created_at, expires_in, access_token, refresh_token } =
+    getCurrentToken();
   created_at.setSeconds(created_at.getSeconds() + expires_in);
   console.debug(
-    `New Date's seconds ${new Date().getSeconds()}, vs fetched seconds ${created_at}`
+    `New Date's seconds ${new Date()}, vs fetched seconds ${created_at}`
   );
 
   const isExpired = new Date() > created_at;
   console.debug(`isExpired - ${isExpired}`);
 
-  if (req.method === "GET" && req.body.code) {
+  if (req.method === "PUT" && req.body.data.code) {
     // Get initial token
     if (isExpired) {
       res.status(401).json({
@@ -37,13 +32,32 @@ const spotifyFetch = (req: NextApiRequest, res: NextApiResponse) => {
         error: "Expired Token",
         message: "You're authorized token has expired",
       });
-      resetCache();
-      res.redirect("/admin");
+      res.redirect(
+        process.env.NODE_ENV == "development" ? urls.DEVURL : urls.PRODURL
+      );
+      res.end()
     } else {
       logSuccess(sectors.apiSpotify, "Successful spotify token request");
-      const topTen = topTenFetcher(access_token);
-      res.status(200).json(topTen);
+      const list = topTenFetcher(req.body.data.code);
+      res.status(200).json(list);
       res.end();
+      // .then((res) => {
+      //   res.status(200).json(list);
+      //   res.end();
+      // })
+      // .catch((err) => {
+      //   logError(
+      //     sectors.apiSpotify,
+      //     "Unsuccessful spotify token request - topTenFetcher",
+      //     {
+      //       service: "topTenFetcher",
+      //       reason: err.response,
+      //       data: err,
+      //     }
+      //   );
+      //   res.status(400).end(err);
+      //   res.end();
+      // });
     }
   } else {
     // Something went wrong I guess

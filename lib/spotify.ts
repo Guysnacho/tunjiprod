@@ -8,17 +8,25 @@ import { logError, logSuccess } from "./common";
 import { sectors, top10, urls } from "./constants";
 import { supabase } from "./supabaseClient";
 
-const topTenFetcher = (token: string) => {
+const topTenFetcher = async (token: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
-  fetch("https://api.spotify.com/v1/me/top/tracks?limit=10", {
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then(async (res) => {
-      const data = await res.json();
-      console.debug(data);
+  return axios
+    .get("https://api.spotify.com/v1/me/top/tracks?limit=10", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      const data = res.data;
       console.debug("Data fetched from spotty");
-      console.debug(data);
-      const formattedData: [top10] = data.items.map((song: any) => {
+      return data.items.map((song: any) => {
+        console.debug("Song Name - " + song.name);
+        console.debug("Images" + song.album.images.length);
+        console.debug(
+          song.artists.map((item: { name: any }) => {
+            return item.name;
+          })
+        );
+        console.debug(song.preview_url);
+
         return {
           name: song.name,
           images: song.album.images,
@@ -28,9 +36,10 @@ const topTenFetcher = (token: string) => {
           previewUrl: song.preview_url,
         };
       });
-      return formattedData;
     })
-    .catch((err) => err.response);
+    .catch((err) => {
+      return err.response;
+    });
   // });
 };
 
@@ -66,9 +75,10 @@ const fetchTop10 = () => {
   // Navigate sporify response
 };
 
-const resetCache = () => {
+const resetCache = (router?: NextRouter) => {
   localStorage.removeItem("reroutes");
   localStorage.removeItem("token");
+  router?.reload();
 };
 
 /**
@@ -83,7 +93,9 @@ const handleAuth = (router: NextRouter) => {
         client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
         response_type: "code",
         redirect_uri:
-          process.env.NODE_ENV == "development" ? urls.DEVURL : urls.PRODURL,
+          process.env.NODE_ENV == "development"
+            ? urls.DEVURL_ADMIN
+            : urls.PRODURL_ADMIN,
         state: process.env.NODE_ENV,
         scope:
           "user-read-private user-library-read user-read-email user-top-read",
@@ -153,7 +165,9 @@ const fetchAccessToken = (auth_code: string, res: NextApiResponse) => {
         code: auth_code,
         grant_type: "authorization_code",
         redirect_uri:
-          process.env.NODE_ENV == "development" ? urls.DEVURL : urls.PRODURL,
+          process.env.NODE_ENV == "development"
+            ? urls.DEVURL_ADMIN
+            : urls.PRODURL_ADMIN,
       }),
       {
         headers: {

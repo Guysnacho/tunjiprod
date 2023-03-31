@@ -11,12 +11,19 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { handleAuth, requestToken } from "../lib/spotify";
+import {
+  handleAuth,
+  requestToken,
+  resetCache,
+  topTenFetcher,
+} from "../lib/spotify";
 import { supabase } from "../lib/supabaseClient";
+import { top10 } from "../lib/constants";
 
 /**
  * @fileoverview Where all the customization happens
@@ -34,7 +41,10 @@ const Admin = () => {
     "Something went wrong during the spotify login :/"
   );
 
-  const { data, error, isLoading, mutate } = useSWR("api/music", fetch);
+  const { data, error, isLoading, mutate } = useSWR<[top10] | any>(
+    ["/spotify/10", authToken],
+    () => topTenFetcher(authToken)
+  );
 
   // Redirect if not authed
   useEffect(() => {
@@ -43,6 +53,11 @@ const Admin = () => {
       } else router.replace("/");
     });
   }, []);
+
+  // Redirect if not authed
+  useEffect(() => {
+    mutate();
+  }, [authToken]);
 
   // Kick off spotify auth
   useEffect(() => {
@@ -61,7 +76,6 @@ const Admin = () => {
     } else if (authToken) {
       localStorage.setItem("reroutes", "1");
       setAuthToken(token || "");
-      mutate();
       setLoading(false);
       return;
     } else {
@@ -94,7 +108,7 @@ const Admin = () => {
         </Grid>
         <Grid container>
           {data ? (
-            data.map((song) => (
+            data.map((song: top10) => (
               <Typography variant="h3" textAlign="center">
                 {song.name}
               </Typography>

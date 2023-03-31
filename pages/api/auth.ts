@@ -22,7 +22,7 @@ const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
     getCurrentToken();
   created_at.setSeconds(created_at.getSeconds() + expires_in);
   console.debug(
-    `New Date's seconds ${new Date().getSeconds()}, vs fetched seconds ${created_at}`
+    `New Date's seconds ${new Date()}, vs fetched seconds ${created_at}`
   );
 
   const isExpired = new Date() > created_at;
