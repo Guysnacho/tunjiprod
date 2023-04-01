@@ -7,6 +7,7 @@ import {
   getCurrentToken,
   refreshToken,
 } from "../../lib/spotify";
+import { addSeconds } from "date-fns";
 
 /**
  * @function spotifyAuth
@@ -18,14 +19,14 @@ const spotifyAuth = (req: NextApiRequest, res: NextApiResponse) => {
   console.debug(req.body);
   logNeutral(sectors.generalApi, "Auth Request", req.body);
 
-  let { created_at, expires_in, access_token, refresh_token } =
+  const { created_at, expires_in, access_token, refresh_token } =
     getCurrentToken();
-  created_at.setSeconds(created_at.getSeconds() + expires_in);
+  const expDate = addSeconds(created_at, expires_in);
   console.debug(
-    `New Date's seconds ${new Date()}, vs fetched seconds ${created_at}`
+    `New Date's seconds ${new Date().toTimeString()}, vs fetched seconds ${expDate.toTimeString()}`
   );
 
-  const isExpired = new Date() > created_at;
+  const isExpired = new Date() > expDate;
   console.debug(`isExpired - ${isExpired}`);
 
   if (req.method === "POST" && req.body.code) {

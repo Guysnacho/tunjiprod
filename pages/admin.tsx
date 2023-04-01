@@ -11,12 +11,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { AxiosError } from "axios";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { top10 } from "../lib/constants";
-import { handleAuth, requestToken, topTenFetcher } from "../lib/spotify";
+import {
+  handleAuth,
+  requestToken,
+  resetCache,
+  topTenFetcher,
+} from "../lib/spotify";
 import { supabase } from "../lib/supabaseClient";
 
 /**
@@ -28,14 +34,13 @@ const Admin = () => {
   const router = useRouter();
   const [songTitle, setSongTitle] = useState("");
   const [open, setOpen] = useState(false);
-  const [top10, setTop10] = useState([{}]);
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
   const [errorMessage, setErrorMessage] = useState(
     "Something went wrong during the spotify login :/"
   );
 
-  const { data, error, isLoading, mutate } = useSWR<[top10] | any>(
+  const { data, error, isLoading, mutate } = useSWR(
     ["/spotify/10", authToken],
     () => topTenFetcher(authToken)
   );
@@ -53,6 +58,33 @@ const Admin = () => {
     mutate();
   }, [authToken]);
 
+  // Redirect if not authed
+  useEffect(() => {
+    if (router.isReady) {
+      console.debug("Cache reset trigger");
+      console.log(data);
+      const reroutes = localStorage.getItem("reroutes");
+      const token = localStorage.getItem("token");
+      if (
+        reroutes == "1" &&
+        !isLoading &&
+        (data.status == 401 || data.status == 400)
+      ) {
+        console.debug(data.data.error);
+        if (data.data.error.status == 401) {
+          setErrorMessage(data.data.error.message);
+          resetCache();
+        } else if (data.data.error.status == 400 && !router.query.code) {
+          setErrorMessage(data.data.error.message);
+          // resetCache();
+          // router.reload()
+        }
+      } else if (reroutes == "1" && !isLoading && data.length) {
+        router.push("/admin", "/admin", { shallow: true });
+      }
+    }
+  }, [data, isLoading, router.isReady]);
+
   // Kick off spotify auth
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -68,8 +100,15 @@ const Admin = () => {
       // After initial get
       requestToken(query.auth_code, setErrorMessage, setOpen);
     } else if (authToken) {
-      localStorage.setItem("reroutes", "1");
-      setAuthToken(token || "");
+      if (
+        data.data.error &&
+        data.data.error.message == "The access token expired"
+      ) {
+        resetCache();
+        router.reload();
+      } else {
+        localStorage.setItem("reroutes", "1");
+      }
       setLoading(false);
       return;
     } else {
@@ -101,12 +140,24 @@ const Admin = () => {
           </Typography>
         </Grid>
         <Grid container>
-          {data ? (
-            data.map((song: top10) => (
-              <Typography variant="h3" textAlign="center">
-                {song.name}
-              </Typography>
-            ))
+          {error != undefined ? (
+            <Stack
+              direction="row"
+              spacing={3}
+              maxWidth="30vw"
+              height="20vh"
+              sx={{
+                overflow: "scroll",
+                overflowX: "auto",
+                overflowY: "hidden",
+              }}
+            >
+              {data.map((song: top10) => (
+                <Typography variant="h3" textAlign="center">
+                  {song.name}
+                </Typography>
+              ))}
+            </Stack>
           ) : (
             <></>
           )}

@@ -30,7 +30,7 @@ const MusicHero = () => {
           textAlign="center"
           sx={{ userSelect: "none", my: 10 }}
         >
-          Music
+          Song of the Day
         </Typography>
       </Container>
       {error ? ( // Failed to fetch repos

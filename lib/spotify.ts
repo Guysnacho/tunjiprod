@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { parse } from "date-fns";
+import { endOfYesterday, parse } from "date-fns";
 import { NextApiResponse } from "next";
 import { NextRouter } from "next/router";
 import { stringify } from "querystring";
@@ -8,7 +8,7 @@ import { logError, logSuccess } from "./common";
 import { sectors, urls } from "./constants";
 import { supabase } from "./supabaseClient";
 
-const topTenFetcher = async (token: string) => {
+const topTenFetcher = (token: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
   return axios
     .get("https://api.spotify.com/v1/me/top/tracks?limit=10", {
@@ -35,10 +35,9 @@ const topTenFetcher = async (token: string) => {
   // });
 };
 
-const resetCache = (router?: NextRouter) => {
+const resetCache = () => {
   localStorage.removeItem("reroutes");
   localStorage.removeItem("token");
-  router?.reload();
 };
 
 /**
@@ -281,7 +280,7 @@ const getCurrentToken = (): {
           details: error?.details,
         });
         return {
-          created_at: new Date(),
+          created_at: endOfYesterday(),
           expires_in: 0,
           access_token: "",
           refresh_token: "",
@@ -291,7 +290,7 @@ const getCurrentToken = (): {
 
   logError(sectors.apiSpotify, "No results from supabase");
   return {
-    created_at: new Date(),
+    created_at: endOfYesterday(),
     expires_in: 0,
     access_token: "",
     refresh_token: "",
