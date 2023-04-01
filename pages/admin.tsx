@@ -61,10 +61,7 @@ const Admin = () => {
   // Redirect if not authed
   useEffect(() => {
     if (router.isReady) {
-      console.debug("Cache reset trigger");
-      console.log(data);
       const reroutes = localStorage.getItem("reroutes");
-      const token = localStorage.getItem("token");
       if (
         reroutes == "1" &&
         !isLoading &&
@@ -115,7 +112,6 @@ const Admin = () => {
       if (reroutes < 1) {
         // If this is the first go around
         localStorage.setItem("reroutes", (reroutes + 1).toString());
-        console.debug(`Incremented reroutes - ${reroutes}`);
         setAuthToken(token || "");
         handleAuth(router);
       } else {
