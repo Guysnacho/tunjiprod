@@ -49,8 +49,14 @@ const Home: NextPage = () => {
           one place.
         </Typography>
       </Container>
-
       <ProjectHero />
+      <Typography
+        variant="h3"
+        textAlign="center"
+        sx={{ userSelect: "none", my: 10, py: 3 }}
+      >
+        Song of the Day
+      </Typography>
       <MusicHero />
     </>
   );

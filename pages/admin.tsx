@@ -3,7 +3,6 @@ import {
   Button,
   Card,
   CardContent,
-  CardHeader,
   FormControl,
   Grid,
   Skeleton,
@@ -17,6 +16,7 @@ import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import MusicHero from "../components/individual/MusicHero";
 import { top10 } from "../lib/constants";
 import {
   handleAuth,
@@ -147,37 +147,7 @@ const Admin = () => {
             Welcome Back 😌
           </Typography>
         </Grid>
-        <Grid container>
-          {data ? (
-            <Stack
-              direction="row"
-              spacing={3}
-              mx="auto"
-              width="80vw"
-              height="30vh"
-              sx={{
-                overflow: "scroll",
-                overflowX: "auto",
-                overflowY: "hidden",
-              }}
-            >
-              {authToken
-                ? data.map((song: top10) => (
-                    <Card sx={{ width: "14rem" }} key={song.name}>
-                      <CardHeader title={song.name} />
-                      <CardContent>
-                        <Typography variant="h3" textAlign="center">
-                          Text
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  ))
-                : undefined}
-            </Stack>
-          ) : (
-            <></>
-          )}
-        </Grid>
+        {!error ? <MusicHero songList={data} /> : undefined}
         <Grid item xs={12} sx={{ my: 3 }}>
           {loading ? (
             <Skeleton

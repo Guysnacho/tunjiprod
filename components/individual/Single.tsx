@@ -22,14 +22,13 @@ import { useRef, useState } from "react";
  */
 export type Song = {
   id: number;
-  created_at: string;
-  title: string;
-  artist: string;
-  two_cents: string;
+  name: string;
+  artists: [string];
   album: string;
   album_art: string;
-  written_by: string;
-  produced_by: string;
+  created_at: string;
+  two_cents: string;
+  preview_url? :string;
 };
 
 /**
@@ -100,7 +99,7 @@ const Single = (props: Song) => {
           >
             <Stack spacing={2} mt={2}>
               <Typography variant="overline" textAlign="center" mx="auto">
-                {props.title} - {props.artist}
+                {props.name} - {props.artists}
               </Typography>
               <Typography variant="overline" textAlign="center" mx="auto">
                 {props.album}
@@ -108,7 +107,7 @@ const Single = (props: Song) => {
               <Typography variant="body2" textAlign="center">
                 {props.two_cents}
               </Typography>
-              <Accordion>
+              {/* <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="song-credit-content"
@@ -127,7 +126,7 @@ const Single = (props: Song) => {
                     {props.produced_by}
                   </Typography>
                 </AccordionDetails>
-              </Accordion>
+              </Accordion> */}
             </Stack>
           </Grid>
         </Slide>

@@ -18,7 +18,9 @@ const sectors = {
 };
 
 export type top10 = {
+  id: string;
   name: string;
+  album: string;
   images: [
     {
       href: string;

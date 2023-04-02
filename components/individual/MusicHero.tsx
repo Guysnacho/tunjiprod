@@ -9,77 +9,83 @@ import Single from "./Single";
  * @function MusicHero
  * @todo Beefy component. I'll drop a music player either here or in the layout.
  */
-const MusicHero = () => {
+const MusicHero = (props: { songList?: [{}] }) => {
   const [songs, setSongs] = useState([{}]);
   const [errorMessage, setErrorMessage] = useState("");
 
   // Fetch music data
   useEffect(() => {
-    supabase
-      .from("sotd")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(5)
-      .then((res) => {
-        res.data?.length > 0
-          ? setSongs(res.data)
-          : setErrorMessage("No songs returned");
-      });
-
-    console.debug(songs);
+    console.debug(props.songList);
+    if (!props.songList) {
+      supabase
+        .from("sotd_test")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(5)
+        .then((res) => {
+          res.data?.length > 0
+            ? setSongs(res.data)
+            : setErrorMessage("No songs returned");
+        });
+    } else if (props.songList.length == 0) {
+      setErrorMessage("No songs given");
+    }
   }, []);
 
   return (
-    <>
-      <Container sx={{ py: 3 }}>
-        <Typography
-          variant="h3"
-          textAlign="center"
-          sx={{ userSelect: "none", my: 10 }}
-        >
-          Song of the Day
-        </Typography>
-      </Container>
-
-      <Grid
-        container
-        direction="row"
-        wrap="nowrap"
-        sx={{ overflowY: "hidden", overflowX: "auto" }}
-        spacing={5}
-      >
-        {!errorMessage ? (
+    <Grid
+      container
+      direction="row"
+      wrap="nowrap"
+      sx={{ overflowY: "hidden", overflowX: "auto" }}
+      spacing={5}
+    >
+      {!errorMessage ? (
+        props.songList ? ( // If passed songlist from search
+          props.songList.map((song) => (
+            <Grid item xs={12} px="auto" key={song.id || song.id}>
+              <Single
+                id={song.id}
+                name={song.name}
+                album={song.album}
+                album_art={song.album_art}
+                artists={song.artists}
+                previewUrl={song.previewUrl}
+              />
+            </Grid>
+          ))
+        ) : (
           songs.map((song) => (
-            <Grid item xs={12} px="auto" key={song.id}>
+            <Grid item xs={12} px="auto" key={song.name}>
               <Typography variant="h6" textAlign="center">
                 {song.created_at?.split("T")[0]}
               </Typography>
               <Single
                 id={song.id}
-                created_at={song.created_at}
                 title={song.title}
-                artist={song.artist}
-                two_cents={song.two_cents}
                 album={song.album}
+                album_art={song.album_art}
+                artists={song.artists}
+                created_at={song.created_at}
+                two_cents={song.two_cents}
                 written_by={song.written_by}
                 produced_by={song.produced_by}
-                album_art={song.album_art}
               />
             </Grid>
           ))
-        ) : (
-          // Failed to fetch repos
-          <Alert
-            color="error"
-            severity="warning"
-            sx={{ mx: "auto", width: "40vw" }}
-            variant="filled"
-          >
-            {errorMessage}
-          </Alert>
-        )}
-      </Grid>
-    </>
+        )
+      ) : (
+        // Failed to fetch repos
+        <Alert
+          color="error"
+          severity="warning"
+          sx={{ mx: "auto", width: "40vw" }}
+          variant="filled"
+        >
+          {errorMessage}
+        </Alert>
+      )}
+    </Grid>
   );
 };
 

@@ -11,14 +11,16 @@ import { supabase } from "./supabaseClient";
 const topTenFetcher = (token: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
   return axios
-    .get("https://api.spotify.com/v1/me/top/tracks?limit=10", {
+    .get("https://api.spotify.com/v1/me/top/tracks?limit=15", {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
       const formattedData = res.data.items.map((song: any) => {
         return {
+          id: song.id,
           name: song.name,
-          images: song.album.images,
+          album: song.album.name,
+          album_art: song.album.images,
           artists: song.artists.map((item: { name: any }) => {
             return item.name;
           }),
@@ -307,46 +309,3 @@ export {
   resetCache,
   topTenFetcher,
 };
-
-// const refreshToken = (
-//   refresh: string | string[],
-//   setErrorMessage: Dispatch<SetStateAction<string>>,
-//   setOpen: Dispatch<SetStateAction<boolean>>
-// ) => {
-//   axios
-//     .post("/api/auth", {
-//       refresh: refresh,
-//     })
-//     .then((res) => {
-//       if (res.data.access_token) {
-//         localStorage.setItem("token", res.data.access_token);
-//         localStorage.setItem("refresh", res.data.refresh_token || "");
-//         logSuccess(
-//           sectors.feSpotify,
-//           "Successfully fetched and stored token",
-//           res.data
-//         );
-//         console.debug("Successfully fetched and stored token");
-//         return res.data;
-//       } else {
-//         setErrorMessage(`Spotify didn't like that`);
-//         logError(
-//           sectors.extSpotify,
-//           "Error requesting token refresh",
-//           res.data.error
-//         );
-//         setOpen(true);
-//         return res.data.error;
-//       }
-//     })
-//     .catch((err) => {
-//       setErrorMessage(`Error requesting refresh token`);
-//       logError(sectors.apiSpotify, "Error requesting refresh token", err);
-//       setOpen(true);
-//       return {
-//         status: err.status,
-//         response: err.response,
-//         message: err.nessage,
-//       };
-//     });
-// };
