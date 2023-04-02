@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardHeader,
   FormControl,
   Grid,
   Skeleton,
@@ -36,13 +37,26 @@ const Admin = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
-  const [errorMessage, setErrorMessage] = useState(
-    "Something went wrong during the spotify login :/"
-  );
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const { data, error, isLoading, mutate } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR<[top10], AxiosError>(
     ["/spotify/10", authToken],
-    () => topTenFetcher(authToken)
+    () =>
+      topTenFetcher(authToken)
+        .then((res: any) => {
+          if (errorMessage == "Only valid bearer authentication supported") {
+            setErrorMessage("");
+            setOpen(false);
+          }
+          return res;
+        })
+        .catch((err) => {
+          if (localStorage.getItem("reroutes")) {
+            setErrorMessage(err.message);
+            setOpen(true);
+          }
+          return err;
+        })
   );
 
   // Redirect if not authed
@@ -53,30 +67,31 @@ const Admin = () => {
     });
   }, []);
 
-  // Redirect if not authed
+  // Refetch on authtoken change
   useEffect(() => {
     mutate();
   }, [authToken]);
 
-  // Redirect if not authed
+  // Handle token related fetch errors
   useEffect(() => {
     if (router.isReady) {
       const reroutes = localStorage.getItem("reroutes");
       if (
         reroutes == "1" &&
-        !isLoading &&
-        (data.status == 401 || data.status == 400)
+        error &&
+        (error.status == 401 || error.status == 400)
       ) {
-        console.debug(data.data.error);
-        if (data.data.error.status == 401) {
-          setErrorMessage(data.data.error.message);
+        if (error.status == 401) {
+          setErrorMessage(error.message);
+          setOpen(true);
           resetCache();
-        } else if (data.data.error.status == 400 && !router.query.code) {
-          setErrorMessage(data.data.error.message);
+        } else if (error.status == 400 && !router.query.code) {
+          setErrorMessage(error.message);
+          setOpen(true);
           // resetCache();
           // router.reload()
         }
-      } else if (reroutes == "1" && !isLoading && data.length) {
+      } else if (reroutes == "1" && !isLoading && data) {
         router.push("/admin", "/admin", { shallow: true });
       }
     }
@@ -97,10 +112,7 @@ const Admin = () => {
       // After initial get
       requestToken(query.auth_code, setErrorMessage, setOpen);
     } else if (authToken) {
-      if (
-        data.data.error &&
-        data.data.error.message == "The access token expired"
-      ) {
+      if (error && error.message == "The access token expired") {
         resetCache();
         router.reload();
       } else {
@@ -136,23 +148,31 @@ const Admin = () => {
           </Typography>
         </Grid>
         <Grid container>
-          {error != undefined ? (
+          {data ? (
             <Stack
               direction="row"
               spacing={3}
-              maxWidth="30vw"
-              height="20vh"
+              mx="auto"
+              width="80vw"
+              height="30vh"
               sx={{
                 overflow: "scroll",
                 overflowX: "auto",
                 overflowY: "hidden",
               }}
             >
-              {data.map((song: top10) => (
-                <Typography variant="h3" textAlign="center">
-                  {song.name}
-                </Typography>
-              ))}
+              {authToken
+                ? data.map((song: top10) => (
+                    <Card sx={{ width: "14rem" }} key={song.name}>
+                      <CardHeader title={song.name} />
+                      <CardContent>
+                        <Typography variant="h3" textAlign="center">
+                          Text
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  ))
+                : undefined}
             </Stack>
           ) : (
             <></>

@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
-import { format } from "date-fns";
-import useSWR from "swr";
+import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import Single from "./Single";
 
@@ -11,16 +10,24 @@ import Single from "./Single";
  * @todo Beefy component. I'll drop a music player either here or in the layout.
  */
 const MusicHero = () => {
-  // Fetch music data
+  const [songs, setSongs] = useState([{}]);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const { songs, error, isLoading } = useSWR("/sotd", () =>
+  // Fetch music data
+  useEffect(() => {
     supabase
       .from("sotd")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(5)
-  );
-  const created_at = (timestamp: string) => format(new Date(timestamp), "M/d");
+      .then((res) => {
+        res.data?.length > 0
+          ? setSongs(res.data)
+          : setErrorMessage("No songs returned");
+      });
+
+    console.debug(songs);
+  }, []);
 
   return (
     <>
@@ -33,14 +40,7 @@ const MusicHero = () => {
           Song of the Day
         </Typography>
       </Container>
-      {error ? ( // Failed to fetch repos
-        <Alert color="error" sx={{ mx: "auto" }} variant="filled">
-          <AlertTitle>MTV killed the radio star™</AlertTitle>
-          {`${error.message} -  Yeesh, sound issues. One sec..`}
-        </Alert>
-      ) : (
-        <></>
-      )}
+
       <Grid
         container
         direction="row"
@@ -48,11 +48,11 @@ const MusicHero = () => {
         sx={{ overflowY: "hidden", overflowX: "auto" }}
         spacing={5}
       >
-        {songs ? (
+        {!errorMessage ? (
           songs.map((song) => (
             <Grid item xs={12} px="auto" key={song.id}>
               <Typography variant="h6" textAlign="center">
-                {created_at(song.created_at)}
+                {song.created_at?.split("T")[0]}
               </Typography>
               <Single
                 id={song.id}
@@ -68,10 +68,14 @@ const MusicHero = () => {
             </Grid>
           ))
         ) : (
-          <Alert severity="warning" variant="filled" sx={{ mx: "auto" }}>
-            Weird, we didn't get any songs back after asking.
-            <br />
-            Try again later?
+          // Failed to fetch repos
+          <Alert
+            color="error"
+            severity="warning"
+            sx={{ mx: "auto", width: "40vw" }}
+            variant="filled"
+          >
+            {errorMessage}
           </Alert>
         )}
       </Grid>

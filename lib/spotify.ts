@@ -29,8 +29,9 @@ const topTenFetcher = (token: string) => {
       logSuccess(sectors.feSpotify, "Fetched top 10", formattedData);
       return formattedData;
     })
-    .catch((err) => {
-      return err.response;
+    .catch((err: AxiosError) => {
+      //@ts-ignore
+      throw err.response.data.error;
     });
   // });
 };
