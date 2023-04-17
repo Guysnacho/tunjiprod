@@ -11,7 +11,7 @@ import { supabase } from "./supabaseClient";
 const topTenFetcher = (token: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
   return axios
-    .get("https://api.spotify.com/v1/me/top/tracks?limit=15", {
+    .get("https://api.spotify.com/v1/me/top/tracks?limit=10", {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
@@ -20,7 +20,7 @@ const topTenFetcher = (token: string) => {
           id: song.id,
           name: song.name,
           album: song.album.name,
-          album_art: song.album.images,
+          album_art: song.album.images[1], // Pick the second image in the list. Always 300px
           artists: song.artists.map((item: { name: any }) => {
             return item.name;
           }),

@@ -1,8 +1,4 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Card,
   CardActionArea,
@@ -25,10 +21,10 @@ export type Song = {
   name: string;
   artists: [string];
   album: string;
-  album_art: string;
+  album_art: { url: string; width: number; height: number };
   created_at: string;
   two_cents: string;
-  preview_url? :string;
+  preview_url?: string;
 };
 
 /**
@@ -71,7 +67,7 @@ const Single = (props: Song) => {
           <CardMedia
             component="img"
             alt="Album Cover"
-            image={props.album_art}
+            image={props.album_art.url}
           />
         </CardActionArea>
       </Card>

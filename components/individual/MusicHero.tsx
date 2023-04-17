@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Alert, AlertTitle, Container, Grid, Typography } from "@mui/material";
+import { Alert, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import Single from "./Single";
@@ -41,9 +41,9 @@ const MusicHero = (props: { songList?: [{}] }) => {
       spacing={5}
     >
       {!errorMessage ? (
-        props.songList ? ( // If passed songlist from search
+        props.songList?.length > 0 ? ( // If passed songlist from search
           props.songList.map((song) => (
-            <Grid item xs={12} px="auto" key={song.id || song.id}>
+            <Grid item xs={12} px="auto" key={song.name}>
               <Single
                 id={song.id}
                 name={song.name}
