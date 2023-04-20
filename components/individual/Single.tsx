@@ -64,11 +64,13 @@ const Single = (props: Song) => {
           onClick={() => setTapped(!tapped)}
           sx={{ position: "relative", zIndex: 1 }}
         >
-          <CardMedia
-            component="img"
-            alt="Album Cover"
-            image={props.album_art.url}
-          />
+          {props.album_art ? (
+            <CardMedia
+              component="img"
+              alt="Album Cover"
+              image={props.album_art.url}
+            />
+          ) : undefined}
         </CardActionArea>
       </Card>
       <Box ref={cardRef}>

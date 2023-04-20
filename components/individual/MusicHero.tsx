@@ -30,6 +30,7 @@ const MusicHero = (props: { songList?: [{}] }) => {
     } else if (props.songList.length == 0) {
       setErrorMessage("No songs given");
     }
+    console.debug(props.songList);
   }, []);
 
   return (
@@ -43,7 +44,7 @@ const MusicHero = (props: { songList?: [{}] }) => {
       {!errorMessage ? (
         props.songList?.length > 0 ? ( // If passed songlist from search
           props.songList.map((song) => (
-            <Grid item xs={12} px="auto" key={song.name}>
+            <Grid item xs={12} px="auto" key={song.id}>
               <Single
                 id={song.id}
                 name={song.name}
@@ -56,7 +57,7 @@ const MusicHero = (props: { songList?: [{}] }) => {
           ))
         ) : (
           songs.map((song) => (
-            <Grid item xs={12} px="auto" key={song.name}>
+            <Grid item xs={12} px="auto" key={song.id}>
               <Typography variant="h6" textAlign="center">
                 {song.created_at?.split("T")[0]}
               </Typography>
