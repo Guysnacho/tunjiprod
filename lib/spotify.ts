@@ -17,14 +17,14 @@ const topTenFetcher = (token: string) => {
     .then((res) => {
       const formattedData = res.data.items.map((song: any) => {
         return {
-          id: song.id,
+          spotify_id: song.id,
           name: song.name,
           album: song.album.name,
           album_art: song.album.images[1], // Pick the second image in the list. Always 300px
           artists: song.artists.map((item: { name: any }) => {
             return item.name;
           }),
-          previewUrl: song.preview_url,
+          preview_url: song.preview_url,
         };
       });
 

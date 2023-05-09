@@ -17,13 +17,13 @@ import { useRef, useState } from "react";
  * @remark Minimizing the amount of confusion and foot shooting
  */
 export type Song = {
-  id: number;
+  spotify_id: string;
   name: string;
   artists: [string];
   album: string;
   album_art: { url: string; width: number; height: number };
   created_at: string;
-  two_cents: string;
+  description: string;
   preview_url?: string;
 };
 
@@ -95,15 +95,18 @@ const Single = (props: Song) => {
             ml={-0.5}
             mt={0.25}
           >
-            <Stack spacing={2} mt={2}>
-              <Typography variant="overline" textAlign="center" mx="auto">
-                {props.name} - {props.artists}
+            <Stack spacing={2} my={2}>
+              <Typography variant="body1" textAlign="center" mx="auto">
+                {props.name}
+              </Typography>
+              <Typography variant="body1" textAlign="center" mx="auto">
+                {props.artists != null ? props.artists.join(", ") : ""}
               </Typography>
               <Typography variant="overline" textAlign="center" mx="auto">
                 {props.album}
               </Typography>
               <Typography variant="body2" textAlign="center">
-                {props.two_cents}
+                {props.description}
               </Typography>
               {/* <Accordion>
                 <AccordionSummary

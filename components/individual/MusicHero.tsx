@@ -1,8 +1,8 @@
 //@ts-nocheck
-import { Alert, Grid, Typography } from "@mui/material";
+import { Alert, Button, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
-import Single from "./Single";
+import Single, { Song } from "./Single";
 
 /**
  * @fileoverview This where the magic happens.
@@ -18,7 +18,7 @@ const MusicHero = (props: { songList?: [{}] }) => {
     console.debug(props.songList);
     if (!props.songList) {
       supabase
-        .from("sotd_test")
+        .from("sotd")
         .select("*")
         .order("created_at", { ascending: false })
         .limit(5)
@@ -33,6 +33,18 @@ const MusicHero = (props: { songList?: [{}] }) => {
     console.debug(props.songList);
   }, []);
 
+  const submitSotd = (song: Song) => {
+    console.debug("Enter submission");
+    supabase
+      .from("sotd")
+      .insert(song)
+      .then((res) => {
+        console.debug("Response");
+        console.debug(res);
+      });
+    console.debug("Finish submission");
+  };
+
   return (
     <Grid
       container
@@ -44,33 +56,39 @@ const MusicHero = (props: { songList?: [{}] }) => {
       {!errorMessage ? (
         props.songList?.length > 0 ? ( // If passed songlist from search
           props.songList.map((song) => (
-            <Grid item xs={12} px="auto" key={song.id}>
+            <Grid item xs={12} px="auto" key={song.spotify_id}>
               <Single
-                id={song.id}
+                id={song.spotify_id}
                 name={song.name}
                 album={song.album}
                 album_art={song.album_art}
                 artists={song.artists}
                 previewUrl={song.previewUrl}
               />
+              <Button
+                color="secondary"
+                fullWidth
+                onClick={() => submitSotd(song)}
+                sx={{ mb: 2 }}
+              >
+                Select SOTD
+              </Button>
             </Grid>
           ))
         ) : (
           songs.map((song) => (
-            <Grid item xs={12} px="auto" key={song.id}>
+            <Grid item xs={12} px="auto" key={song.spotify_id}>
               <Typography variant="h6" textAlign="center">
                 {song.created_at?.split("T")[0]}
               </Typography>
               <Single
-                id={song.id}
-                title={song.title}
+                id={song.spotify_id}
+                name={song.name}
                 album={song.album}
                 album_art={song.album_art}
                 artists={song.artists}
-                created_at={song.created_at}
-                two_cents={song.two_cents}
-                written_by={song.written_by}
-                produced_by={song.produced_by}
+                previewUrl={song.previewUrl}
+                description={song.description}
               />
             </Grid>
           ))

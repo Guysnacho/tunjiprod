@@ -38,6 +38,7 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const { data, error, isLoading, mutate } = useSWR<[top10], AxiosError>(
     ["/spotify/10", authToken],
@@ -47,6 +48,8 @@ const Admin = () => {
           if (errorMessage == "Only valid bearer authentication supported") {
             setErrorMessage("");
             setOpen(false);
+          } else if (res && res.length > 0) {
+            setSuccessMessage("Fetched top songs");
           }
           return res;
         })
@@ -198,11 +201,15 @@ const Admin = () => {
         </Grid>
         <Snackbar open={open} onClose={() => setOpen(false)}>
           <Alert
-            onClose={() => setOpen(false)}
-            severity="warning"
+            onClose={() => {
+              setOpen(false);
+              setErrorMessage("");
+              setSuccessMessage("");
+            }}
+            severity={successMessage ? "success" : "error"}
             sx={{ width: "100%" }}
           >
-            {errorMessage}
+            {successMessage ? successMessage : errorMessage}
           </Alert>
         </Snackbar>
       </Grid>
