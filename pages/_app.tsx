@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import React, { ReactElement, ReactNode } from "react";
 import Layout from "../components/Layout";
 import "../styles/styles.css";
+import { AudioPlayerProvider } from "react-use-audio-player";
 
 /**
  * @remarks Setting type for pages with a layout
@@ -89,9 +90,11 @@ function MyApp({ Component, pageProps: { ...pageProps } }: AppPropsWithLayout) {
     <React.StrictMode>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AudioPlayerProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AudioPlayerProvider>
       </ThemeProvider>
     </React.StrictMode>
   );

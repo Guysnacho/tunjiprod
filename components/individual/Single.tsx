@@ -1,8 +1,4 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Card,
   CardActionArea,
@@ -21,15 +17,14 @@ import { useRef, useState } from "react";
  * @remark Minimizing the amount of confusion and foot shooting
  */
 export type Song = {
-  id: number;
-  created_at: string;
-  title: string;
-  artist: string;
-  two_cents: string;
+  spotify_id: string;
+  name: string;
+  artists: string[];
   album: string;
-  album_art: string;
-  written_by: string;
-  produced_by: string;
+  album_art: { url: string; width: number; height: number };
+  created_at: string;
+  description: string;
+  preview_url?: string;
 };
 
 /**
@@ -69,11 +64,13 @@ const Single = (props: Song) => {
           onClick={() => setTapped(!tapped)}
           sx={{ position: "relative", zIndex: 1 }}
         >
-          <CardMedia
-            component="img"
-            alt="Album Cover"
-            image={props.album_art}
-          />
+          {props.album_art ? (
+            <CardMedia
+              component="img"
+              alt="Album Cover"
+              image={props.album_art.url}
+            />
+          ) : undefined}
         </CardActionArea>
       </Card>
       <Box ref={cardRef}>
@@ -98,17 +95,21 @@ const Single = (props: Song) => {
             ml={-0.5}
             mt={0.25}
           >
-            <Stack spacing={2} mt={2}>
-              <Typography variant="overline" textAlign="center" mx="auto">
-                {props.title} - {props.artist}
+            <Stack spacing={2} my={2}>
+              <Typography variant="body1" textAlign="center" mx="auto">
+                {props.name}
+              </Typography>
+              <Typography variant="body1" textAlign="center" mx="auto">
+                {props.artists != null ? props.artists.join(", ") : ""}
               </Typography>
               <Typography variant="overline" textAlign="center" mx="auto">
                 {props.album}
               </Typography>
               <Typography variant="body2" textAlign="center">
-                {props.two_cents}
+                {props.description}
               </Typography>
-              <Accordion>
+
+              {/* <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="song-credit-content"
@@ -127,7 +128,7 @@ const Single = (props: Song) => {
                     {props.produced_by}
                   </Typography>
                 </AccordionDetails>
-              </Accordion>
+              </Accordion> */}
             </Stack>
           </Grid>
         </Slide>
