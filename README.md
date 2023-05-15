@@ -3,7 +3,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/75c5c3e8-bfb9-4579-a019-bebe485f0329/deploy-status)](https://app.netlify.com/sites/tunjiprod/deploys)
 
 Yeeeaaaa, finally making a portfolio site. Lil late but fuck it we ball :)
-Follow me on a lil journey, fingers crossed I can crush this in about 2 weeks. Entirely cap. 2 weeks from now (12/2/2022) though for sure.
+Follow me on a lil journey~~, fingers crossed I can crush this in about 2 weeks~~. ~~Entirely cap. 2 weeks from now (12/2/2022) though for sure~~ ~~Most definitely 3 weeks from now tho (5/15/2022).~~
+Yeah I'm done setting dates on this one.
 Follow development at [Tunji Productions](https://www.tunjiproductions.com)
 
 ## Setup
@@ -34,8 +35,11 @@ I kinda wanna do a portfolio site. I don't really like the generic project layou
 
 - [x] - Minimal header with handwritten text of Tunji Productions
 - [x] - My spiel
-- [ ] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
-- [ ] - Design (Maya's art, peeking all over page)
+- [-] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
+  - [x] Music
+  - [ ] Videos
+  - [ ] Videos
+- [ ] - Design (Art, peeking all over page)
 - [ ] - Things I wanna promote
 - [ ] - Highlights on things I'm especially proud of
 
@@ -52,5 +56,6 @@ There isn't really a point in doing this if I'm not trying something spicy so I'
 3. Spotify API (Gotta have music available)
 4. Progressive Mobile App or some way for me to conveniently update and/or notify the masses
 5. I wanna draw
+6. Might switch to svelte later later. Who knows
 
 Alright lets go ~
