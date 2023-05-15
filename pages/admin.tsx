@@ -204,6 +204,7 @@ const Admin = () => {
             />
           ) : (
             <Card
+              elevation={4}
               sx={{
                 maxWidth: { xs: "70vw", md: "50vw", lg: "40vw" },
                 mx: "auto",
@@ -226,6 +227,9 @@ const Admin = () => {
                         width: "75%",
                       }}
                     >
+                      <Typography variant="h3" textAlign="center">
+                        Song of the Day
+                      </Typography>
                       <TextField
                         id="filled-song-input"
                         variant="filled"
@@ -233,6 +237,7 @@ const Admin = () => {
                         type="text"
                         placeholder={selectedSong?.name}
                         value={songTitle}
+                        error={!songTitle}
                         onChange={(e) => {
                           setSongTitle(e.target.value);
                         }}
@@ -254,6 +259,8 @@ const Admin = () => {
                         onChange={(e) => {
                           setDescription(e.target.value);
                         }}
+                        error={!description}
+                        required
                         multiline
                         maxRows={4}
                       />
