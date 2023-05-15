@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useRef, useState } from "react";
-import ReactPlayer from "react-player";
 
 /**
  * @type Song
@@ -133,18 +132,6 @@ const Single = (props: Song) => {
             </Stack>
           </Grid>
         </Slide>
-        <ReactPlayer
-          controls={true}
-          url={props.preview_url}
-          onReady={() =>
-            console.info(
-              "Currently playing {} from {}",
-              props.name,
-              props.preview_url
-            )
-          }
-          about="SOTD Preview"
-        />
       </Box>
     </Box>
   );

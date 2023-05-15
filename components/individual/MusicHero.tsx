@@ -9,7 +9,10 @@ import Single, { Song } from "./Single";
  * @function MusicHero
  * @todo Beefy component. I'll drop a music player either here or in the layout.
  */
-const MusicHero = (props: { songList?: [{}] }) => {
+const MusicHero = (props: {
+  songList?: [{}];
+  selector: Dispatch<SetStateAction<undefined>>;
+}) => {
   const [songs, setSongs] = useState([{}]);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -33,24 +36,12 @@ const MusicHero = (props: { songList?: [{}] }) => {
     console.debug(props.songList);
   }, []);
 
-  const submitSotd = (song: Song) => {
-    console.debug("Enter submission");
-    supabase
-      .from("sotd")
-      .insert(song)
-      .then((res) => {
-        console.debug("Response");
-        console.debug(res);
-      });
-    console.debug("Finish submission");
-  };
-
   return (
     <Grid
       container
       direction="row"
       wrap="nowrap"
-      sx={{ overflowY: "hidden", overflowX: "auto" }}
+      sx={{ overflowY: "hidden", overflowX: "auto", my: 3 }}
       spacing={5}
     >
       {!errorMessage ? (
@@ -59,6 +50,7 @@ const MusicHero = (props: { songList?: [{}] }) => {
             <Grid item xs={12} px="auto" key={song.spotify_id}>
               <Single
                 id={song.spotify_id}
+                key={song.spotify_id}
                 name={song.name}
                 album={song.album}
                 album_art={song.album_art}
@@ -68,7 +60,8 @@ const MusicHero = (props: { songList?: [{}] }) => {
               <Button
                 color="secondary"
                 fullWidth
-                onClick={() => submitSotd(song)}
+                variant="contained"
+                onClick={() => selector(song)}
                 sx={{ mb: 2 }}
               >
                 Select SOTD
@@ -83,6 +76,7 @@ const MusicHero = (props: { songList?: [{}] }) => {
               </Typography>
               <Single
                 id={song.spotify_id}
+                key={song.spotify_id}
                 name={song.name}
                 album={song.album}
                 album_art={song.album_art}

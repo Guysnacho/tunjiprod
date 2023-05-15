@@ -34,6 +34,7 @@ import { supabase } from "../lib/supabaseClient";
 const Admin = () => {
   const router = useRouter();
   const [songTitle, setSongTitle] = useState("");
+  const [selectedSong, setSelectedSong] = useState();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
@@ -150,7 +151,9 @@ const Admin = () => {
             Welcome Back 😌
           </Typography>
         </Grid>
-        {!error ? <MusicHero songList={data} /> : undefined}
+        {!error ? (
+          <MusicHero songList={data} selector={setSelectedSong} />
+        ) : undefined}
         <Grid item xs={12} sx={{ my: 3 }}>
           {loading ? (
             <Skeleton
