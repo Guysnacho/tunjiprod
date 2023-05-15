@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/75c5c3e8-bfb9-4579-a019-bebe485f0329/deploy-status)](https://app.netlify.com/sites/tunjiprod/deploys)
 
 Yeeeaaaa, finally making a portfolio site. Lil late but fuck it we ball :)
-Follow me on a lil journey, fingers crossed I can crush this in about 2 weeks. Entirely cap. 2 weeks from now (12/2/2022) though for sure.
+Follow me on a lil journey, fingers crossed I can crush this in about 2 weeks. ~~Entirely cap. 2 weeks from now (12/2/2022) though for sure~~ Most definitely 3 weeks from now tho (5/15/2022).
 Follow development at [Tunji Productions](https://www.tunjiproductions.com)
 
 ## Setup
@@ -49,7 +49,9 @@ There isn't really a point in doing this if I'm not trying something spicy so I'
 2. Springboot/Docker
    - I wanna make my own Springboot api, I like the framework and it'd be nice to make a dockerized/kubernetes type thing just bc
    - Will handle new card creation and chat. Maybe scheduled events
-3. Spotify API (Gotta have music available)
+3. ~~Spotify API (Gotta have music available)~~
+   - Gooooot iiiiiiit, took a lil second too. OAuth 2.0 is so awkward at the moment. I'm doing it manually now and that was painful to setup but now I get it.
+   - I'll probably use Passport.js/NextAuth later now that I get it
 4. Progressive Mobile App or some way for me to conveniently update and/or notify the masses
 5. I wanna draw
 

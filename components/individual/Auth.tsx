@@ -38,7 +38,7 @@ const Auth = (props: {
   ) => {
     setLoading(true);
     if (type === authCodes.REDIRECT) {
-      router.replace("/admin");
+      router.push("/admin");
       setLoading(false);
       props.setOpened(false);
       return;

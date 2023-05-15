@@ -12,15 +12,14 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <Grid item xs={12} sx={{ px: "auto", py: 3 }}>
+    <Grid item xs={12} sx={{ py: 3 }}>
       <Box
         sx={{
-          px: "auto",
-          width: { xs: "65vw", sm: "45vw", md: "30vw", lg: "25vw" },
+          maxWidth: { xs: "65vw", sm: "45vw", md: "30vw", lg: "25vw" },
           mx: "auto",
         }}
       >
-        <Image src={Logo} />
+        <Image src={Logo} alt="logo" width={300} />
       </Box>
     </Grid>
   );

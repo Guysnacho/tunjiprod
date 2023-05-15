@@ -20,7 +20,11 @@ type LayoutProps = {
 const Layout = (props: LayoutProps) => {
   return (
     <Box
-      sx={{ background: `url(${Notebook.src})`, backgroundRepeat: "repeat" }}
+      sx={{
+        background: `url(${Notebook.src})`,
+        backgroundRepeat: "repeat",
+        width: "100vw",
+      }}
     >
       <Navbar />
       {props.children}
