@@ -9,7 +9,7 @@ import Single, { Song } from "./Single";
  * @function MusicHero
  * @todo Beefy component. I'll drop a music player either here or in the layout.
  */
-const MusicHero = (props: { songList?: [{}]; selectSotd: any }) => {
+const MusicHero = (props: { songList?: [{}]; selectSotd?: any }) => {
   const [songs, setSongs] = useState([{}]);
   const [errorMessage, setErrorMessage] = useState("");
 

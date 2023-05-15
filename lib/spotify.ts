@@ -8,6 +8,21 @@ import { logError, logSuccess } from "./common";
 import { sectors, unformattedSong, urls } from "./constants";
 import { supabase } from "./supabaseClient";
 
+const formatTracks = (tracks: unformattedSong[]) => {
+  return tracks.map((song: any) => {
+    return {
+      spotify_id: song.id,
+      name: song.name,
+      album: song.album.name,
+      album_art: song.album.images[1], // Pick the second image in the list. Always 300px
+      artists: song.artists.map((item: { name: any }) => {
+        return item.name;
+      }),
+      preview_url: song.preview_url,
+    };
+  });
+};
+
 const topTenFetcher = (token: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
   return axios
@@ -26,14 +41,13 @@ const topTenFetcher = (token: string) => {
     });
 };
 
-const search = async (token: string, track: string) => {
+const search = (token: string, track: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
-  if (!track) return [];
   return axios
     .get(
       `https://api.spotify.com/v1/search?${stringify({
         q: track,
-        limit: 10,
+        limit: 5,
         type: ["track"],
       })}`,
       {
@@ -41,7 +55,9 @@ const search = async (token: string, track: string) => {
       }
     )
     .then((res) => {
-      const formattedData = formatTracks(res.data.items);
+      console.debug(res);
+      const formattedData = formatTracks(res.data.tracks.items);
+      console.debug(formattedData);
 
       logSuccess(
         sectors.feSpotify,
@@ -59,21 +75,6 @@ const search = async (token: string, track: string) => {
 const resetCache = () => {
   localStorage.removeItem("reroutes");
   localStorage.removeItem("token");
-};
-
-const formatTracks = (tracks: unformattedSong[]) => {
-  return tracks.map((song: any) => {
-    return {
-      spotify_id: song.id,
-      name: song.name,
-      album: song.album.name,
-      album_art: song.album.images[1], // Pick the second image in the list. Always 300px
-      artists: song.artists.map((item: { name: any }) => {
-        return item.name;
-      }),
-      preview_url: song.preview_url,
-    };
-  });
 };
 
 /**

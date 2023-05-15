@@ -81,7 +81,7 @@ const Admin = () => {
             setErrorMessage("");
             setOpen(false);
           } else if (res && res.length > 0) {
-            setSuccessMessage("Fetched top songs");
+            setSuccessMessage(`Searched spotify for ${songTitle}`);
           }
           return res;
         })
@@ -236,7 +236,7 @@ const Admin = () => {
                         onChange={(e) => {
                           setSongTitle(e.target.value);
                         }}
-                        onPause={(e) => {
+                        onPointerLeave={() => {
                           searchMutate(searchList);
                         }}
                         onEmptied={() => {

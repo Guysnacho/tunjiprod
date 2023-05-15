@@ -53,7 +53,7 @@ const Home: NextPage = () => {
       <Typography
         variant="h3"
         textAlign="center"
-        sx={{ userSelect: "none", my: 10, py: 3 }}
+        sx={{ userSelect: "none", my: 7, py: 3 }}
       >
         Song of the Day
       </Typography>
