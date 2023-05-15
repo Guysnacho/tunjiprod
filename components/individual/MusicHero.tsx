@@ -9,10 +9,7 @@ import Single, { Song } from "./Single";
  * @function MusicHero
  * @todo Beefy component. I'll drop a music player either here or in the layout.
  */
-const MusicHero = (props: {
-  songList?: [{}];
-  selector: Dispatch<SetStateAction<undefined>>;
-}) => {
+const MusicHero = (props: { songList?: [{}]; selectSotd: any }) => {
   const [songs, setSongs] = useState([{}]);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -41,7 +38,13 @@ const MusicHero = (props: {
       container
       direction="row"
       wrap="nowrap"
-      sx={{ overflowY: "hidden", overflowX: "auto", my: 3 }}
+      sx={{
+        overflowY: "hidden",
+        overflowX: "auto",
+        my: 3,
+        width: "80%",
+        mx: "auto",
+      }}
       spacing={5}
     >
       {!errorMessage ? (
@@ -61,7 +64,7 @@ const MusicHero = (props: {
                 color="secondary"
                 fullWidth
                 variant="contained"
-                onClick={() => selector(song)}
+                onClick={() => props.selectSotd(song)}
                 sx={{ mb: 2 }}
               >
                 Select SOTD

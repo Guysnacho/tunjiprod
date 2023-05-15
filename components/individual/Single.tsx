@@ -19,7 +19,7 @@ import { useRef, useState } from "react";
 export type Song = {
   spotify_id: string;
   name: string;
-  artists: [string];
+  artists: string[];
   album: string;
   album_art: { url: string; width: number; height: number };
   created_at: string;

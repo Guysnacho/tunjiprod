@@ -1,5 +1,6 @@
 import {
   Alert,
+  Box,
   Button,
   Card,
   CardContent,
@@ -17,14 +18,15 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import MusicHero from "../components/individual/MusicHero";
-import { top10 } from "../lib/constants";
+import { nullSong, unformattedSong } from "../lib/constants";
 import {
   handleAuth,
   requestToken,
   resetCache,
+  search,
   topTenFetcher,
 } from "../lib/spotify";
-import { supabase } from "../lib/supabaseClient";
+import { submitSotd, supabase } from "../lib/supabaseClient";
 
 /**
  * @fileoverview Where all the customization happens
@@ -34,17 +36,46 @@ import { supabase } from "../lib/supabaseClient";
 const Admin = () => {
   const router = useRouter();
   const [songTitle, setSongTitle] = useState("");
-  const [selectedSong, setSelectedSong] = useState();
+  const [description, setDescription] = useState("");
+  const [selectedSong, setSelectedSong] = useState(nullSong);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const { data, error, isLoading, mutate } = useSWR<[top10], AxiosError>(
-    ["/spotify/10", authToken],
+  const { data, error, isLoading, mutate } = useSWR<
+    [unformattedSong],
+    AxiosError
+  >(["/spotify/10", authToken], () =>
+    topTenFetcher(authToken)
+      .then((res: any) => {
+        if (errorMessage == "Only valid bearer authentication supported") {
+          setErrorMessage("");
+          setOpen(false);
+        } else if (res && res.length > 0) {
+          setSuccessMessage("Fetched top songs");
+        }
+        return res;
+      })
+      .catch((err) => {
+        if (localStorage.getItem("reroutes")) {
+          setErrorMessage(err.message);
+          setOpen(true);
+        }
+        return err;
+      })
+  );
+
+  const {
+    data: searchList,
+    error: searchError,
+    isLoading: searchIsLoading,
+    mutate: searchMutate,
+  } = useSWR<[unformattedSong], AxiosError>(
+    ["/spotify/search", authToken],
     () =>
-      topTenFetcher(authToken)
+      search(authToken, songTitle)
         .then((res: any) => {
           if (errorMessage == "Only valid bearer authentication supported") {
             setErrorMessage("");
@@ -138,6 +169,11 @@ const Admin = () => {
     }
   }, [router.isReady]);
 
+  const updateSong = (song: any) => {
+    setSelectedSong(song);
+    setSongTitle(song?.name);
+  };
+
   return (
     <>
       <Head>
@@ -151,8 +187,11 @@ const Admin = () => {
             Welcome Back 😌
           </Typography>
         </Grid>
-        {!error ? (
-          <MusicHero songList={data} selector={setSelectedSong} />
+        {!error && !isLoading && !songTitle ? (
+          <MusicHero songList={data} selectSotd={updateSong} />
+        ) : undefined}
+        {!searchError && !searchIsLoading && songTitle ? (
+          <MusicHero songList={searchList} selectSotd={updateSong} />
         ) : undefined}
         <Grid item xs={12} sx={{ my: 3 }}>
           {loading ? (
@@ -171,33 +210,63 @@ const Admin = () => {
               }}
             >
               <CardContent>
-                <Stack>
+                <Box>
                   <FormControl
                     sx={{
                       py: 3,
-                      mx: "auto",
+                      width: "100%",
                     }}
                   >
-                    <TextField
-                      id="filled-song-input"
-                      variant="filled"
-                      label="Song"
-                      type="text"
-                      value={songTitle}
-                      onChange={(e) => {
-                        setSongTitle(e.target.value);
+                    <Stack
+                      spacing={5}
+                      sx={{
+                        py: 3,
+                        mx: "auto",
+                        justifyContent: "space-around",
+                        width: "75%",
                       }}
-                      required
-                    />
-                    <Button
-                      variant="text"
-                      aria-label="login"
-                      onClick={() => console.debug("Song Submitted")}
                     >
-                      Submit SOTD
-                    </Button>
+                      <TextField
+                        id="filled-song-input"
+                        variant="filled"
+                        label="Song"
+                        type="text"
+                        placeholder={selectedSong?.name}
+                        value={songTitle}
+                        onChange={(e) => {
+                          setSongTitle(e.target.value);
+                        }}
+                        onPause={(e) => {
+                          searchMutate(searchList);
+                        }}
+                        onEmptied={() => {
+                          setSongTitle("");
+                          mutate(data);
+                        }}
+                        required
+                      >
+                        {selectedSong?.name ? selectedSong.name : undefined}
+                      </TextField>
+                      <TextField
+                        value={description}
+                        id="outlined-multiline-flexible"
+                        label="What's the tea?"
+                        onChange={(e) => {
+                          setDescription(e.target.value);
+                        }}
+                        multiline
+                        maxRows={4}
+                      />
+                      <Button
+                        variant="text"
+                        aria-label="login"
+                        onClick={() => submitSotd(selectedSong, description)}
+                      >
+                        Submit SOTD
+                      </Button>
+                    </Stack>
                   </FormControl>
-                </Stack>
+                </Box>
               </CardContent>
             </Card>
           )}

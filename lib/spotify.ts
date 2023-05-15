@@ -5,7 +5,7 @@ import { NextRouter } from "next/router";
 import { stringify } from "querystring";
 import { Dispatch, SetStateAction } from "react";
 import { logError, logSuccess } from "./common";
-import { sectors, urls } from "./constants";
+import { sectors, unformattedSong, urls } from "./constants";
 import { supabase } from "./supabaseClient";
 
 const topTenFetcher = (token: string) => {
@@ -15,18 +15,7 @@ const topTenFetcher = (token: string) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
-      const formattedData = res.data.items.map((song: any) => {
-        return {
-          spotify_id: song.id,
-          name: song.name,
-          album: song.album.name,
-          album_art: song.album.images[1], // Pick the second image in the list. Always 300px
-          artists: song.artists.map((item: { name: any }) => {
-            return item.name;
-          }),
-          preview_url: song.preview_url,
-        };
-      });
+      const formattedData = formatTracks(res.data.items);
 
       logSuccess(sectors.feSpotify, "Fetched top 10", formattedData);
       return formattedData;
@@ -35,12 +24,56 @@ const topTenFetcher = (token: string) => {
       //@ts-ignore
       throw err.response.data.error;
     });
-  // });
+};
+
+const search = async (token: string, track: string) => {
+  // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
+  if (!track) return [];
+  return axios
+    .get(
+      `https://api.spotify.com/v1/search?${stringify({
+        q: track,
+        limit: 10,
+        type: ["track"],
+      })}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+    .then((res) => {
+      const formattedData = formatTracks(res.data.items);
+
+      logSuccess(
+        sectors.feSpotify,
+        `Searched spotify for ${track}`,
+        formattedData
+      );
+      return formattedData;
+    })
+    .catch((err: AxiosError) => {
+      //@ts-ignore
+      throw err.response.data.error;
+    });
 };
 
 const resetCache = () => {
   localStorage.removeItem("reroutes");
   localStorage.removeItem("token");
+};
+
+const formatTracks = (tracks: unformattedSong[]) => {
+  return tracks.map((song: any) => {
+    return {
+      spotify_id: song.id,
+      name: song.name,
+      album: song.album.name,
+      album_art: song.album.images[1], // Pick the second image in the list. Always 300px
+      artists: song.artists.map((item: { name: any }) => {
+        return item.name;
+      }),
+      preview_url: song.preview_url,
+    };
+  });
 };
 
 /**
@@ -307,5 +340,6 @@ export {
   refreshToken,
   requestToken,
   resetCache,
+  search,
   topTenFetcher,
 };
