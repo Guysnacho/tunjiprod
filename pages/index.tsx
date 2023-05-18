@@ -49,8 +49,6 @@ const Home: NextPage = () => {
           one place.
         </Typography>
       </Container>
-      <MusicHero />
-      <ProjectHero />
       <Typography
         variant="h3"
         textAlign="center"
@@ -58,6 +56,8 @@ const Home: NextPage = () => {
       >
         Song of the Day
       </Typography>
+      <MusicHero />
+      <ProjectHero />
     </>
   );
 };
