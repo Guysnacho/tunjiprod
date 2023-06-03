@@ -26,7 +26,7 @@ const formatTracks = (tracks: unformattedSong[]) => {
 const topTenFetcher = (token: string) => {
   // const { data, error, isLoading } = useSWR(`/spotiy/top10/`, (token) => {
   return axios
-    .get("https://api.spotify.com/v1/me/top/tracks?limit=10", {
+    .get("https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_term", {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
