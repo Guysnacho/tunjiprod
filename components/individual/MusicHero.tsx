@@ -21,7 +21,6 @@ const MusicHero = (props: { songList?: [{}]; selectSotd?: any }) => {
         .from("sotd")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(5)
         .then((res) => {
           res.data?.length > 0
             ? setSongs(res.data)
