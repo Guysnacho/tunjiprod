@@ -1,5 +1,15 @@
 //@ts-nocheck
-import { Alert, Button, Grid, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CardContent,
+  Grid,
+  TextField,
+  Typography,
+  Card,
+  Modal,
+  Stack,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import Single, { Song } from "./Single";
@@ -9,8 +19,17 @@ import Single, { Song } from "./Single";
  * @function MusicHero
  * @todo Beefy component. I'll drop a music player either here or in the layout.
  */
-const MusicHero = (props: { songList?: [{}]; selectSotd?: any }) => {
+const MusicHero = (props: {
+  songList?: [{}];
+  selectSotd?: any;
+  isAuthed?: boolean;
+}) => {
   const [songs, setSongs] = useState([{}]);
+  const [selectedSong, setSelectedSong] = useState({});
+  const [editing, setEditing] = useState(false);
+  const [description, setDescription] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
 
   // Fetch music data
@@ -31,6 +50,35 @@ const MusicHero = (props: { songList?: [{}]; selectSotd?: any }) => {
     }
     console.debug(props.songList);
   }, []);
+
+  const handleUpdate = async (song) => {
+    setEditing(true);
+    supabase
+      .from("sotd")
+      .update({
+        description,
+      })
+      .eq("id", song.id as number)
+      .select()
+      .single()
+      .then((res) => {
+        console.log("Submitted update for song");
+        console.log(description);
+        console.log(song.id);
+        if (res.error) {
+          console.error("Error occured");
+          console.error(res.error);
+          setErrorMessage(res.error.message);
+        } else {
+          console.debug("Successful save");
+          console.debug(res.status);
+          console.debug(song);
+          console.debug(res.data);
+          window.location.reload()
+        }
+      });
+    setEditing(false);
+  };
 
   return (
     <Grid
@@ -72,13 +120,21 @@ const MusicHero = (props: { songList?: [{}]; selectSotd?: any }) => {
           ))
         ) : (
           songs.map((song) => (
-            <Grid item xs={12} px="auto" key={song.spotify_id}>
+            <Grid
+              item
+              xs={12}
+              px="auto"
+              key={song.id}
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+            >
               <Typography variant="h6" textAlign="center">
                 {song.created_at?.split("T")[0]}
               </Typography>
               <Single
                 id={song.spotify_id}
-                key={song.spotify_id}
+                key={song.id}
                 name={song.name}
                 album={song.album}
                 album_art={song.album_art}
@@ -86,20 +142,88 @@ const MusicHero = (props: { songList?: [{}]; selectSotd?: any }) => {
                 previewUrl={song.previewUrl}
                 description={song.description}
               />
+              {props.isAuthed ? (
+                <Button
+                  variant="contained"
+                  sx={{ width: "50%", mx: "auto", mb: 3 }}
+                  onClick={() => {
+                    setSelectedSong(song);
+                    setSuccessMessage("");
+                    setErrorMessage("");
+                    setEditing(true);
+                  }}
+                >
+                  Edit
+                </Button>
+              ) : undefined}
             </Grid>
           ))
         )
       ) : (
         // Failed to fetch repos
-        <Alert
-          color="error"
-          severity="warning"
-          sx={{ mx: "auto", width: "40vw" }}
-          variant="filled"
-        >
-          {errorMessage}
-        </Alert>
+        <>
+          <Alert
+            color="error"
+            severity="warning"
+            sx={{ mx: "auto", width: "40vw" }}
+            variant="filled"
+          >
+            {errorMessage}
+          </Alert>
+          <Alert
+            color="success"
+            severity="success"
+            sx={{ mx: "auto", width: "40vw" }}
+            variant="filled"
+          >
+            {successMessage}
+          </Alert>
+        </>
       )}
+      {editing ? (
+        <Modal
+          open={editing}
+          onClose={() => {
+            setSelectedSong({});
+            setDescription("");
+            setEditing(false);
+          }}
+        >
+          <Card py="auto">
+            <CardContent sx={{ my: "auto" }}>
+              <Stack
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <TextField
+                  value={description}
+                  id="outlined-multiline-flexible"
+                  label="New description"
+                  placeholder={selectedSong.description}
+                  sx={{ width: "75%", alignSelf: "center" }}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                  error={!description}
+                  required
+                  multiline
+                  maxRows={4}
+                  minRows={4}
+                />
+                <Button
+                  variant="text"
+                  aria-label="login"
+                  sx={{ width: "40%" }}
+                  onClick={() => handleUpdate(selectedSong)}
+                >
+                  Submit Edit
+                </Button>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Modal>
+      ) : undefined}
     </Grid>
   );
 };

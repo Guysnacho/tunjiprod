@@ -277,6 +277,10 @@ const Admin = () => {
               </CardContent>
             </Card>
           )}
+          <Typography mt={5} variant="h3" textAlign="center">
+            Edit Songs of the Day
+          </Typography>
+          <MusicHero isAuthed />
         </Grid>
         <Snackbar open={open} onClose={() => setOpen(false)}>
           <Alert
