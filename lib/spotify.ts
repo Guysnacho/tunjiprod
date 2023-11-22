@@ -49,6 +49,7 @@ const search = (token: string, track: string) => {
         q: track,
         limit: 5,
         type: ["track"],
+        include_external: "audio"
       })}`,
       {
         headers: { Authorization: `Bearer ${token}` },

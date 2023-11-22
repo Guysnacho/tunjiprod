@@ -96,8 +96,8 @@ const MusicHero = (props: {
     >
       {!errorMessage ? (
         props.songList?.length > 0 ? ( // If passed songlist from search
-          props.songList.map((song) => (
-            <Grid item xs={12} px="auto" key={song.spotify_id}>
+          props.songList.map((song, index) => (
+            <Grid item xs={12} px="auto" key={index}>
               <Single
                 id={song.spotify_id}
                 key={song.spotify_id}
@@ -119,12 +119,12 @@ const MusicHero = (props: {
             </Grid>
           ))
         ) : (
-          songs.map((song) => (
+          songs.map((song,index) => (
             <Grid
               item
               xs={12}
               px="auto"
-              key={song.id}
+              key={index}
               justifyContent="center"
               alignItems="center"
               textAlign="center"

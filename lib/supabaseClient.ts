@@ -34,4 +34,4 @@ export const submitSotd = (song: any, description: string) => {
 };
 
 //@ts-ignore
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);

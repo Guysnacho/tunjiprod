@@ -41,6 +41,7 @@ export interface Database {
           {
             foreignKeyName: "logs_status_fkey"
             columns: ["status"]
+            isOneToOne: false
             referencedRelation: "status"
             referencedColumns: ["id"]
           }
