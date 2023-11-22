@@ -38,7 +38,6 @@ I kinda wanna do a portfolio site. I don't really like the generic project layou
 - [-] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
   - [x] Music
   - [ ] Videos
-  - [ ] Videos
 - [ ] - Design (Art, peeking all over page)
 - [ ] - Things I wanna promote
 - [ ] - Highlights on things I'm especially proud of
@@ -48,12 +47,14 @@ I kinda wanna do a portfolio site. I don't really like the generic project layou
 There isn't really a point in doing this if I'm not trying something spicy so I'm gonna learn the following (at least)
 
 1. ~~I wanna learn tailwind and get back into Vue~~ Moved away from Vue and with it chose MUI..again
-   - I used to love vue before vue 3 migration started but now I wanna take another look
+   - ~~I used to love vue before vue 3 migration started but now I wanna take another look~~
    - Tailwind sounds cool, plus I'm getting a teensy but closed to css
-2. Springboot/Docker
-   - I wanna make my own Springboot api, I like the framework and it'd be nice to make a dockerized/kubernetes type thing just bc
-   - Will handle new card creation and chat. Maybe scheduled events
-3. ~~Spotify API (Gotta have music available)~~
+2. ~~Springboot/Docker~~ Standalone API's
+   - Initial Plan
+      - I wanna make my own Springboot api, I like the framework and it'd be nice to make a dockerized/kubernetes type thing just bc
+      - Will handle new card creation and chat. Maybe scheduled events
+   - Created endpoints in the nextjs/svelte server and use it as a lightweight and secure free server
+3. Spotify API (Gotta have music available)
    - Gooooot iiiiiiit, took a lil second too. OAuth 2.0 is so awkward at the moment. I'm doing it manually now and that was painful to setup but now I get it.
    - I'll probably use Passport.js/NextAuth later now that I get it
 4. Progressive Mobile App or some way for me to conveniently update and/or notify the masses
