@@ -1,6 +1,7 @@
 import { Container, Paper, Typography } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import MusicHero from "../components/individual/MusicHero";
 import ProjectHero from "../components/individual/ProjectHero";
 
@@ -57,6 +58,14 @@ const Home: NextPage = () => {
         Song of the Day
       </Typography>
       <MusicHero />
+      <Typography
+        variant="h6"
+        textAlign="center"
+        sx={{ userSelect: "none", py: 3 }}
+      >
+        To share your own, download{" "}
+        <Link href="https://twotone.app/">TwoTone</Link> today 😌
+      </Typography>
       <ProjectHero />
     </>
   );

@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
+import DecommedSotds from "../../lib/OGSotd.json";
 import Single, { Song } from "./Single";
 
 /**
@@ -36,15 +37,17 @@ const MusicHero = (props: {
   useEffect(() => {
     console.debug(props.songList);
     if (!props.songList) {
-      supabase
-        .from("sotd")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .then((res) => {
-          res.data?.length > 0
-            ? setSongs(res.data)
-            : setErrorMessage("No songs returned");
-        });
+      setSongs(DecommedSotds);
+      // supabase
+      //   .from("sotd")
+      //   .select("*")
+      //   .order("created_at", { ascending: false })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     res.data?.length > 0
+      //       ? setSongs(res.data)
+      //       : setErrorMessage("No songs returned");
+      //   });
     } else if (props.songList.length == 0) {
       setErrorMessage("No songs given");
     }
@@ -74,7 +77,7 @@ const MusicHero = (props: {
           console.debug(res.status);
           console.debug(song);
           console.debug(res.data);
-          window.location.reload()
+          window.location.reload();
         }
       });
     setEditing(false);
@@ -119,7 +122,7 @@ const MusicHero = (props: {
             </Grid>
           ))
         ) : (
-          songs.map((song,index) => (
+          songs.map((song, index) => (
             <Grid
               item
               xs={12}

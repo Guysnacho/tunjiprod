@@ -17,7 +17,7 @@ const ProjectHero = () => {
     isLoading,
   } = useSWR("repos", () =>
     octokit.request(
-      "GET /users/Guysnacho/repos?sort=updated_at&direction=desc&per_page=8"
+      "GET /users/Guysnacho/repos?sort=updated&direction=desc&per_page=8"
     )
   );
 
