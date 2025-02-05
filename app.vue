@@ -6,6 +6,6 @@
   </div>
 </template>
 
-<style lang="css">
-@import url('/public/css/styles.css');
+<style lang="scss">
+@use '/public/css/styles.scss'
 </style>
