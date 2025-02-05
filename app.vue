@@ -1,5 +1,5 @@
 <template>
-  <div style="background: url('/img/Notebook.jpg');">
+  <div>
     <Nav />
     <NuxtRouteAnnouncer />
     <NuxtPage />
