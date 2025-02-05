@@ -9,10 +9,22 @@ const items: MenuItem[] = [
     },
     {
         label: "Projects", // Label property of the menuitem
-        icon: 'pi pi-home',
+        icon: 'pi pi-briefcase',
         route: "/projects"
     },
 ]
+// const items: MenuItem[] = [
+//     {
+//         label: "Home", // Label property of the menuitem
+//         icon: 'pi pi-home',
+//         route: "/",
+//     },
+//     {
+//         label: "Projects", // Label property of the menuitem
+//         icon: 'pi pi-briefcase',
+//         route: "/projects"
+//     },
+// ]
 </script>
 
 <template>
