@@ -5,7 +5,3 @@
     <NuxtPage />
   </div>
 </template>
-
-<style lang="scss">
-@use '/public/css/styles.scss'
-</style>
