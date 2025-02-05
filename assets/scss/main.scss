@@ -1,5 +1,9 @@
 @use "primeicons/primeicons.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   background: url('/img/Notebook.jpg');
 }
