@@ -1,6 +1,4 @@
 <script lang="ts">
-import { NuxtImg } from "#components";
-
 const items = [{
     label: "Home",
     badge: 2,
@@ -14,8 +12,8 @@ const items = [{
 
 <template>
     <Menubar :model="items">
-        <template #start>
-            <NuxtImg src="/img/Logo_clear.png"  width="150px" />
+        <template #center>
+            <NuxtImg srcset="/img/Logo_clear.png 150px, /img/Logo_clear.png 175px, /img/Logo_clear.png 200px" />
         </template>
         <template #item="{ item, props, hasSubmenu, root }">
             <a v-ripple class="flex items-center" v-bind="props.action">
