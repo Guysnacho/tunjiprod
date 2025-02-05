@@ -1,65 +1,75 @@
-# Tunji Productions
+# Nuxt Minimal Starter
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/75c5c3e8-bfb9-4579-a019-bebe485f0329/deploy-status)](https://app.netlify.com/sites/tunjiprod/deploys)
-
-Yeeeaaaa, finally making a portfolio site. Lil late but fuck it we ball :)
-Follow me on a lil journey~~, fingers crossed I can crush this in about 2 weeks~~. ~~Entirely cap. 2 weeks from now (12/2/2022) though for sure~~ ~~Most definitely 3 weeks from now tho (5/15/2022).~~
-Yeah I'm done setting dates on this one.
-Follow development at [Tunji Productions](https://www.tunjiproductions.com)
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
 
-Make sure to install the dependencies:
+Make sure to install dependencies:
 
 ```bash
+# npm
+npm install
+
+# pnpm
+pnpm install
+
 # yarn
 yarn install
 
-# npm
-npm install
+# bun
+bun install
 ```
 
 ## Development Server
 
-Start the development server on http://localhost:3000
+Start the development server on `http://localhost:3000`:
 
 ```bash
-yarn run dev
+# npm
+npm run dev
 
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
 ```
 
-## The Point
+## Production
 
-I kinda wanna do a portfolio site. I don't really like the generic project layout tho so I'm prolly gonna add my personal projects too. I put a lil smidgin of my soul in all my projects but now that I've kind of hit a developer groove, I might as well put it in one place.
+Build the application for production:
 
-### Functional Goals
+```bash
+# npm
+npm run build
 
-- [x] - Minimal header with handwritten text of Tunji Productions
-- [x] - My spiel
-- [-] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
-  - [x] Music
-  - [ ] Videos
-- [ ] - Design (Art, peeking all over page)
-- [ ] - Things I wanna promote
-- [ ] - Highlights on things I'm especially proud of
+# pnpm
+pnpm build
 
-### Learning Goals
+# yarn
+yarn build
 
-There isn't really a point in doing this if I'm not trying something spicy so I'm gonna learn the following (at least)
+# bun
+bun run build
+```
 
-1. ~~I wanna learn tailwind and get back into Vue~~ Moved away from Vue and with it chose MUI..again
-   - ~~I used to love vue before vue 3 migration started but now I wanna take another look~~
-   - Tailwind sounds cool, plus I'm getting a teensy but closed to css
-2. ~~Springboot/Docker~~ Standalone API's
-   - Initial Plan
-      - I wanna make my own Springboot api, I like the framework and it'd be nice to make a dockerized/kubernetes type thing just bc
-      - Will handle new card creation and chat. Maybe scheduled events
-   - Created endpoints in the nextjs/svelte server and use it as a lightweight and secure free server
-3. Spotify API (Gotta have music available)
-   - Gooooot iiiiiiit, took a lil second too. OAuth 2.0 is so awkward at the moment. I'm doing it manually now and that was painful to setup but now I get it.
-   - I'll probably use Passport.js/NextAuth later now that I get it
-4. Progressive Mobile App or some way for me to conveniently update and/or notify the masses
-5. I wanna draw
-6. Might switch to svelte later later. Who knows
+Locally preview production build:
 
-Alright lets go ~
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
