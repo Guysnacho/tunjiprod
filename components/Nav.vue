@@ -16,7 +16,7 @@ const items: MenuItem[] = [
 </script>
 
 <template>
-    <Menubar :model="items">
+    <Menubar :model="items" is="nav">
         <template #start>
             <NuxtImg src="/img/logo_clear.png" sizes="100px md:100px lg:100px" />
         </template>
