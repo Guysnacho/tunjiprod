@@ -4,7 +4,7 @@ import Aura from "@primevue/themes/aura";
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["@primevue/nuxt-module", "@nuxt/image"],
+  modules: ["@primevue/nuxt-module", "@nuxtjs/tailwindcss", "@nuxt/image"],
   primevue: {
     options: {
       ripple: true,
@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     },
   },
   typescript: {
-    typeCheck: true
+    typeCheck: true,
   },
-  css: ['~/assets/scss/main.scss']
+  css: ["~/assets/css/main.scss", "~/assets/css/tailwind.css"],
+  tailwindcss: { exposeConfig: true },
 });

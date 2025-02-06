@@ -1,5 +1,5 @@
 <template>
-    <Card class="w-60">
+    <Card class="w-[25vw] mx-auto">
         <template #title>
             <h4>Inspiration</h4>
         </template>
@@ -12,15 +12,15 @@
             </p>
         </template>
     </Card>
-    
+
     <!-- SOTD Hero -->
-    <h3>Songs of the Day</h3>
+    <h3 class="text-center">Songs of the Day</h3>
     <h3>SOTDs here</h3>
     <p>To share your own, download TwoTone today 😌</p>
-    
+
     <h3>Projects</h3>
 </template>
 
-<style lang="scss">
+<!-- <style lang="scss">
 #hero {}
-</style>
+</style> -->
