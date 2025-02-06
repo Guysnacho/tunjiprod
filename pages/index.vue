@@ -1,8 +1,14 @@
+<script setup lang="ts">
+import Project from '~/components/Project.vue';
+
+const ting = [{}, {}, {}]
+</script>
+
 <template>
-    <div class="space-y-4">
+    <div class="space-y-10">
         <NuxtImg src="/img/logo_clear.png" sizes="175px md:350px" class="mx-auto" />
 
-        <Card class="w-4/5 md:w-[25vw] mx-auto my-6">
+        <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-6">
             <template #title>
                 <h3 class="mt-3">Inspiration</h3>
             </template>
@@ -22,10 +28,23 @@
             <h3>SOTDs here</h3>
         </div>
 
-        <p class="my-10 text-center">To share your own, <a href="http://twotone.app" class="underline">download TwoTone
+        <p class="text-center">To share your own, <a href="http://twotone.app"
+                class="underline hover:no-underline">download
+                TwoTone
                 today</a> 😌</p>
 
-        <h3>Projects</h3>
+        <div class="text-center">
+            <h3 class="text-2xl mt-7">Recent Highlights</h3>
+            <Carousel circular :value="ting">
+                <template #empty>
+                    <h3>Highlights coming soon!</h3>
+                </template>
+
+                <template #item="{ data, index }">
+                    <Project />
+                </template>
+            </Carousel>
+        </div>
     </div>
 </template>
 
