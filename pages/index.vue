@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import Project from '~/components/Project.vue';
-
-const ting = [{}, {}, {}]
-</script>
-
 <template>
     <div class="space-y-10">
         <NuxtImg src="/img/logo_clear.png" sizes="175px md:350px" class="mx-auto" />
@@ -41,12 +35,44 @@ const ting = [{}, {}, {}]
                 </template>
 
                 <template #item="{ data, index }">
-                    <Project />
+                    <Card class="w-[32rem]">
+                        <template v-if="data.header" #header>
+                            <NuxtImg :src="data.header" sizes="175px md:350px" class="mx-auto" :alt="data.label" />
+                        </template>
+                        <template #title>
+                            <h3>{{ data.label }}</h3>
+                        </template>
+                        <template #content>
+                            <p>{{ data.blurb }}</p>
+                        </template>
+                    </Card>
                 </template>
             </Carousel>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { Card } from 'primevue';
+
+type Highlight = {
+    label: string,
+    blurb: string,
+    url?: string,
+    header?: string,
+}
+const ting: Highlight[] = [{
+    label: "Tunji Productions x Nuxt",
+    blurb: "Not my first rodeo with Vue but was a learning experience for sure. I think I was scared because at the time, I was a bad engineer. Fixed that.",
+    header: "",
+    url: "/"
+}, {
+    label: "Kabu P.2 Electric Boogaloo",
+    blurb: "After an eternity of waiting, sharpening my skills, honing my craft, I decided to pay a legacy project a visit.",
+    header: "",
+    url: "http://deprestigechauffeur.netlify.app/"
+}]
+</script>
 
 <!-- <style lang="scss">
 #hero {}
