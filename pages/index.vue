@@ -29,7 +29,7 @@
 
         <div class="text-center">
             <h3 class="text-2xl mt-7">Recent Highlights</h3>
-            <Carousel circular :value="ting">
+            <Carousel circular :value="ting" :numVisible="3" >
                 <template #empty>
                     <h3>Highlights coming soon!</h3>
                 </template>
