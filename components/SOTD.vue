@@ -2,16 +2,19 @@
     <div>
         <p>{{ props.sotd.created_at?.split("T")[0] }}</p>
     </div>
-    <div v-ripple class="w-[160px] h-[160px] md:w-[224px] md:h-[224px]"
-        v-styleclass="{ selector: '.content', enterFromClass: 'hidden', enterActiveClass: 'animate-fadeinleft', enterToClass: 'visible', leaveFromClass: 'visible', leaveActiveClass: 'animate-fadeoutleft', leaveToClass: 'hidden' }">
+    <div v-ripple class="w-[160px] h-[160px] md:w-[224px] md:h-[224px]" v-styleclass="{
+        selector: `.${contentId}`,
+        enterFromClass: 'hidden', enterActiveClass: 'animate-fadeinleft', enterToClass: 'visible',
+        leaveFromClass: 'visible', leaveActiveClass: 'animate-fadeoutleft', leaveToClass: 'hidden'
+    }">
         <NuxtImg :alt="props.sotd.name" :src="props.sotd.album_art.url" class="rounded-md" />
     </div>
-    <div class="content hidden animate-duration-500 overflow-hidden">
+    <Fieldset :class="contentStyle">
         <p>{{ props.sotd.name }}</p>
         <p>{{ props.sotd.artists.join(" ") }}</p>
         <p>{{ props.sotd.album }}</p>
         <p>{{ props.sotd.description }}</p>
-    </div>
+    </Fieldset>
 </template>
 
 <script setup lang="ts">
@@ -33,4 +36,7 @@ export interface AlbumArt {
 }
 
 const props = defineProps<{ sotd: Sotd }>()
+const contentId = `content${props.sotd.id}`
+const contentStyle = `${contentId} hidden animate-duration-500 overflow-hidden`
+console.log(contentStyle)
 </script>
