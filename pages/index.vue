@@ -19,7 +19,7 @@
         <!-- SOTD Hero -->
         <div class="text-center space-y-10">
             <h3 class="text-2xl">Songs of the Day</h3>
-            <h3>SOTDs here</h3>
+            <MusicHero />
         </div>
 
         <p class="text-center">To share your own, <a href="http://twotone.app"
