@@ -54,7 +54,6 @@ type ProjectList = RestEndpointMethodTypes["repos"]["listForAuthenticatedUser"][
 const props = defineProps<{ repo: ProjectList['data'][number], idx: number }>()
 
 const items: any[] = []
-console.log(props.repo)
 
 if (props.repo.homepage) {
     items.push({

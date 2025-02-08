@@ -44,5 +44,4 @@ const active = false
 const props = defineProps<{ sotd: Sotd }>()
 const contentId = `content${props.sotd.id}`
 const contentStyle = `${contentId} ${active ? 'visibile' : 'hidden'} animate-duration-500 overflow-visible w-[160px] h-[160px] md:w-[224px] md:h-[224px] overflow-y-auto relative shadow-lg`
-// console.log(contentStyle)
 </script>
