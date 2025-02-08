@@ -8,7 +8,7 @@
         leaveFromClass: 'visible', leaveActiveClass: 'animate-fadeoutleft', leaveToClass: 'hidden'
     }">
         <div class="w-[160px] h-[160px] md:w-[224px] md:h-[224px]">
-            <NuxtImg :alt="props.sotd.name" :src="props.sotd.album_art.url"
+            <Image :alt="props.sotd.name" :src="props.sotd.album_art.url"
                 class="rounded-md w-[160px] h-[160px] md:w-[224px] md:h-[224px] z-50 shadow-lg" />
         </div>
         <Fieldset :class="contentStyle">

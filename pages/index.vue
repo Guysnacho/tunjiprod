@@ -38,7 +38,7 @@
                     <Card class="w-fit sm:w-[25rem] self-center m-auto">
                         <template v-if="data.header" #header>
                             <div>
-                                <NuxtImg :src="data.header" sizes="175px md:350px" class="mx-auto h-60"
+                                <Image :src="data.header" sizes="175px md:350px" class="mx-auto h-60"
                                     :alt="data.label" />
                             </div>
                         </template>
