@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row overflow-x-scroll space-x-10 w-4/5 mx-auto">
+    <div class="flex flex-row overflow-x-scroll space-x-20 w-4/5 mx-auto">
         <div v-for="sotd in LegacySOTDs" class="space-y-5 mx-auto">
             <SOTD :sotd :key="sotd.id" />
         </div>
