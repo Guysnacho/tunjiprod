@@ -15,78 +15,12 @@
         <!-- <ProgressSpinner :v-show="status === 'pending'" /> -->
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-10">
-            <Panel :v-show="data" v-for="(repo, idx) in data" :key="repo.id" toggleable class="h-fit">
-                <template #header>
-                    <div class="flex items-center gap-2">
-                        <i class="pi pi-github my-auto" rounded text></i>
-                        <span class="font-bold">{{ repo.name }}</span>
-                    </div>
-                </template>
-                <template #footer>
-                    <div class="flex flex-wrap items-center justify-between gap-4">
-                        <div class="flex items-center gap-2">
-                            <div v-if="repo.visibility === 'public'" class="flex my-auto gap-3">
-                                <i class="pi pi-globe my-auto" rounded text></i>
-                                <p>Public</p>
-                            </div>
-                            <div v-else class="flex my-auto gap-3">
-                                <i class="pi pi-lock my-auto" rounded text></i>
-                                <p>Private</p>
-                            </div>
-                        </div>
-                        <span class="text-surface-500 dark:text-surface-400">{{ format(new Date(repo.pushed_at),
-                            'Pp') }}</span>
-                    </div>
-                </template>
-                <template #icons>
-                    <Button icon="pi pi-cog" severity="secondary" rounded text @click="toggle" />
-                    <Menu :ref="menu" :id="'config_menu-' + idx" :model="items" popup />
-                </template>
-                <p class="m-0">
-                    {{ repo.description }}
-                </p>
-            </Panel>
+            <ProjectCard v-for="(repo, idx) in data" :key="repo.id" :repo :idx />
         </div>
     </div>
 </template>
 
 
 <script setup>
-import { format } from 'date-fns';
-import Menu from 'primevue/menu';
-import { useToast } from "primevue/usetoast";
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-const menu = ref(null);
-const toast = useToast();
-const router = useRouter();
-
-const items = ref([
-    {
-        label: 'Refresh',
-        icon: 'pi pi-refresh'
-    },
-    {
-        label: 'Search',
-        icon: 'pi pi-search'
-    },
-    {
-        separator: true
-    },
-    {
-        label: 'Delete',
-        icon: 'pi pi-times'
-    }
-]);
-
-const toggle = (event) => {
-    menu.value.toggle(event);
-};
-
-const save = () => {
-    toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
-};
-
 const { data, error, status } = useFetch('/api/project')
 </script>
