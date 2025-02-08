@@ -1,46 +1,63 @@
 <template>
     <div class="card">
         <Toast />
-        <Panel toggleable>
-            <template #header>
-                <div class="flex items-center gap-2">
-                    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-                    <span class="font-bold">Amy Elsner</span>
-                </div>
+        <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-6">
+            <template #title>
+                <h3 class="mt-3 text-center text-3xl">Projects</h3>
             </template>
-            <template #footer>
-                <div class="flex flex-wrap items-center justify-between gap-4">
+            <template #content>
+                <p class="m-0">Below you'll find a living document of my projects, both private and public. Both since
+                    most of my work is done in siloed repos.
+                </p>
+            </template>
+        </Card>
+
+        <!-- <ProgressSpinner :v-show="status === 'pending'" /> -->
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-10">
+            <Panel :v-show="data" v-for="repo in data" :key="repo.id" toggleable class="h-fit">
+                <template #header>
                     <div class="flex items-center gap-2">
-                        <Button icon="pi pi-user" rounded text></Button>
-                        <Button icon="pi pi-bookmark" severity="secondary" rounded text></Button>
+                        <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
+                            shape="circle" />
+                        <span class="font-bold">{{ repo.name }}</span>
                     </div>
-                    <span class="text-surface-500 dark:text-surface-400">Updated 2 hours ago</span>
-                </div>
-            </template>
-            <template #icons>
-                <Button icon="pi pi-cog" severity="secondary" rounded text @click="toggle" />
-                <Menu ref="menu" id="config_menu" :model="items" popup />
-            </template>
-            <p class="m-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur
-                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </Panel>
+                </template>
+                <template #footer>
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center gap-2">
+                            <div v-if="repo.visibility === 'public'" class="flex my-auto gap-3">
+                                <i class="pi pi-globe my-auto" rounded text></i>
+                                <p>Public</p>
+                            </div>
+                            <div v-else class="flex my-auto gap-3">
+                                <i class="pi pi-lock my-auto" rounded text></i>
+                                <p>Private</p>
+                            </div>
+                        </div>
+                        <span class="text-surface-500 dark:text-surface-400">{{ format(new Date(repo.pushed_at),
+                            'Pp') }}</span>
+                    </div>
+                </template>
+                <template #icons>
+                    <Button icon="pi pi-cog" severity="secondary" rounded text @click="toggle" />
+                    <Menu ref="menu" id="config_menu" :model="items" popup />
+                </template>
+                <p class="m-0">
+                    {{ repo.description }}
+                </p>
+            </Panel>
+        </div>
     </div>
 </template>
 
 
 <script setup>
-import { ref } from 'vue';
-import { useToast } from "primevue/usetoast";
-import { useRouter } from 'vue-router';
+import { format } from 'date-fns';
 import Menu from 'primevue/menu';
-import { Octokit } from 'octokit';
+import { useToast } from "primevue/usetoast";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const menu = ref(null);
 const toast = useToast();
@@ -71,4 +88,6 @@ const toggle = (event) => {
 const save = () => {
     toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
 };
+
+const { data, error, status } = useFetch('/api/project')
 </script>
