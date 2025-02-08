@@ -28,63 +28,96 @@
                 <li class="list-item">Leave clients with a smile (or at the bare minimum satisfied)</li>
             </ul>
         </div>
+        <Accordion value="3">
+            <AccordionPanel value="0" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
+                <AccordionHeader>
+                    <h1 class="text-xl text-center">The Focus</h1>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p>There's a growing number of people that need Software Engineering services, from hotels that
+                        handle their
+                        booking by hand to student led orgs that don't have the skills (yet), to Nations caught
+                        unaware or
+                        lacking because they have other pressing issues like infrastructure. Infra like roads, not
+                        like
+                        terraform.</p>
+                    <p>My goal is to bridge the gap.</p>
+                </AccordionContent>
+            </AccordionPanel>
 
-        <div class="mx-auto w-4/5 md:w-fit space-y-5">
-            <h1 class="text-xl text-center">The Focus</h1>
-            <p>There's a growing number of people that need Software Engineering services, from hotels that handle their
-                booking by hand to student led orgs that don't have the skills (yet), to Nations caught unaware or
-                lacking because they have other pressing issues like infrastructure. Infra like roads, not like
-                terraform.</p>
-            <p>My goal is to bridge the gap.</p>
-        </div>
-        <div class="mx-auto w-4/5 md:w-fit space-y-5">
-            <h1 class="text-xl text-center">Academia</h1>
-            <p>Working with MCBIOS has taught me that smart people do cool things. Whether that's understanding how
-                medicine interacts with cells or publishing their findings, a lot of this work is waaaayyy out of my
-                scope (currently) but that doesn't mean there isn't a place for change.</p>
-            <p>Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling that makes
-                that job easier. For me, that's the MCBIOS website collection. - <a target="_blank" rel="noopener"
-                    href="https://mcbios.com" class="underline hover:no-underline">https://mcbios.com</a></p>
-        </div>
+            <AccordionPanel value="1" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
+                <AccordionHeader>
+                    <h1 class="text-xl text-center">Academia</h1>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p>Working with MCBIOS has taught me that smart people do cool things. Whether that's understanding
+                        how
+                        medicine interacts with cells or publishing their findings, a lot of this work is waaaayyy out
+                        of my
+                        scope (currently) but that doesn't mean there isn't a place for change.</p>
+                    <p>Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling that
+                        makes
+                        that job easier. For me, that's the MCBIOS website collection. - <a target="_blank"
+                            rel="noopener" href="https://mcbios.com"
+                            class="underline hover:no-underline">https://mcbios.com</a></p>
+                </AccordionContent>
+            </AccordionPanel>
 
-        <div class="mx-auto w-4/5 md:w-fit space-y-5">
-            <h1 class="text-xl text-center">Family</h1>
-            <p>If I’m up, then we’re all up. I live by this with the work I do on the job and I try to embody this when
-                family comes through with an app request.</p>
+            <AccordionPanel value="2" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
+                <AccordionHeader>
+                    <h1 class="text-xl text-center">Family</h1>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p>If I'm up, then we're all up. I live by this with the work I do on the job and I try to embody
+                        this when
+                        family comes through with an app request.</p>
 
-            <p>Shockingly, we don’t have access to engineers to build every app our heart wishes for. We’re not
-                trust-funders and nepotism hasn’t blessed us. Most of us are 1st generation immigrants that are trying
-                to survive. I want to bridge this gap.</p>
+                    <p>Shockingly, we don't have access to engineers to build every app our heart wishes for. We're not
+                        trust-funders and nepotism hasn't blessed us. Most of us are 1st generation immigrants that are
+                        trying
+                        to survive. I want to bridge this gap.</p>
 
-            <p>We can’t give handouts but we can enable greatness. For me that’s my mom’s site
-                <a target="_blank" rel="noopener" href="https://bosedeadetunji.com"
-                    class="underline hover:no-underline">https://bosedeadetunji.com</a>
-                and my uncle’s upcoming ridesharing app https://deprestige.com<a target="_blank" rel="noopener"
-                    href="http://deprestigechauffeur.netlify.app"
-                    class="underline hover:no-underline">http://deprestigechauffeur.netlify.app/</a>. They don’t
-                have the time to run up Wix and make something barely cool so I want to bridge the gap.
-            </p>
-        </div>
+                    <p>We can't give handouts but we can enable greatness. For me that's my mom's site
+                        <a target="_blank" rel="noopener" href="https://bosedeadetunji.com"
+                            class="underline hover:no-underline">https://bosedeadetunji.com</a>
+                        and my uncle's upcoming ridesharing app <a target="_blank" rel="noopener"
+                            href="http://deprestigechauffeur.netlify.app"
+                            class="underline hover:no-underline text-wrap">De
+                            Prestige Chauffeur</a>. They don't
+                        have the time to run up Wix and make something barely cool so I want to bridge the gap.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
 
-        <div class="mx-auto w-4/5 md:w-fit space-y-2">
-            <h1 class="text-xl text-center">Service and Cool Factor 🫀</h1>
-            <p>Everything else falls into service.</p>
-            <ul class="list-disc self-center space-y-2 pt-1">
-                <li>Revamping how people find music</li>
-                <li>Consulting Nigerian organizations on software that <strong class="italic">helps</strong></li>
-                <li>Writing a course and sharing it</li>
-                <li>Advising masters students on the architecture applications responsible for measuring laser
-                    fluctuations basically kinda sorta</li>
-                <li>and anything in betwixt</li>
-                <li class="list-item">Support my growing family</li>
-                <li class="list-item">Elevate Nigreria</li>
-                <li class="list-item">Exemplify high quality products</li>
-                <li class="list-item">Leave clients with a smile (or at the bare minimum satisfied)</li>
-            </ul>
-            <p>If I think its cool. It will be done. Or at least attempted, and that applies to all of the above.</p>
-        </div>
+            <AccordionPanel value="3" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8">
+                <AccordionHeader>
+                    <h1 class="text-xl text-center">Service and Cool Factor 🫀</h1>
+                </AccordionHeader>
+                <AccordionContent>
+                    <p>Everything else falls into service.</p>
+                    <ul class="list-disc self-center space-y-2 pt-1 ml-5">
+                        <li class="list-item">Revamping how people find music</li>
+                        <li class="list-item">Consulting Nigerian organizations on software that <strong
+                                class="italic">helps</strong>
+                        </li>
+                        <li class="list-item">Writing a course and sharing it</li>
+                        <li class="list-item">Advising masters students on the architecture applications responsible for
+                            measuring laser
+                            fluctuations basically kinda sorta</li>
+                        <li class="list-item">and anything in betwixt</li>
+                        <li class="list-item">Support my growing family</li>
+                        <li class="list-item">Elevate Nigreria</li>
+                        <li class="list-item">Exemplify high quality products</li>
+                        <li class="list-item">Leave clients with a smile (or at the bare minimum satisfied)</li>
+                    </ul>
+                    <p>If I think its cool. It will be done. Or at least attempted, and that applies to all of the
+                        above.</p>
+                </AccordionContent>
+            </AccordionPanel>
+        </Accordion>
+
         <Divider />
-        <p class="text-gray-800 sm:text-xl text-center"><em>
+        <p class="text-gray-800 sm:text-3xl text-center"><em>
                 Make more cool shit. Carry on.
             </em></p>
     </div>
