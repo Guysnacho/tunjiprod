@@ -1,18 +1,7 @@
 <template>
     <div class="flex flex-row overflow-x-scroll space-x-10 w-4/5 mx-auto">
         <div v-for="sotd in LegacySOTDs" class="space-y-5">
-            <div>
-                <p>{{ sotd.created_at?.split("T")[0] }}</p>
-            </div>
-            <div class="w-[160px] h-[160px] md:w-[224px] md:h-[224px]">
-                <NuxtImg :alt="sotd.name" :src="sotd.album_art.url" class="rounded-md" />
-            </div>
-            <div>
-                <p>{{ sotd.name }}</p>
-                <p>{{ sotd.artists.join(" ") }}</p>
-                <p>{{ sotd.album }}</p>
-                <p>{{ sotd.description }}</p>
-            </div>
+            <SOTD :sotd />
         </div>
     </div>
 </template>
