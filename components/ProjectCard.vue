@@ -18,7 +18,7 @@
                         <p>Private</p>
                     </div>
                 </div>
-                <span class="text-surface-500 dark:text-surface-400">{{ format(new Date(props.repo.pushed_at),
+                <span class="text-surface-500 dark:text-surface-400">{{ format(new Date(props.repo!.pushed_at!),
                     'Pp') }}</span>
             </div>
         </template>
@@ -27,8 +27,8 @@
             <Menu ref="menu" :id="`config_menu${idx}`" :model="items" popup>
                 <template #item="{ item, props }">
                     <a v-if="item.route" v-ripple :href="item.route" v-bind="props.action" custom>
-                            <span :class="item.icon"></span>
-                            <span>{{ item.label }}</span>
+                        <span :class="item.icon"></span>
+                        <span>{{ item.label }}</span>
                     </a>
                     <div v-else class="justify-around content-around">
                         <a v-ripple class="flex items-center gap-3">
@@ -92,6 +92,7 @@ if (props.repo.watchers_count) {
 const menu = ref(null);
 
 const toggle = (event: any) => {
+    // @ts-expect-error missing details
     menu.value.toggle(event);
 };
 </script>
