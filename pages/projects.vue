@@ -15,11 +15,10 @@
         <!-- <ProgressSpinner :v-show="status === 'pending'" /> -->
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-10">
-            <Panel :v-show="data" v-for="repo in data" :key="repo.id" toggleable class="h-fit">
+            <Panel :v-show="data" v-for="(repo, idx) in data" :key="repo.id" toggleable class="h-fit">
                 <template #header>
                     <div class="flex items-center gap-2">
-                        <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-                            shape="circle" />
+                        <i class="pi pi-github my-auto" rounded text></i>
                         <span class="font-bold">{{ repo.name }}</span>
                     </div>
                 </template>
@@ -41,7 +40,7 @@
                 </template>
                 <template #icons>
                     <Button icon="pi pi-cog" severity="secondary" rounded text @click="toggle" />
-                    <Menu ref="menu" id="config_menu" :model="items" popup />
+                    <Menu :ref="menu" :id="'config_menu-' + idx" :model="items" popup />
                 </template>
                 <p class="m-0">
                     {{ repo.description }}
