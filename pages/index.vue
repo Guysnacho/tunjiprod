@@ -29,7 +29,7 @@
 
         <div class="text-center">
             <h3 class="text-2xl mt-7">Recent Highlights</h3>
-            <Carousel circular :value="highlights" :numVisible="1" class="mx-auto my-10">
+            <Carousel circular :value="highlights" :numVisible="1" class="mx-auto my-10" :autoplayInterval="3500">
                 <template #empty>
                     <h3>Highlights coming soon!</h3>
                 </template>
