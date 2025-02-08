@@ -40,6 +40,7 @@ import { ref } from 'vue';
 import { useToast } from "primevue/usetoast";
 import { useRouter } from 'vue-router';
 import Menu from 'primevue/menu';
+import { Octokit } from 'octokit';
 
 const menu = ref(null);
 const toast = useToast();

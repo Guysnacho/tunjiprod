@@ -22,4 +22,7 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.scss", "~/assets/css/tailwind.css"],
   tailwindcss: { exposeConfig: true },
+  runtimeConfig: {
+    githubToken: '',
+  },
 });
