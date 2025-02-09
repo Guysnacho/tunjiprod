@@ -3,20 +3,25 @@ import type { MenuItem } from 'primevue/menuitem';
 
 const items: MenuItem[] = [
     {
-        label: "Home", // Label property of the menuitem
+        label: "Home",
         icon: 'pi pi-home',
         route: "/",
     },
     {
-        label: "Projects", // Label property of the menuitem
+        label: "Projects",
         icon: 'pi pi-briefcase',
         route: "/projects"
+    },
+    {
+        label: "Manifesto",
+        icon: 'pi pi-book',
+        route: "/manifesto"
     }
 ]
 </script>
 
 <template>
-    <Menubar :model="items" is="nav">
+    <Menubar :model="items" is="nav" class="justify-center">
         <template #start>
             <NuxtImg src="/img/logo_clear.png" sizes="100px md:100px lg:100px" />
         </template>

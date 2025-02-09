@@ -9,7 +9,7 @@
     }">
         <div class="w-[160px] h-[160px] md:w-[224px] md:h-[224px]">
             <Image :alt="props.sotd.name" :src="props.sotd.album_art.url"
-                class="rounded-md w-[160px] h-[160px] md:w-[224px] md:h-[224px] z-50 shadow-lg" />
+                class="w-[160px] h-[160px] md:w-[224px] md:h-[224px] z-50 shadow-lg" />
         </div>
         <Fieldset :class="contentStyle">
             <div class="space-y-1">

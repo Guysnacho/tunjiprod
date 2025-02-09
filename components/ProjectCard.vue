@@ -1,9 +1,11 @@
 <template>
-    <Panel toggleable class="h-fit" :key="props.repo.id">
+    <Panel toggleable collapsed class="h-fit shadow-md" :key="props.repo.id">
         <template #header>
             <div class="flex items-center gap-2">
-                <i class="pi pi-github my-auto" rounded text></i>
-                <span class="font-bold">{{ props.repo.name }}</span>
+                <i class="pi pi-github my-auto bg-gradient-to-r from-green-500 to-green-800 bg-clip-text text-transparent"
+                    rounded text></i>
+                <span class="font-bold bg-gradient-to-r from-green-700 to-green-900 bg-clip-text text-transparent">{{
+                    props.repo.name }}</span>
             </div>
         </template>
         <template #footer>
@@ -18,12 +20,13 @@
                         <p>Private</p>
                     </div>
                 </div>
-                <span class="text-surface-500 dark:text-surface-400">{{ format(new Date(props.repo!.pushed_at!),
+                <span class="text-surface-500 dark:text-surface-400">Last updated at {{ format(new
+                    Date(props.repo!.pushed_at!),
                     'Pp') }}</span>
             </div>
         </template>
         <template #icons>
-            <Button v-if="items.length" icon="pi pi-cog" severity="secondary" rounded text @click="toggle" />
+            <Button v-if="items.length" icon="pi pi-bars" severity="secondary" rounded text @click="toggle" />
             <Menu ref="menu" :id="`config_menu${idx}`" :model="items" popup>
                 <template #item="{ item, props }">
                     <a v-if="item.route" v-ripple :href="item.route" v-bind="props.action" custom>

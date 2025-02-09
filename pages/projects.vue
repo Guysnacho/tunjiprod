@@ -1,14 +1,20 @@
 <template>
-    <div class="card">
+    <div class="space-y-20">
         <Toast />
-        <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-6">
-            <template #title>
+        <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-20">
+            <template #header>
                 <h3 class="mt-3 text-center text-3xl">Projects</h3>
             </template>
             <template #content>
-                <p class="m-0">Below you'll find a living document of my projects, both private and public. Both since
-                    most of my work is done in siloed repos.
+                <div class="space-y-5">
+                    <p class="m-0">Below you'll find a living document of my projects, both private and public. It occured
+                    to me that sending people to my GitHub wasn't super helpful since most of my work is privately done
+                    (TwoTone/De Prestige).
                 </p>
+                <p class="m-0">Solution! - Let me share what I can and hide the rest! Shout out to <a
+                        href="https://github.com/octokit/octokit.js?tab=readme-ov-file#octokitjs"
+                        class="underline hover:no-underline" target="_blank">Octokit</a>.</p>
+                </div>
             </template>
         </Card>
 
