@@ -29,7 +29,7 @@
             <Button v-if="items.length" icon="pi pi-bars" severity="secondary" rounded text @click="toggle" />
             <Menu ref="menu" :id="`config_menu${idx}`" :model="items" popup>
                 <template #item="{ item, props }">
-                    <a v-if="item.route" v-ripple :href="item.route" v-bind="props.action" custom>
+                    <a v-if="item.route" v-ripple :href="item.route" target="_blank" v-bind="props.action" custom>
                         <span :class="item.icon"></span>
                         <span>{{ item.label }}</span>
                     </a>

@@ -22,7 +22,7 @@
             <MusicHero />
         </div>
 
-        <p class="text-center pt-10">To share your own, <a href="http://twotone.app"
+        <p class="text-center pt-10">To share your own, <a href="http://twotone.app" target="_blank"
                 class="underline hover:no-underline">download
                 TwoTone
                 today</a> 😌</p>
