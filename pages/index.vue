@@ -7,11 +7,10 @@
                 <h3 class="mt-3 text-center">Inspiration</h3>
             </template>
             <template #content>
-                <p class="m-0">I kinda wanted to make a portfolio site. It'd be kinda boring if I
-                    only put coding projects though so I'm prolly gonna add my personal
-                    projects too. I put a lil smidgin of my soul in all my work but now
-                    that I've kind of hit a developer groove, I might as well put it in
-                    one place.
+                <p class="m-0">I wanted to make a portfolio site. It'd be kinda boring if I
+                    only put coding projects though so I'll be using this as a base of operations for everything me from
+                    personal projects to requests to music to articles. I try put a lil smidgin of my soul in all my
+                    projects and now that I'm confident as a developer, I might as well showcase the work.
                 </p>
             </template>
         </Card>
