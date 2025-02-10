@@ -122,3 +122,31 @@
             </em></p>
     </div>
 </template>
+
+<script setup lang="ts">
+useSeoMeta({
+    title: 'Manifesto | Tunji Productions',
+    ogTitle: 'Manifesto | Tunji Productions',
+    twitterTitle: 'Manifesto | Tunji Productions',
+    ogImage: '/img/logo_bg.jpg',
+    ogUrl: 'https://tunjiproductions.com/manifesto',
+    twitterImage: '/img/logo_bg.jpg',
+    twitterCard: 'summary',
+    description: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)",
+    ogDescription: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)",
+    twitterDescription: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)",
+})
+
+useHead({
+    htmlAttrs: {
+        lang: 'en'
+    },
+    link: [
+        {
+            rel: 'icon',
+            type: 'image/png',
+            href: '/favicon.ico'
+        }
+    ]
+})
+</script>
