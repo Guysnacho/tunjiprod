@@ -729,7 +729,7 @@
   optionalDependencies:
     ipx "^2.1.0"
 
-"@nuxt/kit@3.15.4", "@nuxt/kit@^3.13.2", "@nuxt/kit@^3.15.0", "@nuxt/kit@^3.15.1", "@nuxt/kit@^3.15.2", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.7.3":
+"@nuxt/kit@3.15.4", "@nuxt/kit@^3.15.0", "@nuxt/kit@^3.15.1", "@nuxt/kit@^3.15.2", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.7.3":
   version "3.15.4"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.15.4.tgz#122f511e518573320a035b5e24adf0118d51485d"
   integrity sha512-dr7I7eZOoRLl4uxdxeL2dQsH0OrbEiVPIyBHnBpA4co24CBnoJoF+JINuP9l3PAM3IhUzc5JIVq3/YY3lEc3Hw==
@@ -820,21 +820,6 @@
     vite-node "^3.0.4"
     vite-plugin-checker "^0.8.0"
     vue-bundle-renderer "^2.1.1"
-
-"@nuxthq/studio@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nuxthq/studio/-/studio-2.2.1.tgz#d54fe8edd36f64fc1bb1095acd899dda9b5c8aab"
-  integrity sha512-FiKaC2NBnoKbV5opW8+bXt75R9b7XQ/xtr2bCSLRUca2H7lYypfUAdpYltJasKMgJsUWMNHME92iW5Fi9gb+IA==
-  dependencies:
-    "@nuxt/kit" "^3.13.2"
-    defu "^6.1.4"
-    git-url-parse "^15.0.0"
-    nuxt-component-meta "^0.9.0"
-    parse-git-config "^3.0.0"
-    pkg-types "^1.2.1"
-    socket.io-client "^4.8.1"
-    ufo "^1.5.4"
-    untyped "^1.5.1"
 
 "@nuxtjs/mdc@^0.13.2":
   version "0.13.5"
@@ -3486,14 +3471,6 @@ git-config-path@^2.0.0:
   resolved "https://registry.yarnpkg.com/git-config-path/-/git-config-path-2.0.0.tgz#62633d61af63af4405a5024efd325762f58a181b"
   integrity sha512-qc8h1KIQbJpp+241id3GuAtkdyJ+IK+LIVtkiFTRKRrmddDzs3SI9CvP1QYmWBFvm1I/PWRwj//of8bgAc0ltA==
 
-git-up@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/git-up/-/git-up-7.0.0.tgz#bace30786e36f56ea341b6f69adfd83286337467"
-  integrity sha512-ONdIrbBCFusq1Oy0sC71F5azx8bVkvtZtMJAsv+a6lz5YAmbNnLD6HAB4gptHZVLPR8S2/kVN6Gab7lryq5+lQ==
-  dependencies:
-    is-ssh "^1.4.0"
-    parse-url "^8.1.0"
-
 git-up@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/git-up/-/git-up-8.0.0.tgz#674d398f95c4f70b4193f3f3d87c73cf28c2bee1"
@@ -3501,13 +3478,6 @@ git-up@^8.0.0:
   dependencies:
     is-ssh "^1.4.0"
     parse-url "^9.2.0"
-
-git-url-parse@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/git-url-parse/-/git-url-parse-15.0.0.tgz#207b74d8eb888955b1aaf5dfc5f5778084fa9fa9"
-  integrity sha512-5reeBufLi+i4QD3ZFftcJs9jC26aULFLBU23FeKM/b1rI0K6ofIeAblmDVO7Ht22zTDE9+CkJ3ZVb0CgJmz3UQ==
-  dependencies:
-    git-up "^7.0.0"
 
 git-url-parse@^16.0.0:
   version "16.0.0"
@@ -5352,19 +5322,6 @@ nuxt-component-meta@^0.10.0:
     ufo "^1.5.4"
     vue-component-meta "^2.2.0"
 
-nuxt-component-meta@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/nuxt-component-meta/-/nuxt-component-meta-0.9.0.tgz#82507610ef050fe346a6cd6e02d09ece3b834bcb"
-  integrity sha512-Zmuw/PxAeJkIu7EPZEFg0lIwnfpeiDsHog9i1g5d4Z3O5+00R1Vbuk+NC6K7kgpdLsdU2/XBvzc7oQ6BsXuQPg==
-  dependencies:
-    "@nuxt/kit" "^3.13.2"
-    citty "^0.1.6"
-    mlly "^1.7.2"
-    scule "^1.3.0"
-    typescript "^5.6.3"
-    ufo "^1.5.4"
-    vue-component-meta "^2.1.8"
-
 nuxt@^3.15.4:
   version "3.15.4"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.15.4.tgz#631f679ca6d63406bf7e25f15a37432c7ecbcc16"
@@ -5633,13 +5590,6 @@ parse-path@^7.0.0:
   integrity sha512-Euf9GG8WT9CdqwuWJGdf3RkUcTBArppHABkO7Lm8IzRQp0e2r/kkFnmhu4TSK30Wcu5rVAZLmfPKSBBi9tWFog==
   dependencies:
     protocols "^2.0.0"
-
-parse-url@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/parse-url/-/parse-url-8.1.0.tgz#972e0827ed4b57fc85f0ea6b0d839f0d8a57a57d"
-  integrity sha512-xDvOoLU5XRrcOZvnI6b8zA6n9O9ejNk/GExuz1yBuWUGn9KA97GI6HTs6u02wKara1CeVmZhH+0TZFdWScR89w==
-  dependencies:
-    parse-path "^7.0.0"
 
 parse-url@^9.2.0:
   version "9.2.0"
@@ -7236,7 +7186,7 @@ type-is@^1.6.16:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@^5.6.3, typescript@^5.7.3:
+typescript@^5.7.3:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.7.3.tgz#919b44a7dbb8583a9b856d162be24a54bf80073e"
   integrity sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==
@@ -7709,7 +7659,7 @@ vue-bundle-renderer@^2.1.1:
   dependencies:
     ufo "^1.5.4"
 
-vue-component-meta@^2.1.8, vue-component-meta@^2.2.0:
+vue-component-meta@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-2.2.0.tgz#2fe3d782a826ed03268c2f7dba5ed4bb5f94ccac"
   integrity sha512-IitQWA2vqutKUoOYawW4KDcSONKq1i4uyr+3NesQWuQbSdLg4tNcfHjQnAQMzHqAMunBTMST8uiknrYixZWHFQ==
