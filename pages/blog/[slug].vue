@@ -4,11 +4,8 @@
 </template>
 
 <script setup>
-const slug = useRoute().params.slug
-const { data: post } = await useAsyncData(`blog-${slug}`, () => {
-    return queryCollection('blog').path(slug).first()
+const route = useRoute()
+const { data: post } = await useAsyncData(`blog-${route.params.slug}`, () => {
+    return queryCollection('content').path(route.path).first()
 })
-
-console.log(slug)
-console.log(error)
 </script>

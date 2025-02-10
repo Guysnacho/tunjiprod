@@ -1,12 +1,10 @@
 <template>
-    <p :v-if="articles" :v-for="article in value">article</p>
+    <p :v-if="value" :v-for="article in value">article</p>
 
 </template>
 
 <script setup>
-const slug = useRoute().params.slug
 const { data: { value } } = await useAsyncData(`blog`, () => {
-    return queryCollection('blog').all()
+    return queryCollection('content').all()
 })
-console.log(value)
 </script>
