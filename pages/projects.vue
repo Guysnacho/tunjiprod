@@ -34,9 +34,9 @@ useSeoMeta({
     title: 'Projects | Tunji Productions',
     ogTitle: 'Projects | Tunji Productions',
     twitterTitle: 'Projects | Tunji Productions',
-    ogImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    ogImage: '/img/logo_bg.jpg',
     ogUrl: 'https://tunjiproductions.com/projects',
-    twitterImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    twitterImage: '/img/logo_bg.jpg',
     twitterCard: 'summary',
     description: "Tunji Productions portfolio. A living document of our projects.",
     ogDescription: "Tunji Productions portfolio. A living document of our projects.",
@@ -51,7 +51,7 @@ useHead({
         {
             rel: 'icon',
             type: 'image/x-icon',
-            href: 'https://tunjiproductions.com/favicon.ico'
+            href: '/favicon.ico'
         }
     ]
 })

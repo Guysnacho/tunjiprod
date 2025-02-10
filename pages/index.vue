@@ -88,9 +88,9 @@ useSeoMeta({
     title: 'Tunji Productions',
     ogTitle: 'Tunji Productions',
     twitterTitle: 'Tunji Productions',
-    ogImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    ogImage: '/img/logo_bg.jpg',
     ogUrl: 'https://tunjiproductions.com',
-    twitterImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    twitterImage: '/img/logo_bg.jpg',
     twitterCard: 'summary',
     description: 'Home of Tunji Productions. Learn more about active and archived projects along with our mission.',
     ogDescription: 'Home of Tunji Productions. Learn more about active and archived projects along with our mission.',
@@ -105,7 +105,7 @@ useHead({
         {
             rel: 'icon',
             type: 'image/png',
-            href: 'https://tunjiproductions.com/favicon.ico'
+            href: '/favicon.ico'
         }
     ]
 })

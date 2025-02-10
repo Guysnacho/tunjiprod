@@ -128,9 +128,9 @@ useSeoMeta({
     title: 'Manifesto | Tunji Productions',
     ogTitle: 'Manifesto | Tunji Productions',
     twitterTitle: 'Manifesto | Tunji Productions',
-    ogImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    ogImage: '/img/logo_bg.jpg',
     ogUrl: 'https://tunjiproductions.com/manifesto',
-    twitterImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    twitterImage: '/img/logo_bg.jpg',
     twitterCard: 'summary',
     description: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)",
     ogDescription: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)",
@@ -145,7 +145,7 @@ useHead({
         {
             rel: 'icon',
             type: 'image/png',
-            href: 'https://tunjiproductions.com/favicon.ico'
+            href: '/favicon.ico'
         }
     ]
 })
