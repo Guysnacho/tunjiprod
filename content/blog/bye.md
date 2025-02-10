@@ -1,9 +1,9 @@
 ---
 date: 2020-11-11
-description: "Welcome to Tunji Productions. I've decided to speak up on the work done here."
+description: "Goodbye"
 ---
 
-# Welcome to Tunji Productions
+# Goodbye
 
 Its about time that I speak up on the years of development being done here. Welcome to another Tunji Production.
 
