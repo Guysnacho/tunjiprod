@@ -19,12 +19,18 @@ export default defineNuxtConfig({
       ],
     },
   },
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
+  },
   devtools: { enabled: true },
   modules: [
     "@primevue/nuxt-module",
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
     "@nuxt/content",
+    "@nuxthq/studio",
   ],
   primevue: {
     options: {
