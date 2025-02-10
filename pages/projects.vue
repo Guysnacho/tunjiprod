@@ -29,4 +29,30 @@
 
 <script setup>
 const { data, error, status } = useFetch('/api/project')
+
+useSeoMeta({
+    title: 'Projects | Tunji Productions',
+    ogTitle: 'Projects | Tunji Productions',
+    twitterTitle: 'Projects | Tunji Productions',
+    ogImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    ogUrl: 'https://tunjiproductions.com/projects',
+    twitterImage: 'https://tunjiproductions.com/img/logo_bg.jpg',
+    twitterCard: 'summary',
+    description: "Tunji Productions portfolio. A living document of our projects.",
+    ogDescription: "Tunji Productions portfolio. A living document of our projects.",
+    twitterDescription: "Tunji Productions portfolio. A living document of our projects.",
+})
+
+useHead({
+    htmlAttrs: {
+        lang: 'en'
+    },
+    link: [
+        {
+            rel: 'icon',
+            type: 'image/x-icon',
+            href: 'https://tunjiproductions.com/favicon.ico'
+        }
+    ]
+})
 </script>

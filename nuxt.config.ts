@@ -3,6 +3,22 @@ import Aura from "@primevue/themes/aura";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-02-08",
+  app: {
+    head: {
+      charset: "utf-8",
+      htmlAttrs: {
+        lang: "en",
+      },
+      link: [
+        {
+          as: "image",
+          type: "image/x-icon",
+          rel: "icon",
+          href: "/favicon.ico",
+        },
+      ],
+    },
+  },
   devtools: { enabled: true },
   modules: [
     "@primevue/nuxt-module",
@@ -28,6 +44,6 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.scss", "~/assets/css/tailwind.css"],
   tailwindcss: { exposeConfig: true },
   runtimeConfig: {
-    githubToken: '',
+    githubToken: "",
   },
 });
