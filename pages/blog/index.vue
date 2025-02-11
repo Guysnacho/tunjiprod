@@ -13,7 +13,8 @@
                     and everything in between.</p>
                 <p class="mt-2 text-lg/8 text-gray-700">Take your time.</p>
                 <div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
-                    <article v-for="post in data" :key="post.id"
+                    <!-- Notebook pages -->
+                    <article v-if="data" v-for="post in data" :key="post.id"
                         class="relative isolate flex flex-col gap-8 lg:flex-row">
                         <div class="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
                             <img v-if="post.meta.hero" :src="post.meta.hero" alt=""
@@ -54,6 +55,19 @@
                             </div> -->
                         </div>
                     </article>
+
+                    <!-- If there's an error -->
+                    <div v-else-if="error" class="mx-auto max-w-2xl lg:max-w-4xl">
+                        <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">Had an
+                            issue pulling notebook pages. Check back later.
+                        </h2>
+                        <p class="mt-2 text-lg/8 text-gray-700">{{ error.message }}</p>
+                    </div>
+
+                    <!-- If there's an error -->
+                    <div v-else class="flex justify-center">
+                        <ProgressSpinner class="m-auto self-center" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +78,8 @@
 <script setup>
 const {
     data,
+    error,
+    status
 } = await useAsyncData(`blog`, () => {
     return queryCollection("content").order("id", 'DESC').all();
 });
