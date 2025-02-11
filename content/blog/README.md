@@ -1,8 +1,7 @@
 ---
+title: Welcome to Tunji Productions
 date: 2020-11-11T00:00:00.000Z
 description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
-meta:
-  header: /blog/natalie-parham-punk.jpg
 seo:
   title: Welcome to Tunji Productions
   description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
@@ -13,7 +12,6 @@ navigation:
 excerpt:
   type: Hey everybody and welcome to a Tunji Production. My name is Samuel
     Adetunji (get it?) and I’m an engineer, but before that I'm ...
-title: Welcome to Tunji Productions
 ---
 
 # Welcome to Tunji Productions
