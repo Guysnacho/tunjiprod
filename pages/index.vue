@@ -3,8 +3,8 @@
         <NuxtImg src="/img/logo_clear.png" sizes="175px md:350px" class="mx-auto" />
 
         <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-6">
-            <template #title>
-                <h3 class="mt-3 text-center">Inspiration</h3>
+            <template #header>
+                <h3 class="mt-3 my-auto text-center text-3xl">Inspiration</h3>
             </template>
             <template #content>
                 <p class="m-0">I wanted to make a portfolio site. It'd be kinda boring if I
