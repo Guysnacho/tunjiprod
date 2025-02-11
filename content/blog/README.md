@@ -39,7 +39,11 @@ Now that I’ve finally hit the base requirements that companies put on their en
 ### "The work speaks for itself."
 
 ::blurb
-There’s a common saying that you should `Let the work speak for itself`. I believe that the only place this actually applies is food. A good steak or stew doesn’t have to say much for you to get it but watercolor paintings and code aren't food. For most creative work whether that’s painting, writing, photography or programming, the work is silent. In software engineering specifically good work is made evident by silence. If you built it right, your programs shouldn’t make much noise. They shouldn't be yelling at you about errors and clients shouldn't be coming at your neck with complaints. There should be silence.
+There’s a common saying that you should `Let the work speak for itself`. I believe that the only place this actually applies is food. A good steak or stew doesn’t have to say much for you to get it but watercolor paintings and code aren't food.
+::
+
+::blurb
+For most creative work whether that’s painting, writing, photography or programming, the work is silent. In software engineering specifically good work is made evident by silence. If you built it right, your programs shouldn’t make much noise. They shouldn't be yelling at you about errors and clients shouldn't be coming at your neck with complaints. There should be silence.
 ::
 
 ::blurb

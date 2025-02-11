@@ -9,8 +9,8 @@
         {{ data!.title }}
       </h2>
     </template>
-    <div class="m-0">
-      <ContentRenderer v-if="data" :value="data" class="space-y-5" />
+    <div class="m-0 pb-5">
+      <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6" />
     </div>
   </Panel>
   <Panel v-else-if="error" class="w-5/6 mx-auto my-20">
