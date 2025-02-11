@@ -5,6 +5,7 @@ description: "Welcome to Tunji Productions. I've decided to speak up on the work
 seo:
   title: "Welcome to Tunji Productions"
   description: "Welcome to Tunji Productions. I've decided to speak up on the work done here."
+  tags: intro
 navigation:
   description: "Welcome to Tunji Productions. I've decided to speak up on the work done here."
   title: "Welcome to Tunji Productions"
@@ -13,6 +14,7 @@ excerpt:
   type: "minimal"
   children: "Hey everybody and welcome to a Tunji Production. My name is Samuel
     Adetunji (get it?) and I’m an engineer, but before that I'm ..."
+tags: intro
 thumb: "/blog/natalie-parham-punk.jpg"
 ---
 
