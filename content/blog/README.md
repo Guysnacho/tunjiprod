@@ -1,31 +1,29 @@
 ---
-title: "Welcome to Tunji Productions"
+title: Welcome to Tunji Productions
 date: 2020-11-11T00:00:00.000Z
-description: "Welcome to Tunji Productions. I've decided to speak up on the work done here."
+description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
 seo:
-  title: "Welcome to Tunji Productions"
-  description: "Welcome to Tunji Productions. I've decided to speak up on the work done here."
+  title: Welcome to Tunji Productions
+  description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
   tags: intro
 navigation:
-  description: "Welcome to Tunji Productions. I've decided to speak up on the work done here."
-  title: "Welcome to Tunji Productions"
-  icon: "https://tunjiproductions.com/.netlify/images?w=350&url=%2Fimg%2Flogo_clear.png"
+  description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
+  title: Welcome to Tunji Productions
+  icon: https://tunjiproductions.com/.netlify/images?w=350&url=%2Fimg%2Flogo_clear.png
 excerpt:
-  type: "minimal"
-  children: "Hey everybody and welcome to a Tunji Production. My name is Samuel
-    Adetunji (get it?) and I’m an engineer, but before that I'm ..."
+  type: minimal
+  children: Hey everybody and welcome to a Tunji Production. My name is Samuel
+    Adetunji (get it?) and I’m an engineer, but before that I'm ...
 tags: intro
-thumb: "/blog/natalie-parham-punk.jpg"
+thumb: /blog/natalie-parham-punk.jpg
 ---
 
 ::hero
 ---
-
-src: "/blog/natalie-parham-punk.jpg"
 artist: Natalie Parham
+src: /blog/natalie-parham-punk.jpg
 url: https://unsplash.com/photos/people-with-musical-instruments-performing-fPKqpUbTL4Y?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash
 ---
-
 ::
 
 Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I’m an engineer, but before that I’m a Houston, and before that I’m Nigerian and proud.
