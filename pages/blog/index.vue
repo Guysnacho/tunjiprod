@@ -78,8 +78,7 @@
 <script setup>
 const {
     data,
-    error,
-    status
+    error
 } = await useAsyncData(`blog`, () => {
     return queryCollection("content").order("id", 'DESC').all();
 });
