@@ -10,23 +10,27 @@ navigation:
   title: "Welcome to Tunji Productions"
   icon: "https://tunjiproductions.com/.netlify/images?w=350&url=%2Fimg%2Flogo_clear.png"
 excerpt:
-  type: "Hey everybody and welcome to a Tunji Production. My name is Samuel
+  type: "minimal"
+  children: "Hey everybody and welcome to a Tunji Production. My name is Samuel
     Adetunji (get it?) and I’m an engineer, but before that I'm ..."
 thumb: "/blog/natalie-parham-punk.jpg"
 ---
 
 ::hero
 ---
+
 src: "/blog/natalie-parham-punk.jpg"
 ---
+
 ::
 
-# Welcome to Tunji Productions
+Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I’m an engineer, but before that I’m a Houston, and before that I’m Nigerian and proud.
+
+<!--more-->
 
 ::blurb
-Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I’m an engineer, but before that I’m a Houston, and before that I’m Nigerian and proud. Now that I’ve finally hit the base requirements that companies put on their entry level apps, I’ve decided to showcase the work. Put it on a pedestal if you will. With a bow. And some icing.
+Now that I’ve finally hit the base requirements that companies put on their entry level apps, I’ve decided to showcase the work. Put it on a pedestal if you will. With a bow. And some icing.
 ::
-
 
 ### "The work speaks for itself."
 
@@ -37,8 +41,6 @@ There’s a common saying that you should `Let the work speak for itself`. I bel
 ::blurb
 I got kinda tired of that.
 ::
-
-
 
 ### Since the work can’t speak I decided to speak for it
 

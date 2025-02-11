@@ -17,15 +17,16 @@
                     <article v-if="data" v-for="post in data" :key="post.id"
                         class="relative isolate flex flex-col gap-8 lg:flex-row">
                         <div class="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
-                            <img v-if="post.meta.hero" :src="post.meta.hero" alt=""
+                            <img v-if="post.thumb" :src="post.thumb" alt=""
                                 class="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover" />
                             <div class="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
                         </div>
                         <div>
                             <div class="flex items-center gap-x-4 text-xs">
-                                <p class="text-gray-500">{{ format(post.meta.date, 'P') }}</p>
+                                <p class="text-gray-500">{{ format(post.date, 'P') }}</p>
                                 <NuxtLink :href="post.path"
-                                    class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{
+                                    class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+                                    {{
                                         post.title }}</NuxtLink>
                             </div>
                             <div class="group relative max-w-xl">
@@ -36,23 +37,26 @@
                                     </NuxtLink>
                                 </h3>
                                 <p v-if="post && post.excerpt" class="mt-5 text-sm/6 text-gray-600">{{
-                                    post.excerpt.value.map(item =>
+                                    // @ts-expect-error asdf
+                                    (post.excerpt.value as {}[]).map(item =>
+                                        // @ts-expect-error asdf
                                         item[2]).join('.') }}</p>
                             </div>
-                            <!-- <div class="mt-6 flex border-t border-gray-900/5 pt-6">
+                            <div class="mt-6 flex border-t border-gray-900/5 pt-6">
                                 <div class="relative flex items-center gap-x-4">
-                                    <img :src="post.author.imageUrl" alt="" class="size-10 rounded-full bg-gray-50" />
+                                    <img src="/img/Untitled_Artwork.png" alt="Portrait by Aint.Free"
+                                        class="size-10 rounded-full bg-gray-50" />
                                     <div class="text-sm/6">
                                         <p class="font-semibold text-gray-900">
-                                            <a :href="post.author.href">
+                                            <a href="https://linkedin.com/in/sadetunji" target="_blank">
                                                 <span class="absolute inset-0" />
-                                                {{ post.author.name }}
+                                                Samuel A.
                                             </a>
                                         </p>
-                                        <p class="text-gray-600">{{ post.author.role }}</p>
+                                        <p class="text-gray-600">Software Extraordinaire</p>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </article>
 
@@ -75,7 +79,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { format } from 'date-fns';
 
 const {
