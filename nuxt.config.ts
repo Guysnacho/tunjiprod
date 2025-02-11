@@ -21,13 +21,13 @@ export default defineNuxtConfig({
   },
   content: {
     preview: {
-      api: 'https://api.nuxt.studio',
+      api: "https://api.nuxt.studio",
       gitInfo: {
-        name: 'tunjiprod',
-        owner: 'Guysnacho',
-        url: 'https://github.com/Guysnacho/tunjiprod'
-      }
-    }
+        name: "tunjiprod",
+        owner: "Guysnacho",
+        url: "https://github.com/Guysnacho/tunjiprod",
+      },
+    },
   },
   devtools: { enabled: true },
   modules: [
