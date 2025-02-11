@@ -28,12 +28,6 @@ const { data, error } = await useAsyncData(`blog-${route.params.slug}`, () => {
     return queryCollection('content').path(route.path).first()
 })
 
-if (error) {
-    console.error(error)
-} else {
-    console.debug("Successfully fetched page - ", data.value?.title)
-}
-
 useSeoMeta({
     title: data.value!.title,
     ogTitle: data.value!.title,
