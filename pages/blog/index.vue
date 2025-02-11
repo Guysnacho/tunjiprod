@@ -23,7 +23,8 @@
                         </div>
                         <div>
                             <div class="flex items-center gap-x-4 text-xs">
-                                <time :datetime="post.meta.date" class="text-gray-500">{{ post.meta.date }}</time>
+                                <time :datetime="format(post.meta.date, 'P')" class="text-gray-500">{{ post.meta.date
+                                    }}</time>
                                 <a :href="post.path"
                                     class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{
                                         post.title }}</a>
@@ -76,6 +77,8 @@
 </template>
 
 <script setup>
+import { format } from 'date-fns';
+
 const {
     data,
     error
