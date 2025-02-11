@@ -1,4 +1,6 @@
 <template>
+
+    <h2></h2>
     <p :v-if="value" :v-for="article in value">article</p>
 
 </template>
