@@ -24,16 +24,16 @@
                         <div>
                             <div class="flex items-center gap-x-4 text-xs">
                                 <p class="text-gray-500">{{ format(post.meta.date, 'P') }}</p>
-                                <a :href="post.path"
+                                <NuxtLink :href="post.path"
                                     class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{
-                                        post.title }}</a>
+                                        post.title }}</NuxtLink>
                             </div>
                             <div class="group relative max-w-xl">
                                 <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                                    <a :href="post.path">
+                                    <NuxtLink :href="post.path">
                                         <span class="absolute inset-0" />
                                         {{ post.title }}
-                                    </a>
+                                    </NuxtLink>
                                 </h3>
                                 <p v-if="post && post.excerpt" class="mt-5 text-sm/6 text-gray-600">{{
                                     post.excerpt.value.map(item =>
