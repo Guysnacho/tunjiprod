@@ -55,4 +55,5 @@ export default defineNuxtConfig({
   runtimeConfig: {
     githubToken: "",
   },
+  compatibilityDate: "2025-02-10",
 });
