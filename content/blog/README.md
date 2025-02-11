@@ -20,6 +20,8 @@ thumb: "/blog/natalie-parham-punk.jpg"
 ---
 
 src: "/blog/natalie-parham-punk.jpg"
+artist: Natalie Parham
+url: https://unsplash.com/photos/people-with-musical-instruments-performing-fPKqpUbTL4Y?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash
 ---
 
 ::
