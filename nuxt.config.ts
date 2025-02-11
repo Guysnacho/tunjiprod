@@ -2,7 +2,7 @@ import Aura from "@primevue/themes/aura";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2025-02-08",
+  compatibilityDate: "2025-02-10",
   app: {
     head: {
       charset: "utf-8",

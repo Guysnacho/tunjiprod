@@ -1,25 +1,34 @@
 <template>
     <!-- Render the blog post as Prose & Vue components -->
-    <ContentRenderer v-if="post" :value="post" />
+    <Panel class="w-5/6 mx-auto my-20">
+        <template #header>
+            <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">
+                {{ data.title }}
+            </h2>
+        </template>
+        <div class="m-0">
+            <ContentRenderer v-if="data" :value="data"  />
+        </div>
+    </Panel>
 </template>
 
 <script setup>
 const route = useRoute()
-const { data: post } = await useAsyncData(`blog-${route.params.slug}`, () => {
+const { data } = await useAsyncData(`blog-${route.params.slug}`, () => {
     return queryCollection('content').path(route.path).first()
 })
 
 useSeoMeta({
-    title: post.value.title,
-    ogTitle: post.value.title,
-    twitterTitle: post.value.title,
+    title: data.value.title,
+    ogTitle: data.value.title,
+    twitterTitle: data.value.title,
     ogImage: '/img/logo_bg.jpg',
     ogUrl: 'https://tunjiproductions.com/blog',
     twitterImage: '/img/logo_bg.jpg',
     twitterCard: 'summary',
-    description: post.value.description,
-    ogDescription: post.value.description,
-    twitterDescription: post.value.description,
+    description: data.value.description,
+    ogDescription: data.value.description,
+    twitterDescription: data.value.description,
 })
 
 useHead({

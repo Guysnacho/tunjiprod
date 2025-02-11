@@ -14,8 +14,13 @@ const items: MenuItem[] = [
     },
     {
         label: "Manifesto",
-        icon: 'pi pi-book',
+        icon: 'pi pi-building-columns',
         route: "/manifesto"
+    },
+    {
+        label: "Blog",
+        icon: 'pi pi-book',
+        route: "/blog"
     }
 ]
 </script>
