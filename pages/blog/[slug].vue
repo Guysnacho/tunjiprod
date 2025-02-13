@@ -27,8 +27,6 @@
 const route = useRoute();
 const { data, error, status } = await useAsyncData(`blog-${route.params.slug}`, () => {
   return queryCollection("content").path(route.path).first();
-}, {
-  server: false
 });
 
 useSeoMeta({
