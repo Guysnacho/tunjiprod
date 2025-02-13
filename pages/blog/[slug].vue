@@ -1,9 +1,8 @@
 <template>
   <!-- Render the blog post as Prose & Vue components -->
   <Panel v-if="data" class="w-5/6 mx-auto my-20">
-    <template #header>
+    <template #header v-if="data && data.title">
       <h2
-        :v-if="data && data.title"
         class="text-3xl my-5 font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl"
       >
         {{ data!.title }}
@@ -26,21 +25,23 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const { data, error } = await useAsyncData(`blog-${route.params.slug}`, () => {
+const { data, error, status } = await useAsyncData(`blog-${route.params.slug}`, () => {
   return queryCollection("content").path(route.path).first();
+}, {
+  server: false
 });
 
 useSeoMeta({
-  title: data.value!.title,
-  ogTitle: data.value!.title,
-  twitterTitle: data.value!.title,
+  title: data.value && data.value.title || "Tunji Productions",
+  ogTitle: data.value && data.value.title || "Tunji Productions",
+  twitterTitle: data.value && data.value.title || "Tunji Productions",
   ogImage: "/img/logo_bg.jpg",
   ogUrl: "https://tunjiproductions.com/blog",
   twitterImage: "/img/logo_bg.jpg",
   twitterCard: "summary",
-  description: data.value!.description,
-  ogDescription: data.value!.description,
-  twitterDescription: data.value!.description,
+  description: data.value && data.value.description || "Tunji Productions Notbook",
+  ogDescription: data.value && data.value.description || "Tunji Productions Notbook",
+  twitterDescription: data.value && data.value.description || "Tunji Productions Notbook",
 });
 
 useHead({
