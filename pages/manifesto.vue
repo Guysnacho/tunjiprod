@@ -28,7 +28,7 @@
                 <li class="list-item">Leave clients with a smile (or at the bare minimum satisfied)</li>
             </ul>
         </div>
-        <Accordion value="3">
+        <Accordion value="0">
             <AccordionPanel value="0" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
                 <AccordionHeader>
                     <h1 class="text-xl text-center">The Focus</h1>

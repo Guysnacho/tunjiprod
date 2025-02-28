@@ -120,11 +120,6 @@
 
 <script setup lang="ts">
 import { format } from "date-fns";
-
-const { data, error } = await useAsyncData(`blog`, () => {
-  return queryCollection("content").order("id", "DESC").all();
-});
-
 useSeoMeta({
   title: "Notebook | Tunji Productions",
   ogTitle: "Notebook | Tunji Productions",
@@ -150,4 +145,14 @@ useHead({
     },
   ],
 });
+
+const { data, error } = await useAsyncData(
+  `blog`,
+  () => {
+    return queryCollection("content").order("id", "DESC").all();
+  },
+  {
+    server: false,
+  }
+);
 </script>

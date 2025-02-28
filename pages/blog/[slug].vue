@@ -9,7 +9,11 @@
       </h2>
     </template>
     <div class="m-0 pb-5">
-      <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6" />
+      <ContentRenderer
+        v-if="data"
+        :value="data"
+        class="space-y-10 md:space-y-6"
+      />
     </div>
   </Panel>
   <Panel v-else-if="error" class="w-5/6 mx-auto my-20">
@@ -25,21 +29,30 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const { data, error, status } = await useAsyncData(`blog-${route.params.slug}`, () => {
-  return queryCollection("content").path(route.path).first();
-});
+const { data, error, status } = await useAsyncData(
+  `blog-${route.params.slug}`,
+  () => {
+    return queryCollection("content").path(route.path).first();
+  },
+  {
+    server: false,
+  }
+);
 
 useSeoMeta({
-  title: data.value && data.value.title || "Tunji Productions",
-  ogTitle: data.value && data.value.title || "Tunji Productions",
-  twitterTitle: data.value && data.value.title || "Tunji Productions",
+  title: (data.value && data.value.title) || "Tunji Productions",
+  ogTitle: (data.value && data.value.title) || "Tunji Productions",
+  twitterTitle: (data.value && data.value.title) || "Tunji Productions",
   ogImage: "/img/logo_bg.jpg",
   ogUrl: "https://tunjiproductions.com/blog",
   twitterImage: "/img/logo_bg.jpg",
   twitterCard: "summary",
-  description: data.value && data.value.description || "Tunji Productions Notbook",
-  ogDescription: data.value && data.value.description || "Tunji Productions Notbook",
-  twitterDescription: data.value && data.value.description || "Tunji Productions Notbook",
+  description:
+    (data.value && data.value.description) || "Tunji Productions Notbook",
+  ogDescription:
+    (data.value && data.value.description) || "Tunji Productions Notbook",
+  twitterDescription:
+    (data.value && data.value.description) || "Tunji Productions Notbook",
 });
 
 useHead({
