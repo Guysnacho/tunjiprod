@@ -2,18 +2,12 @@
   <!-- Render the blog post as Prose & Vue components -->
   <Panel v-if="data" class="w-5/6 mx-auto my-20">
     <template #header v-if="data && data.title">
-      <h2
-        class="text-3xl my-5 font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl"
-      >
+      <h2 class="pt-5 md:px-10 text-3xl mx-auto font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl md:text-5xl">
         {{ data!.title }}
       </h2>
     </template>
-    <div class="m-0 pb-5">
-      <ContentRenderer
-        v-if="data"
-        :value="data"
-        class="space-y-10 md:space-y-6"
-      />
+    <div class="m-0 pb-5 md:p-10">
+      <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6" />
     </div>
   </Panel>
   <Panel v-else-if="error" class="w-5/6 mx-auto my-20">
@@ -72,7 +66,11 @@ useHead({
 <style>
 h3 {
   font-weight: 600;
-  font-size: 1.25rem /* 20px */;
-  line-height: 1.75rem /* 28px */;
+  font-size: 1.25rem
+    /* 20px */
+  ;
+  line-height: 1.75rem
+    /* 28px */
+  ;
 }
 </style>
