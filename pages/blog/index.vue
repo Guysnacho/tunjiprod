@@ -23,49 +23,45 @@
                 class="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover" />
               <div class="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
             </div>
-            <div>
-              <div class="flex items-center gap-x-4 text-xs">
-                <p class="text-gray-500">{{ format(post.date, "P") }}</p>
-                <NuxtLink v-for="tag in new Array(...post.tags)" href="#"
-                  class="relative z-10 rounded-full bg-green-100 bg-opacity-60 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
-                  {{ tag }}</NuxtLink>
-              </div>
-              <div class="group relative max-w-xl">
-                <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                  <NuxtLink :href="post.path">
-                    <span class="absolute inset-0" />
-                    {{ post.title }}
-                  </NuxtLink>
-                </h3>
-                <p v-if="post && post.excerpt" class="mt-5 text-sm/6 text-gray-600">
-                  {{
-                    // @ts-expect-error asdf
-                    (post.excerpt.value as {}[])
-                      .map(
-                        (item) =>
-                          // @ts-expect-error asdf
-                          item[2]
-                      )
-                      .join(".")
-                  }}
-                </p>
-              </div>
-              <div class="mt-6 flex border-t border-gray-900/5 pt-6">
-                <div class="relative flex items-center gap-x-4">
-                  <img src="/img/Untitled_Artwork.png" alt="Portrait by Aint.Free"
-                    class="size-10 rounded-full bg-gray-50" />
-                  <div class="text-sm/6">
-                    <p class="font-semibold text-gray-900">
-                      <a href="https://linkedin.com/in/sadetunji" target="_blank">
-                        <span class="absolute inset-0" />
-                        Samuel A.
-                      </a>
-                    </p>
-                    <p class="text-gray-600">Software Extraordinaire</p>
+            <Card>
+              <template #title>
+                <div class="flex items-center gap-x-4 text-sm">
+                  <p class="text-gray-500">{{ format(post.date, "P") }}</p>
+                  <NuxtLink v-for="tag in new Array(...post.tags)" href="#"
+                    class="relative z-10 rounded-full bg-green-100 bg-opacity-60 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+                    {{ tag }}</NuxtLink>
+                </div>
+              </template>
+              <template #content>
+                <div class="group relative max-w-xl">
+                  <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                    <NuxtLink :href="post.path">
+                      <span class="absolute inset-0" />
+                      {{ post.title }}
+                    </NuxtLink>
+                  </h3>
+                  <p v-if="post && post.excerpt" class="mt-5 text-sm/6 text-gray-600">
+                    {{ post.seo.description }}
+                  </p>
+                </div>
+              </template>
+              <template #footer>
+                <div class="mt-6 flex border-t border-gray-900/5 pt-6">
+                  <div class="relative flex items-center gap-x-4">
+                    <img src="/img/Untitled_Artwork.png" alt="Portrait by Aint.Free"
+                      class="size-10 rounded-full bg-gray-50" />
+                    <div class="text-sm/6">
+                      <p class="font-semibold text-gray-900">
+                        <a href="https://linkedin.com/in/sadetunji" target="_blank">
+                          Samuel A.
+                        </a>
+                      </p>
+                      <p class="text-gray-600">Software Extraordinaire</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </template>
+            </Card>
           </article>
 
           <!-- If there's an error -->
@@ -124,4 +120,5 @@ const { data, error } = await useAsyncData(
     server: false,
   }
 );
+console.log(data)
 </script>

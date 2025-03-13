@@ -8,7 +8,7 @@ export default defineContentConfig({
       schema: z.object({
         excerpt: z.object({
           type: z.string(),
-          children: z.any(),
+          children: z.string(),
         }),
         thumb: z.string(),
         date: z.date(),
