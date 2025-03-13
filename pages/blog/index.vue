@@ -120,5 +120,4 @@ const { data, error } = await useAsyncData(
     server: false,
   }
 );
-console.log(data)
 </script>
