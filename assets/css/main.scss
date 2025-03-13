@@ -1,11 +1,11 @@
 @use "primeicons/primeicons.css";
 
 body {
-  background-size: 800px;
-  background-color: important rgba(255, 255, 255, 0.6);
   background: url("/img/Notebook.jpg");
-  background-blend-mode: lighten;
+  background-size: 800px;
   background-position: center;
+  background-color: important rgba(255, 255, 255, 0.6);
+  background-blend-mode: lighten;
 }
 
 /* Firefox */
