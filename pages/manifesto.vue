@@ -21,15 +21,15 @@
         </blockquote>
 
         <div class="mx-auto w-4/5 md:w-fit">
-            <ul class="list-disc self-center space-y-3 pt-1">
+            <ul class="list-disc self-center space-y-8 pt-1">
                 <li class="list-item">Support my growing family</li>
-                <li class="list-item">Elevate Nigreria</li>
+                <li class="list-item">Elevate Nigeria</li>
                 <li class="list-item">Exemplify high quality products</li>
                 <li class="list-item">Leave clients with a smile (or at the bare minimum satisfied)</li>
             </ul>
         </div>
         <Accordion value="0">
-            <AccordionPanel value="0" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
+            <AccordionPanel value="0" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 mt-10">
                 <AccordionHeader>
                     <h1 class="text-xl text-center">The Focus</h1>
                 </AccordionHeader>
@@ -50,12 +50,15 @@
                     <h1 class="text-xl text-center">Academia</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>Working with MCBIOS has taught me that smart people do cool things. Whether that's understanding
+                    <p>Working with MCBIOS has taught me that smart people do cool things. Whether that's
+                        understanding
                         how
-                        medicine interacts with cells or publishing their findings, a lot of this work is waaaayyy out
+                        medicine interacts with cells or publishing their findings, a lot of this work is waaaayyy
+                        out
                         of my
                         scope (currently) but that doesn't mean there isn't a place for change.</p>
-                    <p>Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling that
+                    <p>Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling
+                        that
                         makes
                         that job easier. For me, that's the MCBIOS website collection. - <a target="_blank"
                             rel="noopener" href="https://mcbios.com"
@@ -68,12 +71,15 @@
                     <h1 class="text-xl text-center">Family</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>If I'm up, then we're all up. I live by this with the work I do on the job and I try to embody
+                    <p>If I'm up, then we're all up. I live by this with the work I do on the job and I try to
+                        embody
                         this when
                         family comes through with an app request.</p>
 
-                    <p>Shockingly, we don't have access to engineers to build every app our heart wishes for. We're not
-                        trust-funders and nepotism hasn't blessed us. Most of us are 1st generation immigrants that are
+                    <p>Shockingly, we don't have access to engineers to build every app our heart wishes for. We're
+                        not
+                        trust-funders and nepotism hasn't blessed us. Most of us are 1st generation immigrants that
+                        are
                         trying
                         to survive. I want to bridge this gap.</p>
 
@@ -101,7 +107,8 @@
                                 class="italic">helps</strong>
                         </li>
                         <li class="list-item">Writing a course and sharing it</li>
-                        <li class="list-item">Advising masters students on the architecture applications responsible for
+                        <li class="list-item">Advising masters students on the architecture applications responsible
+                            for
                             measuring laser
                             fluctuations basically kinda sorta</li>
                         <li class="list-item">and anything in betwixt</li>
