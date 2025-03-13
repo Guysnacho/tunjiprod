@@ -14,7 +14,8 @@ excerpt:
   type: minimal
   children: Hey everybody and welcome to a Tunji Production. My name is Samuel
     Adetunji (get it?) and I'm an engineer, but before that I'm ...
-tags: intro
+tags: 
+  - intro
 thumb: /blog/0/natalie-parham-punk.jpg
 ---
 
