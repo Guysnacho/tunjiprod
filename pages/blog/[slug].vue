@@ -6,7 +6,7 @@
         {{ data!.title }}
       </h2>
     </template>
-    <div class="m-0 pb-5 md:p-10 w-11/12">
+    <div class="m-0 pb-5 md:p-10 w-11/12 mx-auto">
       <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6" />
     </div>
   </Panel>
@@ -64,6 +64,15 @@ useHead({
 </script>
 
 <style>
+h2 {
+  font-weight: 500;
+  font-size: 1.4rem
+    /* 20px */
+  ;
+  line-height: 1.75rem
+    /* 28px */
+  ;
+}
 h3 {
   font-weight: 600;
   font-size: 1.25rem

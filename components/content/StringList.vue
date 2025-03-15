@@ -18,5 +18,5 @@ type ListItem = {
     blurb?: string
     sublist?: string[]
 }
-const { items, blurb } = defineProps<{ items: ListItem[]; blurb: string }>()
+const { items, blurb } = defineProps<{ items?: ListItem[]; blurb?: string }>()
 </script>
