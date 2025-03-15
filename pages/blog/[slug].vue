@@ -6,7 +6,7 @@
         {{ data!.title }}
       </h2>
     </template>
-    <div class="m-0 pb-5 md:p-10">
+    <div class="m-0 pb-5 md:p-10 w-11/12">
       <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6" />
     </div>
   </Panel>
