@@ -34,13 +34,15 @@
                     <h1 class="text-xl text-center">The Focus</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>There's a growing number of people that need Software Engineering services, from hotels that
-                        handle their
-                        booking by hand to student led orgs that don't have the skills (yet), to Nations caught
-                        unaware or
-                        lacking because they have other pressing issues like infrastructure. Infra like roads, not
-                        like
-                        terraform.</p>
+                    <p>
+                        There's a growing number of people that need Software Engineering services, from hotels that
+                        handle their booking by hand to student led orgs that don't have the skills (yet), to Nations
+                        caught
+                        unaware or lacking because they have other pressing issues like infrastructure. Infra like
+                        roads, not
+                        like terraform.
+                    </p>
+                    <br />
                     <p>My goal is to bridge the gap.</p>
                 </AccordionContent>
             </AccordionPanel>
@@ -50,19 +52,19 @@
                     <h1 class="text-xl text-center">Academia</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>Working with MCBIOS has taught me that smart people do cool things. Whether that's
-                        understanding
-                        how
-                        medicine interacts with cells or publishing their findings, a lot of this work is waaaayyy
-                        out
-                        of my
-                        scope (currently) but that doesn't mean there isn't a place for change.</p>
-                    <p>Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling
-                        that
-                        makes
-                        that job easier. For me, that's the MCBIOS website collection. - <a target="_blank"
+                    <p>
+                        Working with MCBIOS has taught me that smart people do cool things. Whether that's
+                        understanding how medicine interacts with cells or publishing their findings, a lot
+                        of this work is waaaayyy out of my scope (currently) but that doesn't mean there
+                        isn't a place for change.
+                    </p>
+                    <br />
+                    <p>
+                        Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling
+                        that makes that job easier. For me, that's the MCBIOS website collection. - <a target="_blank"
                             rel="noopener" href="https://mcbios.com"
-                            class="underline hover:no-underline">https://mcbios.com</a></p>
+                            class="underline hover:no-underline">https://mcbios.com</a>
+                    </p>
                 </AccordionContent>
             </AccordionPanel>
 
@@ -71,19 +73,23 @@
                     <h1 class="text-xl text-center">Family</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>If I'm up, then we're all up. I live by this with the work I do on the job and I try to
-                        embody
-                        this when
-                        family comes through with an app request.</p>
+                    <p>
+                        If I'm up, then we're all up. I live by this with the work I do on the job and I try to
+                        embody this when family comes through with an app request.
+                    </p>
 
-                    <p>Shockingly, we don't have access to engineers to build every app our heart wishes for. We're
-                        not
-                        trust-funders and nepotism hasn't blessed us. Most of us are 1st generation immigrants that
-                        are
-                        trying
-                        to survive. I want to bridge this gap.</p>
+                    <br />
 
-                    <p>We can't give handouts but we can enable greatness. For me that's my mom's site
+                    <p>
+                        Shockingly, we don't have access to engineers to build every app our heart wishes for. We're
+                        not trust-funders and nepotism hasn't blessed us. Most of us are 1st generation immigrants that
+                        are trying to survive. I want to bridge this gap.
+                    </p>
+
+                    <br />
+
+                    <p>
+                        We can't give handouts but we can enable greatness. For me that's my mom's site
                         <a target="_blank" rel="noopener" href="https://bosedeadetunji.com"
                             class="underline hover:no-underline">https://bosedeadetunji.com</a>
                         and my uncle's upcoming ridesharing app <a target="_blank" rel="noopener"
@@ -107,15 +113,9 @@
                                 class="italic">helps</strong>
                         </li>
                         <li class="list-item">Writing a course and sharing it</li>
-                        <li class="list-item">Advising masters students on the architecture applications responsible
-                            for
-                            measuring laser
-                            fluctuations basically kinda sorta</li>
+                        <li class="list-item">Advising masters students on the architecture applications responsible for
+                            measuring laser fluctuations basically kinda sorta</li>
                         <li class="list-item">and anything in betwixt</li>
-                        <li class="list-item">Support my growing family</li>
-                        <li class="list-item">Elevate Nigreria</li>
-                        <li class="list-item">Exemplify high quality products</li>
-                        <li class="list-item">Leave clients with a smile (or at the bare minimum satisfied)</li>
                     </ul>
                     <p>If I think its cool. It will be done. Or at least attempted, and that applies to all of the
                         above.</p>
@@ -157,3 +157,9 @@ useHead({
     ]
 })
 </script>
+
+<style scoped>
+li {
+    font-weight: 700;
+}
+</style>

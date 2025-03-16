@@ -1,9 +1,9 @@
 <template>
-    <div class="grid grid-cols-2 space-x-10 justify-around mx-auto">
-        <p class="m-auto">{{ blurb }}</p>
-        <Img :src />
+    <div class="grid grid-cols-1 lg:grid-cols-2 justify-between mx-auto">
+        <slot mdc-unwrap="div" />
+        <Spotty v-if="src" :src="src" />
     </div>
 </template>
 <script setup lang="ts">
-const { blurb, src } = defineProps<{ src: string, blurb: string }>()
+const { src } = defineProps<{ src: string }>()
 </script>

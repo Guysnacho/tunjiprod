@@ -1,20 +1,20 @@
 ---
 title: Welcome to Tunji Productions
 date: 2025-02-11T00:00:00.000Z
-description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
+description: Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I'm an engineer, but before that I'm a Houston, and before that I'm Nigerian and proud.
 seo:
   title: Welcome to Tunji Productions
-  description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
+  description: Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I'm an engineer, but before that I'm a Houston, and before that I'm Nigerian and proud.
   tags: intro
 navigation:
-  description: Welcome to Tunji Productions. I've decided to speak up on the work done here.
+  description: Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I'm an engineer, but before that I'm a Houston, and before that I'm Nigerian and proud.
   title: Welcome to Tunji Productions
   icon: https://tunjiproductions.com/.netlify/images?w=350&url=%2Fimg%2Flogo_clear.png
 excerpt:
   type: minimal
-  children: Hey everybody and welcome to a Tunji Production. My name is Samuel
-    Adetunji (get it?) and I'm an engineer, but before that I'm ...
-tags: intro
+  children: Hey everybody and welcome to a Tunji Production. My name is Samuel Adetunji (get it?) and I'm an engineer, but before that I'm ...
+tags: 
+  - intro
 thumb: /blog/0/natalie-parham-punk.jpg
 ---
 
