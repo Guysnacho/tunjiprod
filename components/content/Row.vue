@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-2 space-x-10 mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 justify-between mx-auto">
         <slot mdc-unwrap="div" />
         <Spotty v-if="src" :src="src" />
     </div>
