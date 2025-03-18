@@ -145,6 +145,9 @@ useSeoMeta({
 })
 
 useHead({
+    meta: [
+        { name: 'Tunji Productions - Manifesto', content: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)" }
+    ],
     htmlAttrs: {
         lang: 'en'
     },

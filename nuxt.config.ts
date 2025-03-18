@@ -4,6 +4,7 @@ import Aura from "@primevue/themes/aura";
 export default defineNuxtConfig({
   app: {
     head: {
+      title: "Tunji Productions",
       charset: "utf-8",
       htmlAttrs: {
         lang: "en",
@@ -20,8 +21,8 @@ export default defineNuxtConfig({
   },
   content: {
     preview: {
-      api: "https://api.nuxt.studio"
-    }
+      api: "https://api.nuxt.studio",
+    },
   },
   devtools: { enabled: true },
   modules: [

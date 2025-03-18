@@ -99,6 +99,9 @@ useSeoMeta({
 });
 
 useHead({
+  meta: [
+    { name: 'Tunji Productions - Notebook', content: 'A blog of work done, discoveries, and more.' }
+  ],
   htmlAttrs: {
     lang: "en",
   },

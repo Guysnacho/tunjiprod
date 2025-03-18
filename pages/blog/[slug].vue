@@ -2,7 +2,8 @@
   <!-- Render the blog post as Prose & Vue components -->
   <Panel v-if="data" class="w-5/6 mx-auto my-20">
     <template #header v-if="data && data.title">
-      <h2 class="pt-5 md:px-10 text-3xl mx-auto font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl md:text-5xl">
+      <h2
+        class="pt-5 md:px-10 text-3xl mx-auto font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl md:text-5xl">
         {{ data!.title }}
       </h2>
     </template>
@@ -34,22 +35,25 @@ const { data, error, status } = await useAsyncData(
 );
 
 useSeoMeta({
-  title: (data.value && data.value.title) || "Tunji Productions",
-  ogTitle: (data.value && data.value.title) || "Tunji Productions",
-  twitterTitle: (data.value && data.value.title) || "Tunji Productions",
+  title: (data.value && data.value.title) || "Tunji Productions - Notebook",
+  ogTitle: (data.value && data.value.title) || "Tunji Productions - Notebook",
+  twitterTitle: (data.value && data.value.title) || "Tunji Productions - Notebook",
   ogImage: "/img/logo_bg.jpg",
   ogUrl: "https://tunjiproductions.com/blog",
   twitterImage: "/img/logo_bg.jpg",
   twitterCard: "summary",
   description:
-    (data.value && data.value.description) || "Tunji Productions Notbook",
+    (data.value && data.value.description) || "A blog of work done, discoveries, and more.",
   ogDescription:
-    (data.value && data.value.description) || "Tunji Productions Notbook",
+    (data.value && data.value.description) || "A blog of work done, discoveries, and more.",
   twitterDescription:
-    (data.value && data.value.description) || "Tunji Productions Notbook",
+    (data.value && data.value.description) || "A blog of work done, discoveries, and more.",
 });
 
 useHead({
+  meta: [
+    { name: (data.value && data.value.title) || "Tunji Productions - Notebook", content: (data.value && data.value.description) || 'A blog of work done, discoveries, and more.' }
+  ],
   htmlAttrs: {
     lang: "en",
   },
@@ -73,6 +77,7 @@ h2 {
     /* 28px */
   ;
 }
+
 h3 {
   font-weight: 600;
   font-size: 1.25rem

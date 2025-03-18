@@ -26,58 +26,34 @@
 
     <p class="text-center pt-10">
       To share your own,
-      <a
-        href="http://twotone.app"
-        target="_blank"
-        class="underline hover:no-underline"
-        >download TwoTone today</a
-      >
+      <a href="http://twotone.app" target="_blank" class="underline hover:no-underline">download TwoTone today</a>
       😌
     </p>
 
     <div class="text-center">
       <h3 class="text-2xl mt-7">Recent Highlights</h3>
-      <Carousel
-        circular
-        :value="highlights"
-        :numVisible="1"
-        class="mx-auto my-10 w-11/12 md:w-2/3"
-        :autoplayInterval="3500"
-      >
+      <Carousel circular :value="highlights" :numVisible="1" class="mx-auto my-10 w-11/12 md:w-2/3"
+        :autoplayInterval="3500">
         <template #empty>
           <h3>Highlights coming soon!</h3>
         </template>
 
-        <template
-          #item="{ data, index }"
-          class="flex justify-center align-middle"
-        >
+        <template #item="{ data, index }" class="flex justify-center align-middle">
           <Card class="w-fit sm:w-[25rem] self-center mx-auto my-10">
             <template #content>
               <div class="md:flex">
                 <!-- Optional image -->
                 <div class="flex justify-center">
-                  <Image
-                    v-if="data.header"
-                    :src="data.header"
-                    width="250"
+                  <Image v-if="data.header" :src="data.header" width="250"
                     class="rounded-lg self-center justify-center place-items-center align-middle items-center"
-                    :alt="data.label"
-                  />
+                    :alt="data.label" />
                 </div>
                 <!-- Card info -->
                 <div class="space-y-4">
                   <h3 class="font-semibold">{{ data.label }}</h3>
                   <p>{{ data.blurb }}</p>
                   <Divider v-if="data.url" />
-                  <Button
-                    v-if="data.url"
-                    as="a"
-                    target="_blank"
-                    rel="noopener"
-                    label="Learn More"
-                    :href="data.url"
-                  />
+                  <Button v-if="data.url" as="a" target="_blank" rel="noopener" label="Learn More" :href="data.url" />
                 </div>
               </div>
             </template>
@@ -112,6 +88,9 @@ useSeoMeta({
 });
 
 useHead({
+  meta: [
+    { name: 'Tunji Productions', content: 'Tunji Productions - A launchpad to everything about me. My projects, my blog, music reviews, etc.' }
+  ],
   htmlAttrs: {
     lang: "en",
   },
