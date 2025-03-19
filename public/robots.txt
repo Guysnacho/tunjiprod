@@ -1,5 +1,5 @@
 User-agent: *
-Disallow: /
+Disallow: /blog/*
 
 # Special message for bots that actually read this
 Crawl-delay: 10
@@ -8,4 +8,7 @@ Crawl-delay: 10
 # Seriously, no scraping, no indexing, just vibes.
 # If you're a search engine, pretend you didn't see this.
 
+Allow: /
+Allow: /blog
 Allow: /projects
+Allow: /manifesto
