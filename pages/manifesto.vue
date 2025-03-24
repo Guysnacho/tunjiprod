@@ -1,4 +1,11 @@
 <template>
+
+    <head>
+      <title>Tunji Manifesto</title>
+    </head>
+  
+    <!-- Body -->
+  
     <div class="my-12">
         <h1 class="text-3xl text-center">✨ Tunji Manifesto</h1>
     </div>
@@ -146,7 +153,7 @@ useSeoMeta({
 
 useHead({
     meta: [
-        { name: 'Tunji Productions - Manifesto', content: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)" }
+        { name: 'description', content: "Mission of Tunji Productions. The goals of this organization can be found here. Let's keep things transparent. :)" }
     ],
     htmlAttrs: {
         lang: 'en'

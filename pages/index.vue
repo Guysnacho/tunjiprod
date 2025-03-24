@@ -1,4 +1,11 @@
 <template>
+
+  <head>
+    <title>Tunji Productions</title>
+  </head>
+
+  <!-- Body -->
+
   <div class="space-y-10">
     <NuxtImg src="/img/logo_clear.png" sizes="175px md:350px" class="mx-auto" />
 
@@ -89,7 +96,7 @@ useSeoMeta({
 
 useHead({
   meta: [
-    { name: 'Tunji Productions', content: 'Tunji Productions - A launchpad to everything about me. My projects, my blog, music reviews, etc.' }
+    { name: 'description', content: 'Tunji Productions - A launchpad to everything about me. My projects, my blog, music reviews, etc.' }
   ],
   htmlAttrs: {
     lang: "en",

@@ -1,9 +1,16 @@
 <template>
+
+    <head>
+      <title>Portfolio</title>
+    </head>
+  
+    <!-- Body -->
+  
     <div class="space-y-20">
         <Toast />
         <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-20">
             <template #header>
-                <h3 class="mt-3 text-center text-3xl">Projects</h3>
+                <h3 class="mt-3 text-center text-3xl">Portfolio</h3>
             </template>
             <template #content>
                 <div class="space-y-5">
@@ -47,7 +54,7 @@ useSeoMeta({
 
 useHead({
     meta: [
-        { name: 'Tunji Productions - Projects', content: 'Tunji Productions portfolio. A living document of our projects.' }
+        { name: 'description', content: 'Tunji Productions portfolio. A living document of our projects.' }
     ],
     htmlAttrs: {
         lang: 'en'

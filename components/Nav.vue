@@ -8,9 +8,9 @@ const items: MenuItem[] = [
         route: "/",
     },
     {
-        label: "Projects",
+        label: "Portfolio",
         icon: 'pi pi-briefcase',
-        route: "/projects"
+        route: "/portfolio"
     },
     {
         label: "Manifesto",
