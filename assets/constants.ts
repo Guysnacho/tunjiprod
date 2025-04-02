@@ -10,7 +10,7 @@ export const highlights: Highlight[] = [
     label: "TwoTone - Music",
     blurb:
       "TwoTone, a spot for music lovers to share the tracks that mean something to them.",
-    header: "https://twotone.app/_app/immutable/assets/logo.D0G0UcNF.png",
+    header: "https://twotone.app/assets/icon.png",
     url: "https://twotone.app",
   },
   {

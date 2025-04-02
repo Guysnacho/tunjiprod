@@ -45,10 +45,10 @@
           <h3>Highlights coming soon!</h3>
         </template>
 
-        <template #item="{ data, index }" class="flex justify-center align-middle">
+        <template #item="{ data }" class="flex justify-center align-middle">
           <Card class="w-fit sm:w-[25rem] self-center mx-auto my-10">
             <template #content>
-              <div class="md:flex">
+              <div class="md:flex space-x-5">
                 <!-- Optional image -->
                 <div class="flex justify-center">
                   <Image v-if="data.header" :src="data.header" width="250"
