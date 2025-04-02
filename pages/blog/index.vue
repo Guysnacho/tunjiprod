@@ -108,7 +108,7 @@ useHead({
   link: [
     {
       rel: "icon",
-      type: "image/png",
+      type: "image/x-icon",
       href: "/favicon.ico",
     },
   ],
