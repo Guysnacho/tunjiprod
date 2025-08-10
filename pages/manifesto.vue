@@ -7,7 +7,7 @@
     <!-- Body -->
   
     <div class="my-12">
-        <h1 class="text-3xl text-center">✨ Tunji Manifesto</h1>
+        <h1 class="text-3xl text-center text-gray-900">✨ Tunji Manifesto</h1>
     </div>
 
     <div class="space-y-5 w-5/6 mx-auto">
@@ -38,10 +38,10 @@
         <Accordion value="0">
             <AccordionPanel value="0" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 mt-10">
                 <AccordionHeader>
-                    <h1 class="text-xl text-center">The Focus</h1>
+                    <h1 class="text-xl text-center text-gray-900 hover:text-gray-600">The Focus</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>
+                    <p class="text-gray-700">
                         There's a growing number of people that need Software Engineering services, from hotels that
                         handle their booking by hand to student led orgs that don't have the skills (yet), to Nations
                         caught
@@ -50,23 +50,23 @@
                         like terraform.
                     </p>
                     <br />
-                    <p>My goal is to bridge the gap.</p>
+                    <p class="text-gray-700">My goal is to bridge the gap.</p>
                 </AccordionContent>
             </AccordionPanel>
 
-            <AccordionPanel value="1" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
+            <AccordionPanel value="1" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8">
                 <AccordionHeader>
-                    <h1 class="text-xl text-center">Academia</h1>
+                    <h1 class="text-xl text-center text-gray-900 hover:text-gray-600">Academia</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>
+                    <p class="text-gray-700">
                         Working with MCBIOS has taught me that smart people do cool things. Whether that's
                         understanding how medicine interacts with cells or publishing their findings, a lot
                         of this work is waaaayyy out of my scope (currently) but that doesn't mean there
                         isn't a place for change.
                     </p>
                     <br />
-                    <p>
+                    <p class="text-gray-700">
                         Letting smart people focus on doing smart things is the goal, I'm glad to scaffold tooling
                         that makes that job easier. For me, that's the MCBIOS website collection. - <a target="_blank"
                             rel="noopener" href="https://mcbios.com"
@@ -77,17 +77,17 @@
 
             <AccordionPanel value="2" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8 ">
                 <AccordionHeader>
-                    <h1 class="text-xl text-center">Family</h1>
+                    <h1 class="text-xl text-center text-gray-900 hover:text-gray-600">Family</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>
+                    <p class="text-gray-700">
                         If I'm up, then we're all up. I live by this with the work I do on the job and I try to
                         embody this when family comes through with an app request.
                     </p>
 
                     <br />
 
-                    <p>
+                    <p class="text-gray-700">
                         Shockingly, we don't have access to engineers to build every app our heart wishes for. We're
                         not trust-funders and nepotism hasn't blessed us. Most of us are 1st generation immigrants that
                         are trying to survive. I want to bridge this gap.
@@ -95,7 +95,7 @@
 
                     <br />
 
-                    <p>
+                    <p class="text-gray-700">
                         We can't give handouts but we can enable greatness. For me that's my mom's site
                         <a target="_blank" rel="noopener" href="https://bosedeadetunji.com"
                             class="underline hover:no-underline">https://bosedeadetunji.com</a>
@@ -110,11 +110,11 @@
 
             <AccordionPanel value="3" class="mx-auto w-4/5 md:w-4/6 xl:w-1/2 text-lg/8">
                 <AccordionHeader>
-                    <h1 class="text-xl text-center">Service and Cool Factor 🫀</h1>
+                    <h1 class="text-xl text-center text-gray-900 hover:text-gray-600">Service and Cool Factor 🫀</h1>
                 </AccordionHeader>
                 <AccordionContent>
-                    <p>Everything else falls into service.</p>
-                    <ul class="list-disc self-center space-y-2 pt-1 ml-5">
+                    <p class="text-gray-700">Everything else falls into service.</p>
+                    <ul class="list-disc self-center space-y-2 pt-1 ml-5 text-gray-700">
                         <li class="list-item">Revamping how people find music</li>
                         <li class="list-item">Consulting Nigerian organizations on software that <strong
                                 class="italic">helps</strong>
@@ -124,7 +124,7 @@
                             measuring laser fluctuations basically kinda sorta</li>
                         <li class="list-item">and anything in betwixt</li>
                     </ul>
-                    <p>If I think its cool. It will be done. Or at least attempted, and that applies to all of the
+                    <p class="text-gray-700">If I think its cool. It will be done. Or at least attempted, and that applies to all of the
                         above.</p>
                 </AccordionContent>
             </AccordionPanel>

@@ -4,22 +4,22 @@ import type { MenuItem } from 'primevue/menuitem';
 const items: MenuItem[] = [
     {
         label: "Home",
-        icon: 'pi pi-home',
+        icon: 'pi pi-home text-gray-900',
         route: "/",
     },
     {
         label: "Portfolio",
-        icon: 'pi pi-briefcase',
+        icon: 'pi pi-briefcase text-gray-900',
         route: "/portfolio"
     },
     {
         label: "Manifesto",
-        icon: 'pi pi-building-columns',
+        icon: 'pi pi-building-columns text-gray-900',
         route: "/manifesto"
     },
     {
         label: "Blog",
-        icon: 'pi pi-book',
+        icon: 'pi pi-book text-gray-900',
         route: "/blog"
     }
 ]
@@ -34,7 +34,7 @@ const items: MenuItem[] = [
             <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
                 <NuxtLink v-ripple :href="href" v-bind="props.action" @click="navigate">
                     <span :class="item.icon" />
-                    <span>{{ item.label }}</span>
+                    <span class="text-gray-900">{{ item.label }}</span>
                 </NuxtLink>
             </router-link>
             <NuxtLink v-else v-ripple class="flex items-center" v-bind="props.action">

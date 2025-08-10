@@ -11,10 +11,10 @@
 
     <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-6">
       <template #header>
-        <h3 class="mt-3 my-auto text-center text-3xl">Inspiration</h3>
+        <h3 class="mt-3 my-auto text-center text-3xl text-gray-900">Inspiration</h3>
       </template>
       <template #content>
-        <p class="m-0">
+        <p class="m-0 text-gray-800">
           I wanted to make a portfolio site. It'd be kinda boring if I only put
           coding projects though so I'll be using this as a base of operations
           for everything me from personal projects to requests to music to
@@ -38,7 +38,7 @@
     </p>
 
     <div class="text-center">
-      <h3 class="text-2xl mt-7">Recent Highlights</h3>
+      <h3 class="text-2xl mt-7 text-gray-800">Recent Highlights</h3>
       <Carousel circular :value="highlights" :numVisible="1" class="mx-auto my-10 w-11/12 md:w-2/3"
         :autoplayInterval="3500">
         <template #empty>
@@ -57,8 +57,8 @@
                 </div>
                 <!-- Card info -->
                 <div class="space-y-4">
-                  <h3 class="font-semibold">{{ data.label }}</h3>
-                  <p>{{ data.blurb }}</p>
+                  <h3 class="font-semibold text-gray-900">{{ data.label }}</h3>
+                  <p class="text-gray-900">{{ data.blurb }}</p>
                   <Divider v-if="data.url" />
                   <Button v-if="data.url" as="a" target="_blank" rel="noopener" label="Learn More" :href="data.url" />
                 </div>

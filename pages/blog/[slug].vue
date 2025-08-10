@@ -8,7 +8,7 @@
       </h2>
     </template>
     <div class="m-0 pb-5 md:p-10 w-11/12 mx-auto">
-      <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6" />
+      <ContentRenderer v-if="data" :value="data" class="space-y-10 md:space-y-6 text-gray-900" />
     </div>
   </Panel>
   <Panel v-else-if="error" class="w-5/6 mx-auto my-20">
