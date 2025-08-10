@@ -10,7 +10,7 @@
         </template>
         <template #footer>
             <div class="flex flex-wrap items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 text-surface-500 dark:text-surface-400">
                     <div v-if="props.repo.visibility === 'public'" class="flex my-auto gap-3">
                         <i class="pi pi-globe my-auto" rounded text></i>
                         <p>Public</p>
@@ -31,18 +31,18 @@
                 <template #item="{ item, props }">
                     <a v-if="item.route" v-ripple :href="item.route" target="_blank" v-bind="props.action" custom>
                         <span :class="item.icon"></span>
-                        <span>{{ item.label }}</span>
+                        <span class="text-gray-900">{{ item.label }}</span>
                     </a>
                     <div v-else class="justify-around content-around">
                         <a v-ripple class="flex items-center gap-3">
                             <i :class="item.icon"></i>
-                            <span>{{ item.label }}</span>
+                            <span class="text-gray-900">{{ item.label }}</span>
                         </a>
                     </div>
                 </template>
             </Menu>
         </template>
-        <p class="m-0">
+        <p class="m-0 text-gray-900">
             {{ props.repo.description }}
         </p>
     </Panel>
@@ -61,34 +61,28 @@ const items: any[] = []
 if (props.repo.homepage) {
     items.push({
         label: 'Check it Out',
-        icon: 'pi pi-link',
+        icon: 'pi pi-link text-gray-900',
         route: props.repo.homepage
-    },
-        {
-            separator: true
-        })
+    })
 }
 
 if (props.repo.html_url && props.repo.visibility === 'public') {
     items.push({
         label: 'Repo Link',
-        icon: 'pi pi-github',
+        icon: 'pi pi-github text-gray-900',
         route: props.repo.html_url
-    },
-        {
-            separator: true
-        })
+    })
 }
 
 if (props.repo.watchers_count) {
     items.push({
         label: props.repo.watchers_count + ' Watchers',
-        icon: 'pi pi-users'
+        icon: 'pi pi-users text-gray-900'
     })
 } else if (props.repo.stargazers_count) {
     items.push({
         label: props.repo.stargazers_count + ' Stars',
-        icon: 'pi pi-star'
+        icon: 'pi pi-star text-gray-900'
     })
 }
 

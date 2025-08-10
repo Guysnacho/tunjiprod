@@ -10,17 +10,17 @@
         <Toast />
         <Card class="w-4/5 md:w-2/3 lg:w-[40vw] mx-auto my-20">
             <template #header>
-                <h3 class="mt-3 text-center text-3xl">Portfolio</h3>
+                <h3 class="mt-3 text-center text-3xl text-gray-900">Portfolio</h3>
             </template>
             <template #content>
                 <div class="space-y-5">
-                    <p class="m-0">Below you'll find a living document of my projects, both private and public. It
+                    <p class="m-0 text-gray-900">Below you'll find a living document of my projects, both private and public. It
                         occured
                         to me that sending people to my GitHub wasn't super helpful since most of my work is privately
                         done
                         (TwoTone/De Prestige).
                     </p>
-                    <p class="m-0">Solution! - Let me share what I can and hide the rest! Shout out to <a
+                    <p class="m-0 text-gray-900">Solution! - Let me share what I can and hide the rest! Shout out to <a
                             href="https://github.com/octokit/octokit.js?tab=readme-ov-file#octokitjs"
                             class="underline hover:no-underline" target="_blank">Octokit</a>.</p>
                 </div>
