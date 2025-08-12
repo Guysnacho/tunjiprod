@@ -56,7 +56,7 @@
                           Samuel A.
                         </a>
                       </p>
-                      <p class="text-gray-600">Software Extraordinaire</p>
+                      <p class="text-gray-600">Music Fan and Software Extraordinaire</p>
                     </div>
                   </div>
                 </div>
