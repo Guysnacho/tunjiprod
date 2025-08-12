@@ -117,7 +117,7 @@ useHead({
 const { data, error } = await useAsyncData(
   `blog`,
   () => {
-    return queryCollection("content").order("id", "ASC").all();
+    return queryCollection("content").order("date", "DESC").all();
   },
   {
     server: false,
