@@ -18,9 +18,21 @@ export default defineNuxtConfig({
       ],
     },
   },
-  content: {
-    preview: {
-      api: "https://api.nuxt.studio",
+  // @ts-expect-error dw bout it?
+  studio: {
+    repository: {
+      provider: "github",
+      owner: "Guysnacho",
+      repo: "tunjiprod",
+      branch: "main",
+    },
+  },
+  nitro: {
+    prerender: {
+      // Pre-render the homepage
+      routes: ["/", "/blog"],
+      // Then crawl all the links on the page
+      crawlLinks: true,
     },
   },
   devtools: { enabled: true },
@@ -50,5 +62,5 @@ export default defineNuxtConfig({
   runtimeConfig: {
     githubToken: "",
   },
-  compatibilityDate: "2025-02-10",
+  compatibilityDate: "2026-01-27",
 });

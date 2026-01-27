@@ -7,6 +7,13 @@ type Highlight = {
 
 export const highlights: Highlight[] = [
   {
+    label: "De Prestige Chauffeur",
+    blurb:
+      "Experience world-class personalized chauffeur service for business and leisure. Seamless luxury transportation that redefines your journey.",
+    header: "https://deprestigechauffeur.com/logo.png",
+    url: "http://deprestigechauffeur.com",
+  },
+  {
     label: "TwoTone - Music",
     blurb:
       "TwoTone, a spot for music lovers to share the tracks that mean something to them.",
@@ -17,13 +24,6 @@ export const highlights: Highlight[] = [
     label: "Tunji Productions x Nuxt",
     blurb:
       "Not my first rodeo with Vue but was a learning experience for sure. I think I was scared because at the time, I was a bad engineer. Fixed that.",
-    header: "",
-  },
-  {
-    label: "Kabu P.2 Electric Boogaloo",
-    blurb:
-      "After an eternity of waiting, sharpening my skills, honing my craft, I decided to pay a legacy project a visit.",
-    header: "",
-    url: "http://deprestigechauffeur.netlify.app/",
+    header: "/img/logo_clear.png",
   },
 ];

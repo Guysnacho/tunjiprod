@@ -13,7 +13,7 @@ const footerLinks = [
         icon: 'pi pi-linkedin'
     },
     {
-        route: '/login',
+        route: '#',
         icon: 'pi pi-sign-in'
     },
 ]
