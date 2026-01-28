@@ -13,6 +13,5 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-primeui')],
 };
 export default config;

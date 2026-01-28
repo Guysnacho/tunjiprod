@@ -76,8 +76,6 @@ import { Button, Card, Divider } from "primevue";
 import Image from "primevue/image";
 import { highlights } from "~/assets/constants";
 
-const autoplayInterval = 3000;
-
 useSeoMeta({
   title: "Tunji Productions",
   ogTitle: "Tunji Productions",
