@@ -1,5 +1,5 @@
 <template>
-    <Panel toggleable collapsed class="h-fit shadow-md" :key="props.repo.id">
+    <Panel toggleable class="h-fit shadow-md" :key="props.repo.id">
         <template #header>
             <div class="flex items-center gap-2">
                 <i class="pi pi-github my-auto bg-gradient-to-r from-green-500 to-green-800 bg-clip-text text-transparent"
