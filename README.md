@@ -15,9 +15,6 @@ Make sure to install the dependencies:
 ```bash
 # yarn
 yarn
-
-# npm
-npm install
 ```
 
 ## Development Server
@@ -26,7 +23,6 @@ Start the development server on http://localhost:3000
 
 ```bash
 yarn dev
-
 ```
 
 ## The Point
@@ -35,14 +31,7 @@ I kinda wanna do a portfolio site. I don't really like the generic project layou
 
 ### Functional Goals
 
-- [x] - Minimal header with handwritten text of Tunji Productions
-- [x] - My spiel
-- [x] - Cards with different things I've been up to (music, blurbs, music recs, and video edits)
-  - [x] Music
-  - [-] Videos
-- [ ] - Design (Art, peeking all over page)
-- [x] - Things I wanna promote
-- [x] - Highlights on things I'm especially proud of
+I've actually finished all of my functional goals for the most part. Videos live on the TwoTone Instagram/Bulletin or the Tunji Productions Youtube, music is present but I do want to fetch my Songs of the Day actually from TwoTone, and we've got highlights on the things that matter so far, even have a blog. I like it.
 
 ### Learning Goals
 
@@ -60,6 +49,6 @@ There isn't really a point in doing this if I'm not trying something spicy so I'
 4. Progressive Mobile App or some way for me to conveniently update and/or notify the masses
 5. I wanna draw
    1. I still wanna draw
-6. ~~Might switch to svelte later later. Who knows~~ Used Sveltekit for [TwoTone](https://twotone.app). Glad I did too, different frameworks are cool. Glad I'm not shackled to Next.js.
+6. ~~Might switch to svelte later later. Who knows~~ ~~Used Sveltekit for [TwoTone](https://twotone.app). Glad I did too, different frameworks are cool. Glad I'm not shackled to Next.js.~~ Womp womp, went back to Next.js for now. Simplicity of an Expo Monorepo.
 
 Alright lets go ~
