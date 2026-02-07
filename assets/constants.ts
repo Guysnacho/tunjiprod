@@ -7,6 +7,13 @@ type Highlight = {
 
 export const highlights: Highlight[] = [
   {
+    label: "MCBIOS Overhaul",
+    blurb:
+      "We recently completed a full redesign and rebuild of the MidSouth Computational Biology and Bioinformatics Society's conference platform and it's a testament to what happens when you truly understand your client's needs.",
+    header: "https://mcbios.com/images/logo.jpg",
+    url: "https://mcbios.com",
+  },
+  {
     label: "De Prestige Chauffeur",
     blurb:
       "Experience world-class personalized chauffeur service for business and leisure. Seamless luxury transportation that redefines your journey.",

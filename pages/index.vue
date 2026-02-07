@@ -39,24 +39,22 @@
 
     <div class="text-center">
       <h3 class="text-2xl mt-7 text-gray-800">Recent Highlights</h3>
-      <Carousel circular :value="highlights" :numVisible="1" class="mx-auto my-10 w-11/12 md:w-2/3"
-        :autoplayInterval="3500">
+      <Carousel circular :value="highlights" :numVisible="1" :showNavigators="false"
+        class="mx-auto my-10 w-11/12 md:w-3/4 lg:w-2/3" :autoplayInterval="3500">
         <template #empty>
           <h3>Highlights coming soon!</h3>
         </template>
 
         <template #item="{ data }" class="flex justify-center align-middle">
-          <Card class="w-fit sm:w-[25rem] self-center mx-auto my-10">
+          <Card class="w-full max-w-2xl self-center mx-auto my-10">
             <template #content>
-              <div class="md:flex space-x-5">
+              <div class="flex flex-col md:flex-row gap-5">
                 <!-- Optional image -->
-                <div class="flex justify-center">
-                  <Image v-if="data.header" :src="data.header" width="250"
-                    class="rounded-lg self-center justify-center place-items-center align-middle items-center"
-                    :alt="data.label" />
-                </div>
+                <Image v-if="data.header" :src="data.header" width="150" class="rounded-lg self-center"
+                  :alt="data.label" />
+
                 <!-- Card info -->
-                <div class="space-y-4">
+                <div class="space-y-4 flex-1">
                   <h3 class="font-semibold text-gray-900">{{ data.label }}</h3>
                   <p class="text-gray-900">{{ data.blurb }}</p>
                   <Divider v-if="data.url" />
@@ -108,7 +106,3 @@ useHead({
   ],
 });
 </script>
-
-<!-- <style lang="scss">
-#hero {}
-</style> -->
