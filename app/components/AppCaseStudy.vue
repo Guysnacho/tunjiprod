@@ -71,7 +71,7 @@ const highlights = [
           <!-- Image Column -->
           <div class="relative h-[400px] lg:h-auto overflow-hidden bg-stone-100">
             <NuxtImg
-              src="https://images.unsplash.com/photo-1765371512992-843e6a92d7e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJtJTIwaW50ZXJpb3IlMjBvZmZpY2UlMjBuYXR1cmFsJTIwbGlnaHR8ZW58MXx8fHwxNzcwNTY2MTM5fDA"
+              src="https://images.unsplash.com/photo-1765371512992-843e6a92d7e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg"
               alt="Warm Interior Meeting Space"
               class="absolute inset-0 w-full h-full object-cover"
               loading="lazy"

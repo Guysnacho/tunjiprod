@@ -81,13 +81,13 @@ const features = [
           class="relative max-w-5xl mx-auto rounded-2xl border border-stone-200 shadow-2xl overflow-hidden bg-stone-100 animate-scale-in"
         >
           <NuxtImg
-            src="https://images.unsplash.com/photo-1726384780582-40353de8d036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3b29kZW4lMjBhcmNoaXRlY3R1cmUlMjBjb25mZXJlbmNlJTIwaGFsbHxlbnwxfHx8fDE3NzA1NjYxMzl8MA"
+            src="https://images.unsplash.com/photo-1726384780582-40353de8d036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg"
             alt="Modern Wooden Conference Hall"
-            class="w-full aspect-[16/9] object-cover"
+            class="w-full aspect-video object-cover"
             loading="lazy"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex items-end p-8"
+            class="absolute inset-0 bg-linear-to-t from-stone-900/80 to-transparent flex items-end p-8"
           >
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full text-left">
               <div

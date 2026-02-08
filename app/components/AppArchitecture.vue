@@ -77,7 +77,7 @@ const stats = [
             class="border-stone-700 bg-stone-800/50 backdrop-blur-sm shadow-2xl ring-stone-700!"
           >
             <NuxtImg
-              src="https://images.unsplash.com/photo-1762518859390-6d48c38a9afe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwbGFuZHNjYXBlJTIwZm9yZXN0JTIwYWVyaWFsJTIwdmlld3xlbnwxfHx8fDE3NzA1NjYxMzl8MA"
+              src="https://images.unsplash.com/photo-1762518859390-6d48c38a9afe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg"
               alt="Natural Landscape Architecture visualization"
               class="w-full rounded-xl opacity-80"
               loading="lazy"
