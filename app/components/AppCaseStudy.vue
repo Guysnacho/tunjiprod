@@ -7,12 +7,12 @@ const highlights = [
 </script>
 
 <template>
-  <UPageSection id="case-studies" class="bg-stone-50">
+  <UPageSection id="case-studies" class="bg-stone-50 dark:bg-stone-950">
     <UContainer>
       <UCard
         class="overflow-hidden shadow-xl"
         :ui="{
-          root: 'ring-1 ring-stone-200 rounded-3xl',
+          root: 'ring-1 ring-stone-200 dark:ring-stone-700 rounded-3xl dark:bg-stone-900',
           body: 'p-0'
         }"
       >
@@ -28,14 +28,14 @@ const highlights = [
                   class="w-4 h-4 fill-amber-600 text-amber-600"
                 />
               </div>
-              <span class="text-sm font-bold text-stone-500 ml-2 italic">4+ Year Partnership</span>
+              <span class="text-sm font-bold text-stone-500 dark:text-stone-400 ml-2 italic">4+ Year Partnership</span>
             </div>
 
-            <h3 class="text-3xl md:text-4xl font-bold text-stone-900 mb-6">
+            <h3 class="text-3xl md:text-4xl font-bold text-stone-900 dark:text-stone-50 mb-6">
               MCBIOS: Powering MidSouth Bioinformatics
             </h3>
 
-            <p class="text-stone-600 text-lg mb-8 leading-relaxed">
+            <p class="text-stone-600 dark:text-stone-400 text-lg mb-8 leading-relaxed">
               Since 2020, we have provided MCBIOS with a custom-designed conference experience,
               secure payment processing, and a massive video archive for member-exclusive
               educational content.
@@ -45,7 +45,7 @@ const highlights = [
               <div
                 v-for="highlight in highlights"
                 :key="highlight"
-                class="flex items-center gap-3 text-stone-700 font-medium"
+                class="flex items-center gap-3 text-stone-700 dark:text-stone-300 font-medium"
               >
                 <div class="w-1.5 h-1.5 rounded-full bg-emerald-800" />
                 {{ highlight }}
@@ -69,7 +69,7 @@ const highlights = [
           </div>
 
           <!-- Image Column -->
-          <div class="relative h-[400px] lg:h-auto overflow-hidden bg-stone-100">
+          <div class="relative h-[400px] lg:h-auto overflow-hidden bg-stone-100 dark:bg-stone-800">
             <NuxtImg
               src="https://images.unsplash.com/photo-1765371512992-843e6a92d7e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg"
               alt="Warm Interior Meeting Space"
@@ -81,22 +81,22 @@ const highlights = [
             <!-- Testimonial Card -->
             <div class="absolute bottom-8 left-8 right-8">
               <UCard
-                class="bg-white/95 backdrop-blur-sm shadow-lg border-white/50"
+                class="bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm shadow-lg border-white/50 dark:border-stone-700/50"
                 :ui="{
-                  root: 'ring-1 ring-white/50',
+                  root: 'ring-1 ring-white/50 dark:ring-stone-700/50',
                   body: 'p-6'
                 }"
               >
-                <UIcon name="i-lucide-quote" class="text-emerald-800 w-8 h-8 mb-4" />
-                <p class="text-stone-800 font-medium italic mb-4">
+                <UIcon name="i-lucide-quote" class="text-emerald-800 dark:text-emerald-400 w-8 h-8 mb-4" />
+                <p class="text-stone-800 dark:text-stone-200 font-medium italic mb-4">
                   "The Conference Suite has transformed how we manage our annual symposium,
                   providing a seamless experience for both our organizers and attendees."
                 </p>
                 <div class="flex items-center gap-3">
                   <UAvatar text="M" size="md" class="bg-emerald-100 text-emerald-900 font-bold" />
                   <div>
-                    <p class="font-bold text-stone-900 text-sm">MCBIOS Leadership</p>
-                    <p class="text-stone-500 text-xs uppercase tracking-wider">
+                    <p class="font-bold text-stone-900 dark:text-stone-100 text-sm">MCBIOS Leadership</p>
+                    <p class="text-stone-500 dark:text-stone-400 text-xs uppercase tracking-wider">
                       Bioinformatics Society
                     </p>
                   </div>

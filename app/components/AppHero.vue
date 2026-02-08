@@ -22,7 +22,7 @@ const features = [
   <section class="relative pt-32 pb-20 overflow-hidden">
     <!-- Background decoration with earth tones -->
     <div
-      class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-50/50 via-stone-50 to-stone-50 opacity-60"
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-50/50 via-stone-50 to-stone-50 dark:from-emerald-950/30 dark:via-stone-950 dark:to-stone-950 opacity-60"
     />
 
     <UContainer>
@@ -44,13 +44,13 @@ const features = [
           </UBadge>
 
           <h1
-            class="text-4xl md:text-6xl lg:text-7xl font-bold text-stone-900 tracking-tight leading-[1.1] mb-6"
+            class="text-4xl md:text-6xl lg:text-7xl font-bold text-stone-900 dark:text-stone-50 tracking-tight leading-[1.1] mb-6"
           >
             Elevate Your Conference <br class="hidden md:block" />
-            <span class="text-emerald-900">With Natural Excellence</span>
+            <span class="text-emerald-900 dark:text-emerald-400">With Natural Excellence</span>
           </h1>
 
-          <p class="max-w-2xl mx-auto text-lg md:text-xl text-stone-600 mb-10 leading-relaxed">
+          <p class="max-w-2xl mx-auto text-lg md:text-xl text-stone-600 dark:text-stone-400 mb-10 leading-relaxed">
             A comprehensive management platform built for academic longevity. Seamless integration,
             persistent data, and professional delivery for every event.
           </p>
@@ -78,7 +78,7 @@ const features = [
         </div>
 
         <div
-          class="relative max-w-5xl mx-auto rounded-2xl border border-stone-200 shadow-2xl overflow-hidden bg-stone-100 animate-scale-in"
+          class="relative max-w-5xl mx-auto rounded-2xl border border-stone-200 dark:border-stone-700 shadow-2xl overflow-hidden bg-stone-100 dark:bg-stone-800 animate-scale-in"
         >
           <NuxtImg
             src="https://images.unsplash.com/photo-1726384780582-40353de8d036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg"

@@ -26,7 +26,7 @@ useSeoMeta({
 
 <template>
   <UApp
-    class="min-h-screen bg-stone-50 font-sans text-stone-900 selection:bg-emerald-100 selection:text-emerald-900"
+    class="min-h-screen bg-stone-50 dark:bg-stone-950 font-sans text-stone-900 dark:text-stone-100 selection:bg-emerald-100 selection:text-emerald-900"
   >
     <AppNavbar />
 

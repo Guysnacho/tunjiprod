@@ -33,7 +33,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <UFooter class="bg-stone-100 border-t border-stone-200">
+  <UFooter class="bg-stone-100 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800">
     <template #top>
       <UContainer>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -44,7 +44,7 @@ const socialLinks = [
             >
               Conference Suite
             </h3>
-            <p class="text-stone-500 max-w-sm mb-8 leading-relaxed">
+            <p class="text-stone-500 dark:text-stone-400 max-w-sm mb-8 leading-relaxed">
               Professional conference management platform built for academic and recurring events.
               Powered by Tunji Productions — trusted since 2020.
             </p>
@@ -59,20 +59,20 @@ const socialLinks = [
                 variant="outline"
                 size="md"
                 :aria-label="social.label"
-                class="border-stone-200 hover:border-emerald-200 hover:text-emerald-800"
+                class="border-stone-200 dark:border-stone-700 hover:border-emerald-200 dark:hover:border-emerald-800 hover:text-emerald-800 dark:hover:text-emerald-400"
               />
             </div>
           </div>
 
           <!-- Platform Links -->
           <div>
-            <h4 class="font-bold text-stone-900 mb-6">Platform</h4>
+            <h4 class="font-bold text-stone-900 dark:text-stone-100 mb-6">Platform</h4>
             <ul class="space-y-4">
               <li v-for="link in platformLinks" :key="link.label">
                 <ULink
                   :to="link.to"
                   :target="link.external ? '_blank' : undefined"
-                  class="text-stone-500 hover:text-emerald-800 transition-colors"
+                  class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 dark:hover:text-emerald-400 transition-colors"
                 >
                   {{ link.label }}
                 </ULink>
@@ -82,13 +82,13 @@ const socialLinks = [
 
           <!-- Company Links -->
           <div>
-            <h4 class="font-bold text-stone-900 mb-6">Company</h4>
+            <h4 class="font-bold text-stone-900 dark:text-stone-100 mb-6">Company</h4>
             <ul class="space-y-4">
               <li v-for="link in companyLinks" :key="link.label">
                 <ULink
                   :to="link.to"
                   :target="link.external ? '_blank' : undefined"
-                  class="text-stone-500 hover:text-emerald-800 transition-colors"
+                  class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 dark:hover:text-emerald-400 transition-colors"
                 >
                   {{ link.label }}
                 </ULink>
@@ -104,7 +104,7 @@ const socialLinks = [
         <div
           class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left"
         >
-          <p class="text-stone-400 text-sm">
+          <p class="text-stone-400 dark:text-stone-500 text-sm">
             © {{ new Date().getFullYear() }} Tunji Productions. All rights reserved. Built with care
             for conferences that matter.
           </p>

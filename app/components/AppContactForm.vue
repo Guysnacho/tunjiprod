@@ -36,18 +36,18 @@ function resetForm() {
 </script>
 
 <template>
-  <UPageSection id="contact" class="bg-white relative overflow-hidden">
+  <UPageSection id="contact" class="bg-white dark:bg-stone-950 relative overflow-hidden">
     <div
-      class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-stone-50 rounded-full blur-3xl -z-10"
+      class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-stone-50 dark:bg-stone-900 rounded-full blur-3xl -z-10"
     />
 
     <UContainer>
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-5xl font-bold text-stone-900 mb-6">
+          <h2 class="text-3xl md:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-6">
             Ready to Elevate Your Conference?
           </h2>
-          <p class="text-lg text-stone-600">
+          <p class="text-lg text-stone-600 dark:text-stone-400">
             Partner with Tunji Productions and leverage the power of the Conference Suite for your
             next event.
           </p>
@@ -56,12 +56,12 @@ function resetForm() {
         <UCard
           class="shadow-2xl relative overflow-hidden"
           :ui="{
-            root: 'ring-1 ring-stone-200 rounded-2xl bg-stone-50',
+            root: 'ring-1 ring-stone-200 dark:ring-stone-700 rounded-2xl bg-stone-50 dark:bg-stone-900',
             body: 'p-12 md:p-16 lg:p-20'
           }"
         >
           <div
-            class="absolute top-1/2 right-4 -translate-y-1/2 text-stone-200/30 font-bold text-[140px] leading-none select-none pointer-events-none z-0"
+            class="absolute top-1/2 right-4 -translate-y-1/2 text-stone-200/30 dark:text-stone-700/30 font-bold text-[140px] leading-none select-none pointer-events-none z-0"
           >
             Contact
           </div>
@@ -73,8 +73,8 @@ function resetForm() {
             >
               <UIcon name="i-lucide-check-circle-2" class="w-10 h-10" />
             </div>
-            <h3 class="text-3xl font-bold text-stone-900 mb-4">Message Sent</h3>
-            <p class="text-stone-600 max-w-md mx-auto mb-8">
+            <h3 class="text-3xl font-bold text-stone-900 dark:text-stone-50 mb-4">Message Sent</h3>
+            <p class="text-stone-600 dark:text-stone-400 max-w-md mx-auto mb-8">
               Your inquiry has been received. Tunji Productions will review your request and reach
               out within 24 hours.
             </p>
@@ -98,7 +98,7 @@ function resetForm() {
                   label="FULL NAME"
                   required
                   :ui="{
-                    label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 mb-2 uppercase',
+                    label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
                     container: 'space-y-0'
                   }"
                 >
@@ -107,7 +107,7 @@ function resetForm() {
                     placeholder="Jane Doe"
                     size="lg"
                     :ui="{
-                      base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
+                      base: 'bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
                     }"
                   />
                 </UFormField>
@@ -117,7 +117,7 @@ function resetForm() {
                   label="WORK EMAIL"
                   required
                   :ui="{
-                    label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 mb-2 uppercase',
+                    label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
                     container: 'space-y-0'
                   }"
                 >
@@ -127,7 +127,7 @@ function resetForm() {
                     placeholder="jane@university.edu"
                     size="lg"
                     :ui="{
-                      base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
+                      base: 'bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
                     }"
                   />
                 </UFormField>
@@ -166,7 +166,7 @@ function resetForm() {
                   placeholder="Briefly describe your conference goals..."
                   size="lg"
                   :ui="{
-                    base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg resize-none'
+                    base: 'bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-600 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg resize-none'
                   }"
                 />
               </UFormField>
@@ -186,7 +186,7 @@ function resetForm() {
               </div>
 
               <p
-                class="text-center text-stone-400 text-[10px] mt-8 font-bold uppercase tracking-[0.25em]"
+                class="text-center text-stone-400 dark:text-stone-500 text-[10px] mt-8 font-bold uppercase tracking-[0.25em]"
               >
                 Built for academic excellence
               </p>

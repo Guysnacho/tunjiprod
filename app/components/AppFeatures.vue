@@ -40,14 +40,14 @@ const features = [
 </script>
 
 <template>
-  <UPageSection id="features" class="bg-stone-50">
+  <UPageSection id="features" class="bg-stone-50 dark:bg-stone-950">
     <UContainer>
       <div class="text-center mb-20">
         <UBadge color="success" variant="subtle" size="md" class="mb-3"> CORE PLATFORM </UBadge>
-        <h3 class="text-3xl md:text-5xl font-bold text-stone-900 mb-6">
+        <h3 class="text-3xl md:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-6">
           Built for Academic Continuity
         </h3>
-        <p class="max-w-2xl mx-auto text-lg text-stone-600">
+        <p class="max-w-2xl mx-auto text-lg text-stone-600 dark:text-stone-400">
           A harmonious blend of advanced technology and intuitive design, tailored for professional
           event management.
         </p>
@@ -57,21 +57,21 @@ const features = [
         <UCard
           v-for="feature in features"
           :key="feature.title"
-          class="hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 transition-all group"
+          class="hover:border-emerald-200 dark:hover:border-emerald-800 hover:shadow-xl hover:shadow-emerald-900/5 transition-all group"
           :ui="{
-            root: 'ring-1 ring-stone-200',
+            root: 'ring-1 ring-stone-200 dark:ring-stone-700 dark:bg-stone-900',
             body: 'p-8'
           }"
         >
           <div
-            class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-stone-50 border border-stone-100 group-hover:bg-emerald-50 group-hover:border-emerald-100 transition-colors"
+            class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-stone-50 dark:bg-stone-800 border border-stone-100 dark:border-stone-700 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950 group-hover:border-emerald-100 dark:group-hover:border-emerald-800 transition-colors"
           >
-            <UIcon :name="feature.icon" class="text-emerald-800 w-6 h-6" />
+            <UIcon :name="feature.icon" class="text-emerald-800 dark:text-emerald-400 w-6 h-6" />
           </div>
-          <h4 class="text-xl font-bold text-stone-900 mb-3">
+          <h4 class="text-xl font-bold text-stone-900 dark:text-stone-50 mb-3">
             {{ feature.title }}
           </h4>
-          <p class="text-stone-600 leading-relaxed">
+          <p class="text-stone-600 dark:text-stone-400 leading-relaxed">
             {{ feature.description }}
           </p>
         </UCard>
