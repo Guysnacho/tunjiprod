@@ -37,6 +37,14 @@ type OtpSchema = z.output<typeof otpSchema>
 
 async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
   loading.value = true
+
+  const isAdmin = await checkAdmin(event.data.email)
+  if (!isAdmin) {
+    loading.value = false
+    toast.add({ title: 'Access denied', description: 'Access restricted to administrators', color: 'error' })
+    return
+  }
+
   const { error } = await supabase.auth.signUp({
     email: event.data.email,
     password: event.data.password
@@ -53,6 +61,14 @@ async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
 
 async function onOtpSubmit(event: FormSubmitEvent<OtpSchema>) {
   loading.value = true
+
+  const isAdmin = await checkAdmin(event.data.email)
+  if (!isAdmin) {
+    loading.value = false
+    toast.add({ title: 'Access denied', description: 'Access restricted to administrators', color: 'error' })
+    return
+  }
+
   const { error } = await supabase.auth.signInWithOtp({
     email: event.data.email,
     options: { shouldCreateUser: true }
