@@ -35,10 +35,11 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    locales: [
-      { code: 'en', language: 'en-US' },
-      { code: 'fr', language: 'fr-FR' }
-    ],
+    strategy: 'prefix_except_default',
     defaultLocale: 'en'
+  },
+
+  supabase: {
+    redirect: false
   }
 })
