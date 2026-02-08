@@ -1,54 +1,245 @@
-# Tunji Productions
+# Conference Suite
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/75c5c3e8-bfb9-4579-a019-bebe485f0329/deploy-status)](https://app.netlify.com/sites/tunjiprod/deploys)
+**Professional conference management platform built for academic and recurring events**
 
-Yeeeaaaa, finally making a portfolio site. A bit late but we move. :)
+Conference Suite is a comprehensive multi-tenant platform that handles registration, content management, payment processing, and attendee engagement under a unified brand. Purpose-built for conferences that value continuity, member relationships, and professional content delivery.
 
-Follow me on a lil journey~~, fingers crossed I can crush this in about 2 weeks~~. ~~Entirely cap. 2 weeks from now (12/2/2022) though for sure~~ ~~Most definitely 3 weeks from now tho (5/15/2022).~~
-Yeah I'm done setting dates on this one.
-Follow development at [Tunji Productions](https://www.tunjiproductions.com)
+---
 
-## Setup
+## Overview
 
-Make sure to install the dependencies:
+Conference Suite eliminates the complexity of managing multiple systems by providing an all-in-one solution for conference organizers. With features like cross-conference authentication, year-specific subdomain isolation, integrated video libraries, and sophisticated form builders, Conference Suite scales from single events to comprehensive conference series management.
+
+**Powered by Tunji Productions** — Trusted by academic conferences since 2020.
+
+---
+
+## Key Features
+
+### Core Platform
+
+- **Multi-tenant architecture** with centralized management via Tunji Productions dashboard
+- **Conference-level registration** with smooth login/signup experience
+- **Subdomain-level authentication** with Supabase integration
+- **Cross-conference authentication** maintaining persistent attendee profiles across years
+- **Year-specific experiences** for both admins and members
+
+### Content Management
+
+- **Video package** with professional content hosting via Cloudflare R2
+- **Multipart upload** for single conference bulk video management
+- **Content management dashboard** for updating titles, deleting content, and organizing materials
+- **Dynamic video center** with member-exclusive access
+
+### Forms & Data Collection
+
+- **Dynamic form builder** with customizable templates
+- **Form persistence** for user submissions
+- **On-site data collection** during live events
+- **Template library** managed from Tunji Productions admin
+
+### Scheduling & Calendar
+
+- **Admin schedule builder** for conference programming
+- **Member schedule builder** with personalized agendas
+- **Schedule persistence** for both admin and attendee roles
+- **Conference-level and individual-level saves**
+
+### Payments & Notifications
+
+- **Stripe integration** with webhook processing
+- **Payment confirmation** and automated receipts
+- **Email notification templates** with edge function triggers
+- **Customizable notification system** for conference-specific communications
+
+### Authentication & Security
+
+- **Supabase-powered authentication** with cross-subdomain session management
+- **Secure member data** handling with privacy-first architecture
+- **Email verification** and account recovery flows
+- **Role-based access control** for admins, members, and guests
+
+---
+
+## Technology Stack
+
+- **Frontend:** Next.js, React, TypeScript
+- **Backend:** Supabase (PostgreSQL, Auth, Edge Functions)
+- **Storage:** Cloudflare R2 for video and media content
+- **Payments:** Stripe with webhook integration
+- **Email:** Resend for transactional notifications
+- **Forms:** React Hook Form with dynamic schema generation
+- **Hosting:** Vercel with multi-subdomain support
+
+---
+
+## Architecture
+
+Conference Suite uses a multi-tenant architecture where:
+
+- **Primary domain:** `tunjiproductions.com` — Central management dashboard
+- **Conference Suite subdomain:** `suite.tunjiproductions.com` — Home of the Conference Suite
+<!-- - **Conference subdomains:** `{conference}.tunjiproductions.com` — Individual conference sites
+- **Year-specific routes:** `{conference}.tunjiproductions.com/{year}` — Year-isolated content -->
+- **Unified auth:** Single authentication system across all subdomains with conference-specific permissions
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Supabase account
+- Stripe account (for payment processing)
+- Cloudflare R2 bucket (for video storage)
+
+### Installation
 
 ```bash
-# yarn
-yarn
+# Clone the repository
+git clone https://github.com/Guysnacho/tunjiprod.git suite
+cd suite
+git switch suite
+
+# Install dependencies
+yarn install
+
+# Set up environment variables
+cp .env.template .env.local
+# Edit .env.local with your credentials
+
+# Run database migrations
+yarn run db:migrate
+
+# Start development server
+yarn run dev
 ```
 
-## Development Server
+### Environment Variables
 
-Start the development server on http://localhost:3000
+```env
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 
-```bash
-yarn dev
+# Stripe
+STRIPE_SECRET_KEY=your_stripe_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_WEBHOOK_SECRET=your_webhook_secret
+
+# Cloudflare R2
+R2_ACCOUNT_ID=your_account_id
+R2_ACCESS_KEY_ID=your_access_key
+R2_SECRET_ACCESS_KEY=your_secret_key
+R2_BUCKET_NAME=your_bucket_name
+
+# Email
+RESEND_API_KEY=your_resend_api_key
+
+# Application
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-## The Point
+---
 
-I kinda wanna do a portfolio site. I don't really like the generic project layout tho so I'm prolly gonna add my personal projects too. I try put a lil smidgin of my soul in all my projects and now that I'm confident in being a developer, I might as well showcase the work.
+## Project Structure
 
-### Functional Goals
+```
+conference-suite/
+├── app/                    # Next.js app directory
+│   ├── (admin)/           # Admin dashboard routes
+│   ├── (conference)/      # Conference-facing routes
+│   └── api/               # API routes and webhooks
+├── components/            # Reusable React components
+├── lib/                   # Utility functions and configurations
+│   ├── supabase/         # Supabase client and utilities
+│   ├── stripe/           # Stripe integration
+│   └── cloudflare/       # R2 storage utilities
+├── supabase/             # Supabase migrations and functions
+├── public/               # Static assets
+└── types/                # TypeScript type definitions
+```
 
-I've actually finished all of my functional goals for the most part. Videos live on the TwoTone Instagram/Bulletin or the Tunji Productions Youtube, music is present but I do want to fetch my Songs of the Day actually from TwoTone, and we've got highlights on the things that matter so far, even have a blog. I like it.
+---
 
-### Learning Goals
+## Development Roadmap
 
-There isn't really a point in doing this if I'm not trying something spicy so I'm gonna learn the following (at least)
+### Phase 1: Core Features ✅
 
-1. ~~I wanna learn tailwind and get back into Vue~~ ~~Moved away from Vue and with it chose MUI..again~~ Went back to Vue, funny how things go full circle. Was a nice exercise.
-   - ~~I used to love vue before vue 3 migration started but now I wanna take another look~~
-   - Tailwind sounds cool, plus I'm getting a teensy closed off to css
-     - Tailwind is cool and I'm glad I'm working closer with CSS. No where near as scary as I thought.
-2. ~~Springboot/Docker~~ ~~Standalone API's~~ Project doesn't require a standalone server but I can add one if I want. Will use it for content though so we'll see.
-3. Spotify API (Gotta have music available)
-   - Gooooot iiiiiiit, took a lil second too. OAuth 2.0 is so awkward at the moment. I'm doing it manually now and that was painful to setup but now I get it.
-   - I'll probably use Passport.js/NextAuth later now that I get it
-   - Mission accomplished, used the work done here in [TwoTone](https://twotone.app)
-4. Progressive Mobile App or some way for me to conveniently update and/or notify the masses
-5. I wanna draw
-   1. I still wanna draw
-6. ~~Might switch to svelte later later. Who knows~~ ~~Used Sveltekit for [TwoTone](https://twotone.app). Glad I did too, different frameworks are cool. Glad I'm not shackled to Next.js.~~ Womp womp, went back to Next.js for now. Simplicity of an Expo Monorepo.
+- [x] Multi-tenant content management
+- [x] Conference registration system
+- [x] Dynamic form builder
+- [x] Tunji Productions admin dashboard
 
-Alright lets go ~
+### Phase 2: Advanced Features (In Progress)
+
+- [ ] Subdomain-level authentication
+- [ ] Cross-conference auth experience
+- [ ] Stripe webhook integration
+- [ ] Email notification system
+- [ ] Video package with hosting
+
+### Phase 3: Premium Features (Planned)
+
+- [ ] Conference schedule builder (admin + member)
+- [ ] Advanced form template system
+- [ ] Enhanced video package with analytics
+- [ ] Photography gallery integration
+
+---
+
+## Contributing
+
+This is a proprietary project built and maintained by Tunji Productions. For inquiries about contributing or partnership opportunities, please contact us.
+
+---
+
+## Case Studies
+
+### MCBIOS (MidSouth Computational Biology and Bioinformatics Society)
+
+**Partnership Duration:** 4+ years  
+**Services Provided:** Custom conference platform, video center, membership management, payment processing
+
+- Custom-designed conference experience
+- Secure payment processing and membership authentication
+- Video archive with member-exclusive access
+- Year-over-year platform improvements
+
+**See it live:**
+
+- Current site: [mcbios.com](https://mcbios.com)
+- Previous version: [old.mcbios.com](https://old.mcbios.com)
+
+---
+
+## License
+
+Proprietary — © 2026 Tunji Productions. All rights reserved.
+
+---
+
+## Contact
+
+**Tunji Productions**  
+Building professional conference platforms for academic and recurring events.
+
+- Website: [tunjiproductions.com](https://tunjiproductions.com)
+- Email: contact@tunjiproductions.com
+- LinkedIn: [Tunji Productions](https://linkedin.com/company/tunji-productions)
+
+---
+
+## Support
+
+For technical support or inquiries about Conference Suite for your event:
+
+- Email: support@tunjiproductions.com
+- Documentation: [docs.tunjiproductions.com](https://docs.tunjiproductions.com)
+
+---
+
+**Built with care for conferences that matter.** 🎯
