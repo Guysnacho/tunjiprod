@@ -41,5 +41,9 @@ export default defineNuxtConfig({
 
   supabase: {
     redirect: false
+  },
+
+  image: {
+    domains: ['images.unsplash.com']
   }
 })
