@@ -7,54 +7,26 @@ useHead({
   }
 })
 
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'Conference Suite by Tunji Productions'
+const description = 'A comprehensive management platform built for academic longevity. Seamless integration, persistent data, and professional delivery for every event.'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
+  ogImage: 'https://images.unsplash.com/photo-1726384780582-40353de8d036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+  twitterImage: 'https://images.unsplash.com/photo-1726384780582-40353de8d036?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
   twitterCard: 'summary_large_image'
 })
 </script>
 
 <template>
-  <UApp>
-    <UHeader>
-      <template #left>
-        <NuxtLink to="/">
-          <AppLogo class="w-auto h-6 shrink-0" />
-        </NuxtLink>
+  <UApp class="min-h-screen bg-stone-50 font-sans text-stone-900 selection:bg-emerald-100 selection:text-emerald-900">
+    <AppNavbar />
 
-        <TemplateMenu />
-      </template>
+    <NuxtPage />
 
-      <template #right>
-        <UColorModeButton />
-
-        <UButton to="https://github.com/nuxt-ui-templates/starter" target="_blank" icon="i-simple-icons-github"
-          aria-label="GitHub" color="neutral" variant="ghost" />
-      </template>
-    </UHeader>
-
-    <UMain>
-      <NuxtPage />
-    </UMain>
-
-    <USeparator icon="i-simple-icons-nuxtdotjs" />
-
-    <UFooter>
-      <template #left>
-        <p class="text-sm text-muted">Built with Nuxt UI • © {{ new Date().getFullYear() }}</p>
-      </template>
-
-      <template #right>
-        <UButton to="https://github.com/nuxt-ui-templates/starter" target="_blank" icon="i-simple-icons-github"
-          aria-label="GitHub" color="neutral" variant="ghost" />
-      </template>
-    </UFooter>
+    <AppFooter />
   </UApp>
 </template>
