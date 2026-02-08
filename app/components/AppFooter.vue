@@ -39,11 +39,14 @@ const socialLinks = [
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
           <!-- Brand Column -->
           <div class="md:col-span-2">
-            <h3 class="text-xl font-bold bg-gradient-to-r from-emerald-900 to-amber-800 bg-clip-text text-transparent mb-6">
+            <h3
+              class="text-xl font-bold bg-gradient-to-r from-emerald-900 to-amber-800 bg-clip-text text-transparent mb-6"
+            >
               Conference Suite
             </h3>
             <p class="text-stone-500 max-w-sm mb-8 leading-relaxed">
-              Professional conference management platform built for academic and recurring events. Powered by Tunji Productions — trusted since 2020.
+              Professional conference management platform built for academic and recurring events.
+              Powered by Tunji Productions — trusted since 2020.
             </p>
             <div class="flex gap-4">
               <UButton
@@ -98,9 +101,12 @@ const socialLinks = [
 
     <template #bottom>
       <UContainer>
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left"
+        >
           <p class="text-stone-400 text-sm">
-            © {{ new Date().getFullYear() }} Tunji Productions. All rights reserved. Built with care for conferences that matter.
+            © {{ new Date().getFullYear() }} Tunji Productions. All rights reserved. Built with care
+            for conferences that matter.
           </p>
           <div class="flex gap-8 text-sm font-medium text-stone-400">
             <span>v2.4.0-stable</span>

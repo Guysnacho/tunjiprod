@@ -12,9 +12,8 @@ const highlights = [
       <UCard
         class="overflow-hidden shadow-xl"
         :ui="{
-          body: { padding: 'p-0' },
-          ring: 'ring-1 ring-stone-200',
-          rounded: 'rounded-3xl'
+          root: 'ring-1 ring-stone-200 rounded-3xl',
+          body: 'p-0'
         }"
       >
         <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -37,7 +36,9 @@ const highlights = [
             </h3>
 
             <p class="text-stone-600 text-lg mb-8 leading-relaxed">
-              Since 2020, we have provided MCBIOS with a custom-designed conference experience, secure payment processing, and a massive video archive for member-exclusive educational content.
+              Since 2020, we have provided MCBIOS with a custom-designed conference experience,
+              secure payment processing, and a massive video archive for member-exclusive
+              educational content.
             </p>
 
             <div class="space-y-4 mb-10">
@@ -82,23 +83,22 @@ const highlights = [
               <UCard
                 class="bg-white/95 backdrop-blur-sm shadow-lg border-white/50"
                 :ui="{
-                  body: { padding: 'p-6' },
-                  ring: 'ring-1 ring-white/50'
+                  root: 'ring-1 ring-white/50',
+                  body: 'p-6'
                 }"
               >
                 <UIcon name="i-lucide-quote" class="text-emerald-800 w-8 h-8 mb-4" />
                 <p class="text-stone-800 font-medium italic mb-4">
-                  "The Conference Suite has transformed how we manage our annual symposium, providing a seamless experience for both our organizers and attendees."
+                  "The Conference Suite has transformed how we manage our annual symposium,
+                  providing a seamless experience for both our organizers and attendees."
                 </p>
                 <div class="flex items-center gap-3">
-                  <UAvatar
-                    text="M"
-                    size="md"
-                    class="bg-emerald-100 text-emerald-900 font-bold"
-                  />
+                  <UAvatar text="M" size="md" class="bg-emerald-100 text-emerald-900 font-bold" />
                   <div>
                     <p class="font-bold text-stone-900 text-sm">MCBIOS Leadership</p>
-                    <p class="text-stone-500 text-xs uppercase tracking-wider">Bioinformatics Society</p>
+                    <p class="text-stone-500 text-xs uppercase tracking-wider">
+                      Bioinformatics Society
+                    </p>
                   </div>
                 </div>
               </UCard>

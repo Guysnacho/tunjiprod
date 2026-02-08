@@ -1,9 +1,11 @@
 # Project Guidelines
 
 <!-- NUXT-DEVTOOLS:CRITICAL-FILES -->
+
 ## ⚠️ Critical Configuration Files
 
 The following files trigger a full Nuxt restart when modified:
+
 - `nuxt.config.ts`
 - `nuxt.config.js`
 - `app.config.ts`
@@ -55,5 +57,7 @@ Step 4: Update nuxt.config.ts            ✓ only after confirmation
 → MUST ask user and WAIT for explicit "yes" before proceeding.
 
 ---
+
 After restart, conversation history is preserved. User can send "continue" to resume.
+
 <!-- /NUXT-DEVTOOLS:CRITICAL-FILES -->

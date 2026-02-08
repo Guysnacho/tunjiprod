@@ -37,45 +37,52 @@ function resetForm() {
 
 <template>
   <UPageSection id="contact" class="bg-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-stone-50 rounded-full blur-3xl -z-10" />
+    <div
+      class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-stone-50 rounded-full blur-3xl -z-10"
+    />
 
     <UContainer>
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-5xl mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-5xl font-bold text-stone-900 mb-6">
             Ready to Elevate Your Conference?
           </h2>
           <p class="text-lg text-stone-600">
-            Partner with Tunji Productions and leverage the power of the Conference Suite for your next event.
+            Partner with Tunji Productions and leverage the power of the Conference Suite for your
+            next event.
           </p>
         </div>
 
         <UCard
-          class="shadow-2xl relative"
+          class="shadow-2xl relative overflow-hidden"
           :ui="{
-            body: { padding: 'p-8 md:p-12' },
-            ring: 'ring-1 ring-stone-200',
-            rounded: 'rounded-3xl',
-            background: 'bg-stone-50'
+            root: 'ring-1 ring-stone-200 rounded-2xl bg-stone-50',
+            body: 'p-12 md:p-16 lg:p-20'
           }"
         >
-          <div class="absolute top-4 right-8 text-emerald-800/10 font-bold text-6xl select-none">
+          <div
+            class="absolute top-1/2 right-4 -translate-y-1/2 text-stone-200/30 font-bold text-[140px] leading-none select-none pointer-events-none z-0"
+          >
             Contact
           </div>
 
           <!-- Success State -->
           <div v-if="submitted" class="text-center py-12 relative z-10">
-            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8 text-emerald-800">
+            <div
+              class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8 text-emerald-800"
+            >
               <UIcon name="i-lucide-check-circle-2" class="w-10 h-10" />
             </div>
             <h3 class="text-3xl font-bold text-stone-900 mb-4">Message Sent</h3>
             <p class="text-stone-600 max-w-md mx-auto mb-8">
-              Your inquiry has been received. Tunji Productions will review your request and reach out within 24 hours.
+              Your inquiry has been received. Tunji Productions will review your request and reach
+              out within 24 hours.
             </p>
             <UButton
-              color="emerald"
+              color="neutral"
               variant="ghost"
               size="lg"
+              class="text-emerald-800 hover:text-emerald-900 hover:bg-emerald-50"
               @click="resetForm"
             >
               Return to Form
@@ -83,68 +90,106 @@ function resetForm() {
           </div>
 
           <!-- Form State -->
-          <UForm
-            v-else
-            :schema="schema"
-            :state="state"
-            class="relative z-10"
-            @submit="onSubmit"
-          >
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <UFormField name="name" label="Full Name" required>
-                <UInput
-                  v-model="state.name"
-                  placeholder="Jane Doe"
-                  size="xl"
-                  :ui="{ rounded: 'rounded-xl' }"
-                />
-              </UFormField>
+          <UForm v-else :schema="schema" :state="state" class="relative z-10" @submit="onSubmit">
+            <div class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <UFormField
+                  name="name"
+                  label="FULL NAME"
+                  required
+                  :ui="{
+                    label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 mb-2 uppercase',
+                    container: 'space-y-0'
+                  }"
+                >
+                  <UInput
+                    v-model="state.name"
+                    placeholder="Jane Doe"
+                    size="lg"
+                    :ui="{
+                      base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
+                    }"
+                  />
+                </UFormField>
 
-              <UFormField name="email" label="Work Email" required>
-                <UInput
-                  v-model="state.email"
-                  type="email"
-                  placeholder="jane@university.edu"
-                  size="xl"
-                  :ui="{ rounded: 'rounded-xl' }"
-                />
-              </UFormField>
+                <UFormField
+                  name="email"
+                  label="WORK EMAIL"
+                  required
+                  :ui="{
+                    label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 mb-2 uppercase',
+                    container: 'space-y-0'
+                  }"
+                >
+                  <UInput
+                    v-model="state.email"
+                    type="email"
+                    placeholder="jane@university.edu"
+                    size="lg"
+                    :ui="{
+                      base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
+                    }"
+                  />
+                </UFormField>
+              </div>
 
-              <UFormField name="organization" label="Organization" required class="md:col-span-2">
+              <UFormField
+                name="organization"
+                label="ORGANIZATION"
+                required
+                :ui="{
+                  label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 mb-2 uppercase',
+                  container: 'space-y-0'
+                }"
+              >
                 <UInput
                   v-model="state.organization"
                   placeholder="Bioinformatics Society of America"
-                  size="xl"
-                  :ui="{ rounded: 'rounded-xl' }"
+                  size="lg"
+                  :ui="{
+                    base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg'
+                  }"
                 />
               </UFormField>
 
-              <UFormField name="message" label="Message" class="md:col-span-2">
+              <UFormField
+                name="message"
+                label="MESSAGE"
+                :ui="{
+                  label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 mb-2 uppercase',
+                  container: 'space-y-0'
+                }"
+              >
                 <UTextarea
                   v-model="state.message"
-                  :rows="4"
+                  :rows="5"
                   placeholder="Briefly describe your conference goals..."
-                  size="xl"
-                  :ui="{ rounded: 'rounded-xl' }"
+                  size="lg"
+                  :ui="{
+                    base: 'bg-white border border-stone-300 focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 rounded-lg resize-none'
+                  }"
                 />
               </UFormField>
 
-              <div class="md:col-span-2 mt-4">
+              <div class="pt-3">
                 <UButton
                   type="submit"
                   block
                   size="xl"
-                  color="emerald"
+                  color="success"
                   variant="solid"
                   trailing-icon="i-lucide-send"
-                  class="bg-emerald-900 hover:bg-emerald-950 shadow-lg shadow-emerald-900/10"
+                  class="bg-emerald-900 hover:bg-emerald-950 shadow-lg transition-all duration-200 rounded-lg h-14"
                 >
                   Send Inquiry
                 </UButton>
-                <p class="text-center text-stone-400 text-xs mt-6 font-medium uppercase tracking-widest">
-                  Built for academic excellence
-                </p>
               </div>
+
+              <p
+                class="text-center text-stone-400 text-[10px] mt-8 font-bold uppercase tracking-[0.25em]"
+              >
+                Built for academic excellence
+              </p>
             </div>
           </UForm>
         </UCard>

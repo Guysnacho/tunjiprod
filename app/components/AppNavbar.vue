@@ -13,11 +13,15 @@ const closeMenu = () => {
 </script>
 
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-200">
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-md border-b border-stone-200"
+  >
     <UContainer>
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center">
-          <span class="text-xl font-bold bg-gradient-to-r from-emerald-900 to-amber-800 bg-clip-text text-transparent">
+          <span
+            class="text-xl font-bold bg-gradient-to-r from-emerald-900 to-amber-800 bg-clip-text text-transparent"
+          >
             Conference Suite
           </span>
           <UBadge color="neutral" variant="subtle" class="hidden sm:block ml-2">
@@ -37,7 +41,7 @@ const closeMenu = () => {
           </ULink>
           <UButton
             to="#contact"
-            color="emerald"
+            color="primary"
             variant="solid"
             class="bg-emerald-900 hover:bg-emerald-950"
             trailing-icon="i-lucide-chevron-right"
@@ -81,7 +85,7 @@ const closeMenu = () => {
           <UButton
             to="#contact"
             block
-            color="emerald"
+            color="primary"
             variant="solid"
             class="bg-emerald-900 hover:bg-emerald-950 mt-4"
             @click="closeMenu"
