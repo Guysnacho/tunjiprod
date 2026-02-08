@@ -7,7 +7,7 @@ const platformLinks = [
 ]
 
 const companyLinks = [
-  { label: 'About Tunji Productions', to: 'https://tunjiproductions.com', external: true },
+  { label: 'About Tunji Productions', to: 'https://tunjiproductions.com/manifesto', external: true },
   { label: 'Contact Support', to: '#contact' },
   { label: 'Privacy Policy', to: '#' },
   { label: 'Terms of Service', to: '#' }
@@ -16,7 +16,7 @@ const companyLinks = [
 const socialLinks = [
   {
     icon: 'i-lucide-linkedin',
-    to: 'https://linkedin.com/company/tunji-productions',
+    to: 'https://www.linkedin.com/company/tunjiprod',
     label: 'LinkedIn'
   },
   {
