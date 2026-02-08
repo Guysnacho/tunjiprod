@@ -9,8 +9,8 @@ const isOpen = ref(false)
 
 const navLinks = [
   { label: 'Features', to: '#features' },
-  { label: 'Architecture', to: '#architecture' },
-  { label: 'Case Studies', to: '#case-studies' }
+  { label: 'Architecture', to: '/#architecture' },
+  { label: 'Case Studies', to: '/#case-studies' }
 ]
 
 const closeMenu = () => {
@@ -53,13 +53,21 @@ const closeMenu = () => {
             @click="isDark = !isDark"
           />
           <UButton
-            to="#contact"
+            to="/login"
+            color="neutral"
+            variant="ghost"
+            class="text-stone-600 dark:text-stone-300 hover:text-emerald-800 dark:hover:text-emerald-400"
+          >
+            Log In
+          </UButton>
+          <UButton
+            to="/register"
             color="primary"
             variant="solid"
             class="bg-emerald-900 hover:bg-emerald-950"
             trailing-icon="i-lucide-chevron-right"
           >
-            Get Started
+            Register
           </UButton>
         </div>
 
@@ -102,16 +110,28 @@ const closeMenu = () => {
           >
             {{ link.label }}
           </ULink>
-          <UButton
-            to="#contact"
-            block
-            color="primary"
-            variant="solid"
-            class="bg-emerald-900 hover:bg-emerald-950 mt-4"
-            @click="closeMenu"
-          >
-            Get Started
-          </UButton>
+          <div class="flex gap-3 mt-4">
+            <UButton
+              to="/login"
+              block
+              color="neutral"
+              variant="outline"
+              class="flex-1"
+              @click="closeMenu"
+            >
+              Log In
+            </UButton>
+            <UButton
+              to="/register"
+              block
+              color="primary"
+              variant="solid"
+              class="flex-1 bg-emerald-900 hover:bg-emerald-950"
+              @click="closeMenu"
+            >
+              Register
+            </UButton>
+          </div>
         </UContainer>
       </div>
     </Transition>

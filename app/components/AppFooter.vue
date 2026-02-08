@@ -1,14 +1,14 @@
 <script setup lang="ts">
 const platformLinks = [
   { label: 'Features', to: '#features' },
-  { label: 'Architecture', to: '#architecture' },
-  { label: 'Case Studies', to: '#case-studies' },
+  { label: 'Architecture', to: '/#architecture' },
+  { label: 'Case Studies', to: '/#case-studies' },
   { label: 'Documentation', to: 'https://docs.tunjiproductions.com', external: true }
 ]
 
 const companyLinks = [
   { label: 'About Tunji Productions', to: 'https://tunjiproductions.com/manifesto', external: true },
-  { label: 'Contact Support', to: '#contact' },
+  { label: 'Contact Support', to: '/#contact' },
   { label: 'Privacy Policy', to: '#' },
   { label: 'Terms of Service', to: '#' }
 ]

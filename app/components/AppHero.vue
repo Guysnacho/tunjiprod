@@ -57,7 +57,7 @@ const features = [
 
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <UButton
-              to="#contact"
+              to="/#contact"
               size="xl"
               color="primary"
               variant="solid"
