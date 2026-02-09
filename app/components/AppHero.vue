@@ -57,11 +57,11 @@ const features = [
 
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <UButton
-              to="#contact"
+              to="/#contact"
               size="xl"
               color="primary"
               variant="solid"
-              class="w-full sm:w-auto bg-emerald-900 hover:bg-emerald-950 shadow-lg shadow-emerald-900/20"
+              class="w-full sm:w-auto bg-emerald-900 hover:bg-emerald-950 shadow-lg shadow-emerald-900/20 text-amber-50"
             >
               Get Started
             </UButton>

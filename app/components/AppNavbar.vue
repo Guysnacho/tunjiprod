@@ -6,15 +6,22 @@ const isDark = computed({
 })
 
 const isOpen = ref(false)
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 
 const navLinks = [
   { label: 'Features', to: '#features' },
-  { label: 'Architecture', to: '#architecture' },
-  { label: 'Case Studies', to: '#case-studies' }
+  { label: 'Architecture', to: '/#architecture' },
+  { label: 'Case Studies', to: '/#case-studies' }
 ]
 
 const closeMenu = () => {
   isOpen.value = false
+}
+
+async function signOut() {
+  await supabase.auth.signOut()
+  navigateTo('/')
 }
 </script>
 
@@ -52,15 +59,43 @@ const closeMenu = () => {
             aria-label="Toggle dark mode"
             @click="isDark = !isDark"
           />
-          <UButton
-            to="#contact"
-            color="primary"
-            variant="solid"
-            class="bg-emerald-900 hover:bg-emerald-950"
-            trailing-icon="i-lucide-chevron-right"
-          >
-            Get Started
-          </UButton>
+
+          <!-- Logged out: Login + Get Started -->
+          <template v-if="!user">
+            <UButton
+              to="/login"
+              color="neutral"
+              variant="ghost"
+              class="text-stone-600 dark:text-stone-300 hover:text-emerald-800 dark:hover:text-emerald-400"
+            >
+              Log In
+            </UButton>
+            <UButton
+              to="/#contact"
+              color="primary"
+              variant="solid"
+              class="bg-emerald-900 hover:bg-emerald-950 text-amber-50"
+              trailing-icon="i-lucide-chevron-right"
+            >
+              Get Started
+            </UButton>
+          </template>
+
+          <!-- Logged in: User menu -->
+          <template v-else>
+            <span class="text-sm text-stone-600 dark:text-stone-300 truncate max-w-48">
+              {{ user.email }}
+            </span>
+            <UButton
+              color="neutral"
+              variant="ghost"
+              icon="i-lucide-log-out"
+              class="text-stone-600 dark:text-stone-300 hover:text-emerald-800 dark:hover:text-emerald-400"
+              @click="signOut"
+            >
+              Sign Out
+            </UButton>
+          </template>
         </div>
 
         <!-- Mobile menu button -->
@@ -102,16 +137,46 @@ const closeMenu = () => {
           >
             {{ link.label }}
           </ULink>
-          <UButton
-            to="#contact"
-            block
-            color="primary"
-            variant="solid"
-            class="bg-emerald-900 hover:bg-emerald-950 mt-4"
-            @click="closeMenu"
-          >
-            Get Started
-          </UButton>
+
+          <!-- Logged out: Login + Get Started -->
+          <div v-if="!user" class="flex gap-3 mt-4">
+            <UButton
+              to="/login"
+              block
+              color="neutral"
+              variant="outline"
+              class="flex-1"
+              @click="closeMenu"
+            >
+              Log In
+            </UButton>
+            <UButton
+              to="/#contact"
+              block
+              color="primary"
+              variant="solid"
+              class="flex-1 bg-emerald-900 hover:bg-emerald-950"
+              @click="closeMenu"
+            >
+              Get Started
+            </UButton>
+          </div>
+
+          <!-- Logged in: User info + Sign Out -->
+          <div v-else class="mt-4 space-y-3">
+            <p class="text-sm text-stone-600 dark:text-stone-300 truncate py-2">
+              {{ user.email }}
+            </p>
+            <UButton
+              block
+              color="neutral"
+              variant="outline"
+              icon="i-lucide-log-out"
+              @click="signOut(); closeMenu()"
+            >
+              Sign Out
+            </UButton>
+          </div>
         </UContainer>
       </div>
     </Transition>
