@@ -74,7 +74,7 @@ async function signOut() {
               to="/#contact"
               color="primary"
               variant="solid"
-              class="bg-emerald-900 hover:bg-emerald-950"
+              class="bg-emerald-900 hover:bg-emerald-950 text-amber-50"
               trailing-icon="i-lucide-chevron-right"
             >
               Get Started

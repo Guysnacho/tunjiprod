@@ -179,7 +179,7 @@ function resetForm() {
                   color="success"
                   variant="solid"
                   trailing-icon="i-lucide-send"
-                  class="bg-emerald-900 hover:bg-emerald-950 shadow-lg transition-all duration-200 rounded-lg h-14"
+                  class="bg-emerald-900 hover:bg-emerald-950 shadow-lg transition-all duration-200 rounded-lg h-14 text-amber-50"
                 >
                   Send Inquiry
                 </UButton>

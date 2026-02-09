@@ -61,7 +61,7 @@ const features = [
               size="xl"
               color="primary"
               variant="solid"
-              class="w-full sm:w-auto bg-emerald-900 hover:bg-emerald-950 shadow-lg shadow-emerald-900/20"
+              class="w-full sm:w-auto bg-emerald-900 hover:bg-emerald-950 shadow-lg shadow-emerald-900/20 text-amber-50"
             >
               Get Started
             </UButton>
