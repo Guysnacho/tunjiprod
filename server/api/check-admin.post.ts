@@ -9,14 +9,16 @@ export default defineEventHandler(async (event) => {
 
   const client = serverSupabaseServiceRole(event)
 
-  // Look up the user by email in auth.users
-  const { data: usersData, error: listError } = await client.auth.admin.listUsers()
+  // Look up the user by email in auth.users - We need emails in the member table since this is paginated
+  const { data: usersData, error: listError } = await client.auth.admin.listUsers({
+    perPage: 100
+  })
 
   if (listError) {
     throw createError({ statusCode: 500, statusMessage: 'Failed to look up user' })
   }
 
-  const authUser = usersData.users.find((u) => u.email === email)
+  const authUser = usersData.users.find(u => u.email === email)
 
   if (!authUser) {
     return { isAdmin: false }
