@@ -33,6 +33,7 @@
     "@nuxtjs/i18n": "10.2.3",
     "@nuxtjs/supabase": "2.0.3",
     "@oro.ad/nuxt-claude-devtools": "1.5.2",
+    "@pinia/nuxt": "0.11.3",
     "better-sqlite3": "^12.6.2",
     "nuxt": "^4.3.0",
     "tailwindcss": "^4.1.18"
