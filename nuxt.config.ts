@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxtjs/i18n',
     '@nuxtjs/supabase',
-    '@oro.ad/nuxt-claude-devtools'
+    '@oro.ad/nuxt-claude-devtools',
+    '@pinia/nuxt'
   ],
 
   devtools: {

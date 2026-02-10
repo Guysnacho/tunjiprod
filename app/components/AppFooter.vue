@@ -7,7 +7,11 @@ const platformLinks = [
 ]
 
 const companyLinks = [
-  { label: 'About Tunji Productions', to: 'https://tunjiproductions.com/manifesto', external: true },
+  {
+    label: 'About Tunji Productions',
+    to: 'https://tunjiproductions.com/manifesto',
+    external: true
+  },
   { label: 'Contact Support', to: '/#contact' },
   { label: 'Privacy Policy', to: '#' },
   { label: 'Terms of Service', to: '#' }
@@ -42,7 +46,7 @@ const socialLinks = [
             <h3
               class="text-xl font-bold bg-gradient-to-r from-emerald-900 to-amber-800 bg-clip-text text-transparent mb-6"
             >
-              Conference Suite
+              <NuxtLink href="/">Conference Suite</NuxtLink>
             </h3>
             <p class="text-stone-500 dark:text-stone-400 max-w-sm mb-8 leading-relaxed">
               Professional conference management platform built for academic and recurring events.
@@ -109,7 +113,7 @@ const socialLinks = [
             for conferences that matter.
           </p>
           <div class="flex gap-8 text-sm font-medium text-stone-400">
-            <span>v2.4.0-stable</span>
+            <span>v0.0.1</span>
           </div>
         </div>
       </UContainer>

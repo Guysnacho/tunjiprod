@@ -2,12 +2,15 @@
 const colorMode = useColorMode()
 const isDark = computed({
   get: () => colorMode.value === 'dark',
-  set: () => { colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark' }
+  set: () => {
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+  }
 })
 
 const isOpen = ref(false)
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
+const store = useUserStore()
 
 const navLinks = [
   { label: 'Features', to: '#features' },
@@ -20,6 +23,7 @@ const closeMenu = () => {
 }
 
 async function signOut() {
+  store.setId()
   await supabase.auth.signOut()
   navigateTo('/')
 }
@@ -35,9 +39,9 @@ async function signOut() {
           <span
             class="text-xl font-bold bg-gradient-to-r from-emerald-900 to-amber-800 bg-clip-text text-transparent"
           >
-            Conference Suite
+            <NuxtLink href="/"> Conference Suite </NuxtLink>
           </span>
-          <UBadge color="neutral" variant="subtle" class="hidden sm:block ml-2">
+          <UBadge color="neutral" variant="subtle" class="hidden md:block ml-2">
             by Tunji Productions
           </UBadge>
         </div>
@@ -83,9 +87,14 @@ async function signOut() {
 
           <!-- Logged in: User menu -->
           <template v-else>
-            <span class="text-sm text-stone-600 dark:text-stone-300 truncate max-w-48">
-              {{ user.email }}
-            </span>
+            <UButton
+              to="/dashboard"
+              color="neutral"
+              variant="ghost"
+              class="text-stone-600 dark:text-stone-300 hover:text-emerald-800 dark:hover:text-emerald-400"
+            >
+              Dashboard
+            </UButton>
             <UButton
               color="neutral"
               variant="ghost"
@@ -126,7 +135,10 @@ async function signOut() {
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="isOpen" class="md:hidden bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+      <div
+        v-if="isOpen"
+        class="md:hidden bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800"
+      >
         <UContainer class="py-4 space-y-2">
           <ULink
             v-for="link in navLinks"
@@ -164,15 +176,26 @@ async function signOut() {
 
           <!-- Logged in: User info + Sign Out -->
           <div v-else class="mt-4 space-y-3">
-            <p class="text-sm text-stone-600 dark:text-stone-300 truncate py-2">
-              {{ user.email }}
-            </p>
+            <USeparator />
+            <UButton
+              to="/dashboard"
+              block
+              color="secondary"
+              variant="outline"
+              class="flex-1"
+              @click="closeMenu"
+            >
+              Dashboard
+            </UButton>
             <UButton
               block
               color="neutral"
               variant="outline"
               icon="i-lucide-log-out"
-              @click="signOut(); closeMenu()"
+              @click="
+                signOut();
+                closeMenu();
+              "
             >
               Sign Out
             </UButton>

@@ -3,8 +3,10 @@ import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
 
 const supabase = useSupabaseClient()
+const store = useUserStore()
 const toast = useToast()
 const loading = ref(false)
+const user = useSupabaseUser()
 const mode = ref<'password' | 'otp'>('password')
 const otpSent = ref(false)
 
@@ -29,17 +31,26 @@ const otpSchema = z.object({
 type PasswordSchema = z.output<typeof passwordSchema>
 type OtpSchema = z.output<typeof otpSchema>
 
+if (user) {
+  store.setId(user.value?.sub)
+  navigateTo('/dashboard')
+}
+
 async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
   loading.value = true
 
   const isAdmin = await checkAdmin(event.data.email)
   if (!isAdmin) {
     loading.value = false
-    toast.add({ title: 'Access denied', description: 'Access restricted to administrators', color: 'error' })
+    toast.add({
+      title: 'Access denied',
+      description: 'Access restricted to administrators',
+      color: 'error'
+    })
     return
   }
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: event.data.email,
     password: event.data.password
   })
@@ -48,6 +59,7 @@ async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
   if (error) {
     toast.add({ title: 'Sign in failed', description: error.message, color: 'error' })
   } else {
+    store.setId(data.user.id)
     navigateTo('/')
   }
 }
@@ -58,7 +70,11 @@ async function onOtpSubmit(event: FormSubmitEvent<OtpSchema>) {
   const isAdmin = await checkAdmin(event.data.email)
   if (!isAdmin) {
     loading.value = false
-    toast.add({ title: 'Access denied', description: 'Access restricted to administrators', color: 'error' })
+    toast.add({
+      title: 'Access denied',
+      description: 'Access restricted to administrators',
+      color: 'error'
+    })
     return
   }
 
@@ -72,7 +88,11 @@ async function onOtpSubmit(event: FormSubmitEvent<OtpSchema>) {
     toast.add({ title: 'Error', description: error.message, color: 'error' })
   } else {
     otpSent.value = true
-    toast.add({ title: 'Check your inbox', description: 'A magic link has been sent to your email.', color: 'success' })
+    toast.add({
+      title: 'Check your inbox',
+      description: 'A magic link has been sent to your email.',
+      color: 'success'
+    })
   }
 }
 
@@ -94,33 +114,35 @@ function switchMode(newMode: 'password' | 'otp') {
       >
         <!-- Header -->
         <div class="text-center mb-8">
-          <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div
+            class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
             <UIcon name="i-lucide-lock" class="w-7 h-7 text-emerald-800 dark:text-emerald-400" />
           </div>
-          <h1 class="text-2xl font-bold text-stone-900 dark:text-stone-50">
-            Welcome back
-          </h1>
-          <p class="text-stone-600 dark:text-stone-400 mt-1">
-            Sign in to your account
-          </p>
+          <h1 class="text-2xl font-bold text-stone-900 dark:text-stone-50">Welcome back</h1>
+          <p class="text-stone-600 dark:text-stone-400 mt-1">Sign in to your account</p>
         </div>
 
         <!-- Mode Tabs -->
         <div class="flex rounded-lg bg-stone-100 dark:bg-stone-800 p-1 mb-6">
           <button
             class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200"
-            :class="mode === 'password'
-              ? 'bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-50 shadow-sm'
-              : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300'"
+            :class="
+              mode === 'password'
+                ? 'bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-50 shadow-sm'
+                : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300'
+            "
             @click="switchMode('password')"
           >
             Email & Password
           </button>
           <button
             class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all duration-200"
-            :class="mode === 'otp'
-              ? 'bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-50 shadow-sm'
-              : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300'"
+            :class="
+              mode === 'otp'
+                ? 'bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-50 shadow-sm'
+                : 'text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300'
+            "
             @click="switchMode('otp')"
           >
             Magic Link
@@ -140,7 +162,8 @@ function switchMode(newMode: 'password' | 'otp') {
               label="EMAIL"
               required
               :ui="{
-                label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
+                label:
+                  'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
                 container: 'space-y-0'
               }"
             >
@@ -160,13 +183,17 @@ function switchMode(newMode: 'password' | 'otp') {
               name="password"
               required
               :ui="{
-                label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
+                label:
+                  'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
                 container: 'space-y-0'
               }"
             >
               <template #label>
                 <div class="flex items-center justify-between w-full">
-                  <span class="text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 uppercase">Password</span>
+                  <span
+                    class="text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 uppercase"
+                    >Password</span
+                  >
                   <NuxtLink
                     to="/forgot-password"
                     class="text-xs font-medium text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300"
@@ -208,14 +235,21 @@ function switchMode(newMode: 'password' | 'otp') {
         <div v-else>
           <!-- Success state after OTP sent -->
           <div v-if="otpSent" class="text-center py-6">
-            <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <UIcon name="i-lucide-mail-check" class="w-8 h-8 text-emerald-800 dark:text-emerald-400" />
+            <div
+              class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <UIcon
+                name="i-lucide-mail-check"
+                class="w-8 h-8 text-emerald-800 dark:text-emerald-400"
+              />
             </div>
             <h3 class="text-xl font-bold text-stone-900 dark:text-stone-50 mb-2">
               Check your email
             </h3>
             <p class="text-stone-600 dark:text-stone-400 text-sm mb-6">
-              We sent a magic link to <span class="font-medium text-stone-900 dark:text-stone-50">{{ otpState.email }}</span>. Click the link to sign in.
+              We sent a magic link to
+              <span class="font-medium text-stone-900 dark:text-stone-50">{{ otpState.email }}</span
+              >. Click the link to sign in.
             </p>
             <UButton
               color="neutral"
@@ -229,19 +263,15 @@ function switchMode(newMode: 'password' | 'otp') {
           </div>
 
           <!-- OTP email input -->
-          <UForm
-            v-else
-            :schema="otpSchema"
-            :state="otpState"
-            @submit="onOtpSubmit"
-          >
+          <UForm v-else :schema="otpSchema" :state="otpState" @submit="onOtpSubmit">
             <div class="space-y-5">
               <UFormField
                 name="email"
                 label="EMAIL"
                 required
                 :ui="{
-                  label: 'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
+                  label:
+                    'text-[10px] font-bold tracking-[0.15em] text-stone-700 dark:text-stone-300 mb-2 uppercase',
                   container: 'space-y-0'
                 }"
               >
@@ -293,7 +323,9 @@ function switchMode(newMode: 'password' | 'otp') {
         </div>
       </UCard>
 
-      <p class="text-center text-stone-400 dark:text-stone-500 text-[10px] mt-6 font-bold uppercase tracking-[0.25em]">
+      <p
+        class="text-center text-stone-400 dark:text-stone-500 text-[10px] mt-6 font-bold uppercase tracking-[0.25em]"
+      >
         Built for academic excellence
       </p>
     </div>
