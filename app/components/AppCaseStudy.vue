@@ -61,7 +61,7 @@ const highlights = [
                 variant="solid"
                 size="lg"
                 trailing-icon="i-lucide-external-link"
-                class="bg-stone-900 hover:bg-emerald-950 shadow-lg shadow-stone-900/10"
+                class="bg-stone-900 hover:bg-emerald-950 dark:bg-stone-200 hover:dark:bg-emerald-100 shadow-lg shadow-stone-900/10"
               >
                 View Live Site
               </UButton>
