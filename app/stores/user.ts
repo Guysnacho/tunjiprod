@@ -1,12 +1,8 @@
-export const useUserStore = defineStore('user', {
-  state: () => {
-    return { id: '',  }
-  },
-  // could also be defined as
-  // state: () => ({ count: 0 })
-  actions: {
-    increment() {
-      this.count++
-    },
-  },
+export const useUserStore = defineStore('user', () => {
+  const id = ref('')
+  function setId(newId?: string) {
+    id.value = newId ?? ''
+  }
+
+  return { uid: id, setId }
 })

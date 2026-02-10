@@ -3,6 +3,7 @@ import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
 
 const supabase = useSupabaseClient()
+const store = useUserStore()
 const toast = useToast()
 const loading = ref(false)
 const mode = ref<'password' | 'otp'>('password')
@@ -39,7 +40,7 @@ async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
     return
   }
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: event.data.email,
     password: event.data.password
   })
@@ -48,6 +49,7 @@ async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
   if (error) {
     toast.add({ title: 'Sign in failed', description: error.message, color: 'error' })
   } else {
+    store.setId(data.user.id)
     navigateTo('/')
   }
 }
