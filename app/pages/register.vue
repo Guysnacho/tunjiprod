@@ -3,6 +3,8 @@ import type { FormSubmitEvent } from '#ui/types'
 import { z } from 'zod'
 
 const supabase = useSupabaseClient()
+const store = useUserStore()
+const user = useSupabaseUser()
 const toast = useToast()
 const loading = ref(false)
 const mode = ref<'password' | 'otp'>('password')
@@ -36,6 +38,11 @@ const otpSchema = z.object({
 
 type PasswordSchema = z.output<typeof passwordSchema>
 type OtpSchema = z.output<typeof otpSchema>
+
+  if (user) {
+  store.setId(user.value?.sub)
+  navigateTo('/dashboard')
+}
 
 async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
   loading.value = true

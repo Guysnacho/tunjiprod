@@ -88,7 +88,7 @@ async function signOut() {
           <!-- Logged in: User menu -->
           <template v-else>
             <UButton
-              to="/login"
+              to="/dashboard"
               color="neutral"
               variant="ghost"
               class="text-stone-600 dark:text-stone-300 hover:text-emerald-800 dark:hover:text-emerald-400"
