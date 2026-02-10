@@ -18,6 +18,13 @@ export default defineNuxtConfig({
     enabled: true
   },
 
+  runtimeConfig: {
+    public: {
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabasePublishableKey: process.env.SUPABASE_KEY,
+    },
+  },
+
   css: ['~/assets/css/main.css'],
 
   routeRules: {

@@ -80,18 +80,21 @@ export type Database = {
       }
       organization: {
         Row: {
+          base_url: string
           cre_ts: string
           id: string
           name: string
           short_name: string | null
         }
         Insert: {
+          base_url: string
           cre_ts?: string
           id?: string
           name: string
           short_name?: string | null
         }
         Update: {
+          base_url?: string
           cre_ts?: string
           id?: string
           name?: string
