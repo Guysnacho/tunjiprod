@@ -31,10 +31,10 @@ const otpSchema = z.object({
 type PasswordSchema = z.output<typeof passwordSchema>
 type OtpSchema = z.output<typeof otpSchema>
 
-if (user) {
-  store.setId(user.value?.sub)
-  navigateTo('/dashboard')
-}
+// if (user) {
+//   store.setId(user.value?.sub)
+//   navigateTo('/dashboard')
+// }
 
 async function onPasswordSubmit(event: FormSubmitEvent<PasswordSchema>) {
   loading.value = true

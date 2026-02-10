@@ -14,9 +14,9 @@ interface Conference {
 const user = useSupabaseUser()
 const store = useUserStore()
 
-if (!user.value) {
-  navigateTo('/login')
-}
+// if (!user.value) {
+//   navigateTo('/login')
+// }
 
 const conferences: Conference[] = [
   {
