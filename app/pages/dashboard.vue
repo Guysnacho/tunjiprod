@@ -21,7 +21,7 @@ const store = useUserStore()
 const userId = computed(() => user.value?.id ?? store.uid)
 
 const { data: conferences, status } = useAsyncData(
-  'dashboard-conferences',
+  'conferences',
   () => {
     if (!userId.value) return Promise.resolve([])
     return client
@@ -35,7 +35,7 @@ const { data: conferences, status } = useAsyncData(
         return (data ?? []) as Conference[]
       })
   },
-  { watch: [userId] }
+  { server: false, watch: [userId] }
 )
 
 const columns: TableColumn<Conference>[] = [
