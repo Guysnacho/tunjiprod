@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ middleware: 'auth' })
+
 import type { TableColumn } from '@nuxt/ui'
 import { h, resolveComponent } from 'vue'
 import type { Database } from '~/types/database.types'
@@ -22,9 +24,10 @@ const userId = computed(() => user.value?.id ?? store.uid)
 
 const { data: conferences, status } = useAsyncData(
   'conferences',
-  () => {
-    if (!userId.value) return Promise.resolve([])
-    return client
+  async () => {
+    console.log(userId.value)
+    if (!userId.value) return await Promise.resolve([])
+    return await client
       .from('member')
       .select(
         'role, attended, org_id, organization!member_org_id_fkey (name, short_name, base_url)'
@@ -177,6 +180,7 @@ const columns: TableColumn<Conference>[] = [
                 variant="ghost"
                 size="sm"
                 :to="row.original.organization.base_url"
+                target="_blank"
                 external
                 class="text-stone-400 dark:text-stone-500 hover:text-emerald-800 dark:hover:text-emerald-400"
               />
