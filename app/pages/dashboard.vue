@@ -29,9 +29,7 @@ const { data: conferences, status } = useAsyncData(
     if (!userId.value) return await Promise.resolve([])
     return await client
       .from('member')
-      .select(
-        'role, attended, org_id, organization!member_org_id_fkey (name, short_name, base_url)'
-      )
+      .select('role,attended,org_id,organization!member_org_id_fkey(name,short_name,base_url)')
       .eq('user_id', userId.value)
       .then(({ data, error }) => {
         if (error) throw error
@@ -62,7 +60,7 @@ const columns: TableColumn<Conference>[] = [
   },
   {
     accessorKey: 'id',
-    header: () => h('span', { class: 'text-right block' }, 'Action')
+    header: () => h('span', 'Action')
   }
 ]
 </script>
@@ -172,8 +170,14 @@ const columns: TableColumn<Conference>[] = [
             </div>
           </template>
 
+          <template #attended-cell="{ row }">
+            <div>
+              {{ row.original.attended.join(', ') }}
+            </div>
+          </template>
+
           <template #id-cell="{ row }">
-            <div class="text-right">
+            <div class="text-center">
               <UButton
                 icon="i-lucide-external-link"
                 color="neutral"
