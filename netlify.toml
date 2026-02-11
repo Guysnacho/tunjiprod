@@ -1,10 +1,4 @@
 [build]
   base="./"
-  publish=".next"
-  command="yarn build"
-
-[context.test]
-  NETLIFY_NEXT_PLUGIN_SKIP="false"
-  base="./"
-  publish=".next"
+  publish=".dist/"
   command="yarn build"
