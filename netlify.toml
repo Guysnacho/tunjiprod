@@ -2,3 +2,6 @@
   base="./"
   publish=".next/"
   command="yarn build"
+
+[context.test]
+  NETLIFY_NUXT_PLUGIN_SKIP="true"
