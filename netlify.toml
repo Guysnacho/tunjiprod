@@ -1,4 +1,4 @@
 [build]
   base="./"
-  publish="dist/"
+  publish=".next/"
   command="yarn build"
