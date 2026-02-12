@@ -76,6 +76,7 @@ export const UserConfirm = ({
     client
       .from("confirm_request")
       .select(`id, user_id, ...member(*)`)
+      .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
       .then(({ data, error, statusText }) => {
         if (error) {
           toaster.error({
@@ -99,6 +100,7 @@ export const UserConfirm = ({
       client
         .from("confirm_request")
         .select(`id, user_id, ...member(*)`)
+        .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
         .then(({ data, error, statusText }) => {
           if (error) {
             toaster.error({
@@ -477,8 +479,8 @@ const ConfirmModal = ({
                   fontSize="sm"
                   color={{ base: "gray.600", _dark: "gray.300" }}
                 >
-                  Would you like to remove a unauthenticated registration entry for this
-                  user? This is optional.
+                  Would you like to remove a unauthenticated registration entry
+                  for this user? This is optional.
                 </Text>
 
                 {!rawRegistrations?.length ? (

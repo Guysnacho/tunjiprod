@@ -9,10 +9,12 @@ export const authFetcher = async (client: SupabaseClient<Database>) => {
     .from("member")
     .select("*")
     .eq("user_id", token!.claims.sub)
+    .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
     .single();
   const { data: videos } = await client
     .from("videos")
     .select("*")
+    .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
     .order("date", { ascending: false });
   const user = await client.auth.getUser();
 
