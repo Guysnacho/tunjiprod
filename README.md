@@ -1,245 +1,178 @@
-# Conference Suite
+# Conference Suite - Next.js
 
-**Professional conference management platform built for academic and recurring events**
+Professional conference management platform built for academic and recurring events. Migrated from Nuxt.js to Next.js 15 with full TypeScript support.
 
-Conference Suite is a comprehensive multi-tenant platform that handles registration, content management, payment processing, and attendee engagement under a unified brand. Purpose-built for conferences that value continuity, member relationships, and professional content delivery.
+## 🚀 Tech Stack
 
----
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4.x
+- **UI Components**: Shadcn/ui
+- **Database & Auth**: Supabase
+- **Forms**: React Hook Form + Zod
+- **State Management**: React Context
+- **Theme**: next-themes
 
-## Overview
+## 📦 Features
 
-Conference Suite eliminates the complexity of managing multiple systems by providing an all-in-one solution for conference organizers. With features like cross-conference authentication, year-specific subdomain isolation, integrated video libraries, and sophisticated form builders, Conference Suite scales from single events to comprehensive conference series management.
+- ✅ **Authentication**
+  - Email/Password and Magic Link (OTP) support
+  - Admin-only access control
+  - Protected routes with middleware
+  - Password reset flow
+  - Email confirmation
 
-**Powered by Tunji Productions** — Trusted by academic conferences since 2020.
+- ✅ **Dashboard**
+  - Member conference management
+  - Attendance tracking
+  - Role-based permissions
 
----
+- ✅ **Modern UX**
+  - Dark mode support
+  - Responsive design
+  - Accessible components
+  - Toast notifications
 
-## Key Features
-
-### Core Platform
-
-- **Multi-tenant architecture** with centralized management via Tunji Productions dashboard
-- **Conference-level registration** with smooth login/signup experience
-- **Subdomain-level authentication** with Supabase integration
-- **Cross-conference authentication** maintaining persistent attendee profiles across years
-- **Year-specific experiences** for both admins and members
-
-### Content Management
-
-- **Video package** with professional content hosting via Cloudflare R2
-- **Multipart upload** for single conference bulk video management
-- **Content management dashboard** for updating titles, deleting content, and organizing materials
-- **Dynamic video center** with member-exclusive access
-
-### Forms & Data Collection
-
-- **Dynamic form builder** with customizable templates
-- **Form persistence** for user submissions
-- **On-site data collection** during live events
-- **Template library** managed from Tunji Productions admin
-
-### Scheduling & Calendar
-
-- **Admin schedule builder** for conference programming
-- **Member schedule builder** with personalized agendas
-- **Schedule persistence** for both admin and attendee roles
-- **Conference-level and individual-level saves**
-
-### Payments & Notifications
-
-- **Stripe integration** with webhook processing
-- **Payment confirmation** and automated receipts
-- **Email notification templates** with edge function triggers
-- **Customizable notification system** for conference-specific communications
-
-### Authentication & Security
-
-- **Supabase-powered authentication** with cross-subdomain session management
-- **Secure member data** handling with privacy-first architecture
-- **Email verification** and account recovery flows
-- **Role-based access control** for admins, members, and guests
-
----
-
-## Technology Stack
-
-- **Frontend:** Next.js, React, TypeScript
-- **Backend:** Supabase (PostgreSQL, Auth, Edge Functions)
-- **Storage:** Cloudflare R2 for video and media content
-- **Payments:** Stripe with webhook integration
-- **Email:** Resend for transactional notifications
-- **Forms:** React Hook Form with dynamic schema generation
-- **Hosting:** Vercel with multi-subdomain support
-
----
-
-## Architecture
-
-Conference Suite uses a multi-tenant architecture where:
-
-- **Primary domain:** `tunjiproductions.com` — Central management dashboard
-- **Conference Suite subdomain:** `suite.tunjiproductions.com` — Home of the Conference Suite
-<!-- - **Conference subdomains:** `{conference}.tunjiproductions.com` — Individual conference sites
-- **Year-specific routes:** `{conference}.tunjiproductions.com/{year}` — Year-isolated content -->
-- **Unified auth:** Single authentication system across all subdomains with conference-specific permissions
-
----
-
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
-- Supabase account
-- Stripe account (for payment processing)
-- Cloudflare R2 bucket (for video storage)
+- Node.js 18+ and npm/yarn/pnpm
+- Supabase account and project
 
 ### Installation
 
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables**
+
+   Copy `.env.example` to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Fill in your Supabase credentials:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your-project-url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📁 Project Structure
+
+```
+nextjs-suite/
+├── src/
+│   ├── app/                     # Next.js App Router
+│   │   ├── (auth pages)/        # Login, Register, etc.
+│   │   ├── dashboard/           # Protected dashboard
+│   │   ├── api/                 # API routes
+│   │   ├── layout.tsx           # Root layout
+│   │   └── page.tsx             # Landing page
+│   ├── components/              # React components
+│   │   ├── ui/                  # Shadcn/ui components
+│   │   ├── app-navbar.tsx
+│   │   ├── app-footer.tsx
+│   │   └── ...
+│   ├── lib/                     # Utilities
+│   │   ├── supabase/            # Supabase clients
+│   │   ├── utils.ts
+│   │   └── auth.ts
+│   ├── context/                 # React Context providers
+│   ├── types/                   # TypeScript types
+│   └── middleware.ts            # Next.js middleware
+├── public/                      # Static assets
+└── ...config files
+```
+
+## 🔐 Authentication Flow
+
+1. **Admin Check**: All login/register attempts verify admin status via `/api/check-admin`
+2. **Middleware**: Protected routes redirect unauthenticated users to `/login`
+3. **Session Management**: Supabase SSR handles session refresh automatically
+4. **User Context**: React Context provides user state across the app
+
+## 🎨 Theming
+
+The app uses a custom earth-tone color palette:
+- **Primary**: Emerald greens (`emerald-900`, `emerald-800`, etc.)
+- **Accent**: Amber tones
+- **Neutral**: Stone grays
+- **Font**: Public Sans
+
+Dark mode is managed by `next-themes` and persists across sessions.
+
+## 📝 Database Schema
+
+Required Supabase tables:
+- `member` - User memberships with roles
+- `organization` - Conference organizations
+- Additional tables as defined in `database.types.ts`
+
+To regenerate types:
 ```bash
-# Clone the repository
-git clone https://github.com/Guysnacho/tunjiprod.git suite
-cd suite
-git switch suite
-
-# Install dependencies
-yarn install
-
-# Set up environment variables
-cp .env.template .env.local
-# Edit .env.local with your credentials
-
-# Run database migrations
-yarn run db:migrate
-
-# Start development server
-yarn run dev
+npx supabase gen types --lang=typescript --project-id YOUR_PROJECT_ID --schema public > src/types/database.types.ts
 ```
 
-### Environment Variables
+## 🧪 Scripts
 
-```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-
-# Stripe
-STRIPE_SECRET_KEY=your_stripe_secret_key
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
-STRIPE_WEBHOOK_SECRET=your_webhook_secret
-
-# Cloudflare R2
-R2_ACCOUNT_ID=your_account_id
-R2_ACCESS_KEY_ID=your_access_key
-R2_SECRET_ACCESS_KEY=your_secret_key
-R2_BUCKET_NAME=your_bucket_name
-
-# Email
-RESEND_API_KEY=your_resend_api_key
-
-# Application
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
 ```
 
----
+## 🚀 Deployment
 
-## Project Structure
+### Vercel (Recommended)
 
-```
-conference-suite/
-├── app/                    # Next.js app directory
-│   ├── (admin)/           # Admin dashboard routes
-│   ├── (conference)/      # Conference-facing routes
-│   └── api/               # API routes and webhooks
-├── components/            # Reusable React components
-├── lib/                   # Utility functions and configurations
-│   ├── supabase/         # Supabase client and utilities
-│   ├── stripe/           # Stripe integration
-│   └── cloudflare/       # R2 storage utilities
-├── supabase/             # Supabase migrations and functions
-├── public/               # Static assets
-└── types/                # TypeScript type definitions
-```
+1. Push your code to GitHub
+2. Import project in Vercel
+3. Add environment variables
+4. Deploy!
 
----
+### Environment Variables for Production
 
-## Development Roadmap
+Make sure to set these in your deployment platform:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `NEXT_PUBLIC_APP_URL`
 
-### Phase 1: Core Features ✅
+## 📚 Key Differences from Nuxt
 
-- [x] Multi-tenant content management
-- [x] Conference registration system
-- [x] Dynamic form builder
-- [x] Tunji Productions admin dashboard
+| Nuxt | Next.js |
+|------|---------|
+| `useSupabaseUser()` | `useUser()` from context |
+| `navigateTo()` | `router.push()` / `redirect()` |
+| `useAsyncData()` | Server Components + `fetch` |
+| `definePageMeta()` | Metadata exports |
+| Auto-imports | Explicit imports |
+| Nuxt UI | Shadcn/ui |
+| Pinia | React Context |
 
-### Phase 2: Advanced Features (In Progress)
+## 📄 License
 
-- [ ] Subdomain-level authentication
-- [ ] Cross-conference auth experience
-- [ ] Stripe webhook integration
-- [ ] Email notification system
-- [ ] Video package with hosting
+This project is proprietary software. All rights reserved.
 
-### Phase 3: Premium Features (Planned)
+## 🙏 Credits
 
-- [ ] Conference schedule builder (admin + member)
-- [ ] Advanced form template system
-- [ ] Enhanced video package with analytics
-- [ ] Photography gallery integration
+Built with ❤️ by [Tunji Productions](https://tunjiproductions.com)
 
----
-
-## Contributing
-
-This is a proprietary project built and maintained by Tunji Productions. For inquiries about contributing or partnership opportunities, please contact us.
-
----
-
-## Case Studies
-
-### MCBIOS (MidSouth Computational Biology and Bioinformatics Society)
-
-**Partnership Duration:** 4+ years  
-**Services Provided:** Custom conference platform, video center, membership management, payment processing
-
-- Custom-designed conference experience
-- Secure payment processing and membership authentication
-- Video archive with member-exclusive access
-- Year-over-year platform improvements
-
-**See it live:**
-
-- Current site: [mcbios.com](https://mcbios.com)
-- Previous version: [old.mcbios.com](https://old.mcbios.com)
-
----
-
-## License
-
-Proprietary — © 2026 Tunji Productions. All rights reserved.
-
----
-
-## Contact
-
-**Tunji Productions**  
-Building professional conference platforms for academic and recurring events.
-
-- Website: [tunjiproductions.com](https://tunjiproductions.com)
-- Email: contact@tunjiproductions.com
-- LinkedIn: [Tunji Productions](https://linkedin.com/company/tunji-productions)
-
----
-
-## Support
-
-For technical support or inquiries about Conference Suite for your event:
-
-- Email: support@tunjiproductions.com
-- Documentation: [docs.tunjiproductions.com](https://docs.tunjiproductions.com)
-
----
-
-**Built with care for conferences that matter.** 🎯
+Powered by:
+- [Next.js](https://nextjs.org/)
+- [Supabase](https://supabase.com/)
+- [Shadcn/ui](https://ui.shadcn.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
