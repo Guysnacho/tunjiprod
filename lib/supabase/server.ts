@@ -25,6 +25,11 @@ export async function createClient() {
           }
         },
       },
+      global: {
+        headers: {
+          org_id: process.env.NEXT_PUBLIC_ORG_ID,
+        },
+      },
     },
   );
 }

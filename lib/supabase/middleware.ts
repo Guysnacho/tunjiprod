@@ -17,17 +17,22 @@ export async function updateSession(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) =>
-            request.cookies.set(name, value)
+            request.cookies.set(name, value),
           );
           supabaseResponse = NextResponse.next({
             request,
           });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
+            supabaseResponse.cookies.set(name, value, options),
           );
         },
       },
-    }
+      global: {
+        headers: {
+          org_id: process.env.NEXT_PUBLIC_ORG_ID,
+        },
+      },
+    },
   );
 
   // IMPORTANT: Avoid writing any logic between createServerClient and

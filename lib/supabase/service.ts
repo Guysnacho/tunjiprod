@@ -1,5 +1,5 @@
-import { createClient as createSupabaseClient } from '@supabase/supabase-js'
-import { Database } from './types'
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { Database } from "./types";
 
 /**
  * Creates a Supabase client with service role permissions.
@@ -10,6 +10,13 @@ import { Database } from './types'
 export default function createClient() {
   return createSupabaseClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVER_KEY!
-  )
+    process.env.SUPABASE_SERVER_KEY!,
+    {
+      global: {
+        headers: {
+          org_id: process.env.NEXT_PUBLIC_ORG_ID,
+        },
+      },
+    },
+  );
 }

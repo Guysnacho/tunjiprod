@@ -1,9 +1,16 @@
-import { createBrowserClient } from '@supabase/ssr'
-import { Database } from './types'
+import { createBrowserClient } from "@supabase/ssr";
+import { Database } from "./types";
 
 export function createClient() {
   return createBrowserClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUB_KEY!
-  )
+    process.env.NEXT_PUBLIC_SUPABASE_PUB_KEY!,
+    {
+      global: {
+        headers: {
+          org_id: process.env.NEXT_PUBLIC_ORG_ID,
+        },
+      },
+    },
+  );
 }
